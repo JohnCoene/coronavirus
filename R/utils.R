@@ -77,7 +77,8 @@ clean_columns <- function(df){
     "confirmed",
     "deaths",
     "recovered",
-    "last_update"
+    "last_update",
+    "page_index"
   )
 
   dplyr::select(df, dplyr::one_of(!!!to_keep))
@@ -96,4 +97,36 @@ correct_dates <- function(x, y){
   }
   
   return(x)
+}
+
+#' Connect
+#' 
+#' Connect to database.
+#' 
+#' @param con Output of \code{connect}.
+#' 
+#' @rdname connect
+#' @keywords internal
+connect <- function(){
+  config <- get_config()
+
+  has_vars <- all(c("user", "password", "host") %in% names(config$database))
+
+  if(!has_vars)
+    stop("Missing variables in config file, see `create_config`", call. = FALSE)
+  
+  pool::dbPool(
+    RPostgres::Postgres(),
+    host = config$database$host,
+    user = config$database$user,
+    password = config$database$password,
+    dbname = config$database$name,
+    port = 5432
+  )
+}
+
+#' @rdname connect
+#' @keywords internal
+disconnect <- function(con){
+  pool::poolClose(con)
 }

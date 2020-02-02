@@ -7,21 +7,12 @@
 #' 
 #' @export
 crawl_coronavirus <- function(){
-  config <- get_config()
 
-  has_vars <- all(c("user", "password", "host") %in% names(config$database))
-
-  if(!has_vars)
-    stop("Missing variables in config file, see `create_config`", call. = FALSE)
-
-  con <- DBI::dbConnect(
-    RPostgres::Postgres(),
-    host = config$database$host,
-    user = config$database$user,
-    password = config$database$password,
-    dbname = config$database$name,
-    port = 5432
-  )
+  # manage connection pool
+  con <- connect()
+  on.exit({
+    disconnect(con)
+  })
 
   # get data
   cli::cli_alert_info("Crawling data")
@@ -33,7 +24,8 @@ crawl_coronavirus <- function(){
   msg <- paste("Found", length(pages), "pages of data")
   cli::cli_alert_info(msg)
 
-  df <- purrr::map(pages, function(x){
+  # collect and clean
+  df <- purrr::map2(pages, 1:length(pages), function(x, y){
     Sys.sleep(5)
     sh <- tryCatch(
       googlesheets::gs_read(sheets, x, col_types = readr::cols(), verbose = FALSE),
@@ -47,10 +39,12 @@ crawl_coronavirus <- function(){
         error = function(e) e
       )
     }
+    sh$page_index <- y
     return(sh)
   }) %>% 
     purrr::map_dfr(clean_columns)
 
+  # run quietly
   correct_quiet <- purrr::quietly(correct_dates)
 
   # correct dates
@@ -61,10 +55,9 @@ crawl_coronavirus <- function(){
     unlist() %>% 
     as.POSIXct(origin = "1970-01-01")
 
+  # save
   cli::cli_alert_success("Writing to database")
-
   DBI::dbWriteTable(con, "daily", df, overwrite = TRUE, append = FALSE)
 
-  DBI::dbDisconnect(con)
   invisible(df)
 }

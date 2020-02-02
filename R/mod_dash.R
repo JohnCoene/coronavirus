@@ -17,7 +17,21 @@ mod_dash_ui <- function(id){
   ns <- NS(id)
 
   tagList(
-    
+    fluidRow(
+      column(
+        2,
+        h1(
+          tags$small("confirmed"), br(),
+          countup::countupOutput(ns("total_confirmed"))
+        )
+      ),
+      column(
+        6
+      ),
+      column(
+        3
+      )
+    )
   )
 }
     
@@ -26,14 +40,25 @@ mod_dash_ui <- function(id){
 #' @rdname mod_dash
 #' @export
 #' @keywords internal
-    
 mod_dash_server <- function(input, output, session){
   ns <- session$ns
+
+  con <- connect()
+  df <- DBI::dbReadTable(con, "daily")
+
+  on.exit({
+    disconnect(con)
+  })
+
+  output$total_confirmed <- countup::renderCountup({
+    waiter::waiter_hide()
+    
+    df %>% 
+      dplyr::group_by(province_state) %>% 
+      dplyr::filter(last_update == max(last_update)) %>%
+      dplyr::ungroup() %>%  
+      dplyr::pull(confirmed) %>% 
+      sum(na.rm = TRUE) %>% 
+      countup::countup()
+  })
 }
-    
-## To be copied in the UI
-# mod_dash_ui("dash_ui_1")
-    
-## To be copied in the server
-# callModule(mod_dash_server, "dash_ui_1")
- 

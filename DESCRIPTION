@@ -14,6 +14,7 @@ Imports:
     DBI,
     cli,
     yaml,
+    pool,
     shiny,
     golem,
     dplyr,
