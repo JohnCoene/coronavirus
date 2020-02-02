@@ -1,0 +1,27 @@
+Package: coronavirus
+Title: Tracking the Coronavirus
+Version: 0.0.0.9000
+Authors@R: 
+  c(
+    person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
+    person(family = 'John Hopkins', role = 'ctb')
+  )
+Description: Tracking the Coronavirus.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    DBI,
+    cli,
+    yaml,
+    shiny,
+    golem,
+    dplyr,
+    purrr,
+    readr,
+    RPostgres,
+    googlesheets,
+    magrittr
+RoxygenNote: 7.0.2
+URL: https://github/JohnCoene/coronavirus
+BugReports: https://github/JohnCoene/coronavirus/issues
