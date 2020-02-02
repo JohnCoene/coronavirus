@@ -88,8 +88,12 @@ clean_columns <- function(df){
 #' @param x An object of class date.
 #' 
 #' @keywords internal
-correct_dates <- function(x){
-  x <- gsub("^20-", "2020-", x)
+correct_dates <- function(x, y){
+  if(is.na(x)){
+    x <- as.Date(y, "%m/%d/%y")
+    x <- paste(x, "00:00:00")
+    x <- as.POSIXct(x)
+  }
   
-  as.Date(x)
+  return(x)
 }

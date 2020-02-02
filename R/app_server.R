@@ -1,4 +1,4 @@
 #' @import shiny
 app_server <- function(input, output,session) {
-  # List the first level callModules here
+  callModule(mod_dash_server, "dash_ui_1")
 }

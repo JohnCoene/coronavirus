@@ -51,10 +51,15 @@ crawl_coronavirus <- function(){
   }) %>% 
     purrr::map_dfr(clean_columns)
 
+  correct_quiet <- purrr::quietly(correct_dates)
+
   # correct dates
   df$last_update <- df$last_update %>% 
-    as.Date("%m/%d/%Y") %>% 
-    correct_dates()
+    anytime::anytime() %>% 
+    purrr::map2(df$last_update, correct_quiet) %>% 
+    purrr::map("result") %>% 
+    unlist() %>% 
+    as.POSIXct(origin = "1970-01-01")
 
   cli::cli_alert_success("Writing to database")
 

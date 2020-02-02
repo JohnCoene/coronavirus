@@ -5,7 +5,8 @@ app_ui <- function() {
     golem_add_external_resources(),
     # List the first level UI elements here 
     fluidPage(
-      h1("coronavirus")
+      title = "coronavirus",
+      mod_dash_ui("dash_ui_1")
     )
   )
 }
@@ -19,10 +20,8 @@ golem_add_external_resources <- function(){
  
   tags$head(
     golem::activate_js(),
-    golem::favicon()
-    # Add here all the external resources
-    # If you have a custom.css in the inst/app/www
-    # Or for example, you can add shinyalert::useShinyalert() here
-    #tags$link(rel="stylesheet", type="text/css", href="www/custom.css")
+    golem::favicon(),
+    waiter::use_waiter(),
+    tags$link(rel="stylesheet", type="text/css", href="www/style.css")
   )
 }

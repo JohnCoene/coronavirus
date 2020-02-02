@@ -7,7 +7,7 @@
 
 ## 2.1 Add modules
 ## 
-golem::add_module( name = "my_first_module" ) # Name of the module
+golem::add_module( name = "dash" ) # Name of the module
 golem::add_module( name = "my_other_module" ) # Name of the module
 
 ## 2.2 Add dependencies
@@ -26,7 +26,7 @@ golem::browser_button()
 
 golem::add_js_file( "script" )
 golem::add_js_handler( "handlers" )
-golem::add_css_file( "custom" )
+golem::add_css_file( "style" )
 
 # 3. Documentation
 

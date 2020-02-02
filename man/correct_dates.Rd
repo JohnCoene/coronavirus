@@ -4,7 +4,7 @@
 \alias{correct_dates}
 \title{Correct Dates}
 \usage{
-correct_dates(x)
+correct_dates(x, y)
 }
 \arguments{
 \item{x}{An object of class date.}

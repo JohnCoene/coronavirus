@@ -1,6 +1,6 @@
 Package: coronavirus
 Title: Tracking the Coronavirus
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
   c(
     person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
@@ -19,9 +19,11 @@ Imports:
     dplyr,
     purrr,
     readr,
+    waiter,
+    anytime,
+    magrittr,
     RPostgres,
-    googlesheets,
-    magrittr
+    googlesheets
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
