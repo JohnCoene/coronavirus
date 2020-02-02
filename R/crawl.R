@@ -42,7 +42,7 @@ crawl_coronavirus <- function(){
     sh$page_index <- y
     return(sh)
   }) %>% 
-    purrr::map_dfr(clean_columns)
+    purrr::map_dfr(clean_columns) 
 
   # run quietly
   correct_quiet <- purrr::quietly(correct_dates)
@@ -54,6 +54,8 @@ crawl_coronavirus <- function(){
     purrr::map("result") %>% 
     unlist() %>% 
     as.POSIXct(origin = "1970-01-01")
+
+  df <- geoloc(df)
 
   # save
   cli::cli_alert_success("Writing to database")

@@ -15,16 +15,21 @@ Imports:
     cli,
     yaml,
     pool,
+    httr,
     shiny,
     golem,
     dplyr,
     purrr,
     readr,
     waiter,
+    countup,
     anytime,
     magrittr,
     RPostgres,
+    shinythemes,
     googlesheets
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
+Remotes:
+  JohnCoene/countup
