@@ -46,15 +46,17 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
     
     x <- rev(1:nrow(dat))
     cases <- dat$cases
-    model <- nls(cases ~ (x ^ b), start = c(b = 3), trace = T)
+    model <- nls(cases ~ (x ^ b), start = c(b = 2), trace = T)
 
-    x <- rev(1:(nrow(dat) + 5))
+    predict_days <- 3
+
+    x <- rev(1:(nrow(dat) + predict_days))
     pred <- x ^ coef(model)
-    dates <- seq.Date(min(dat$date), max(dat$date) + 5, by = "days")
+    dates <- seq.Date(min(dat$date), max(dat$date) + predict_days, by = "days")
 
     df <- data.frame(
       date = rev(dates),
-      cases = c(rep(NA, 5), cases),
+      cases = c(rep(NA, predict_days), cases),
       model = pred
     )
 
