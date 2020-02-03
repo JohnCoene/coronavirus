@@ -16,7 +16,7 @@
 mod_count_ui <- function(id, label){
   ns <- NS(id)
   f7Card(
-    h1(
+    h2(
       class = "center",
       tags$small(label), br(),
       countup::countupOutput(ns("cnt"))
