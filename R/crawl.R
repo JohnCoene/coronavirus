@@ -32,12 +32,21 @@ crawl_coronavirus <- function(){
   recovered <- rename_sheets(recovered)
   deaths <- rename_sheets(deaths)
 
+  # pivot longer
   confirmed <- pivot(confirmed)
   recovered <- pivot(recovered)
   deaths <- pivot(deaths)
 
   df <- dplyr::bind_rows(confirmed, recovered, deaths) %>% 
-    dplyr::mutate(date = anytime::anytime(date))
+    dplyr::mutate(
+      date = anytime::anytime(date),
+      cases = trimws(cases),
+      cases = as.numeric(cases),
+      cases = dplyr::case_when(
+        is.na(cases) ~ 0,
+        TRUE ~ cases
+      )
+    )
 
   # save
   cli::cli_alert_success("Writing to database")

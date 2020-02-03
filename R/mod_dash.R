@@ -44,7 +44,7 @@ mod_dash_server <- function(input, output, session){
   ns <- session$ns
 
   con <- connect()
-  df <- DBI::dbReadTable(con, "daily")
+  df <- DBI::dbReadTable(con, "data")
 
   on.exit({
     disconnect(con)
@@ -54,10 +54,9 @@ mod_dash_server <- function(input, output, session){
     waiter::waiter_hide()
     
     df %>% 
-      dplyr::group_by(province_state) %>% 
-      dplyr::filter(last_update == max(last_update)) %>%
-      dplyr::ungroup() %>%  
-      dplyr::pull(confirmed) %>% 
+      dplyr::filter(date == max(date)) %>%
+      dplyr::filter(type == "confirmed") %>% 
+      dplyr::pull(cases) %>% 
       sum(na.rm = TRUE) %>% 
       countup::countup()
   })
