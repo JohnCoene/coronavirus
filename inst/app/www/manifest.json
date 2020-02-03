@@ -3,37 +3,49 @@
   "short_name": "Coronavirus",
   "description": "Coronavirus Tracker",
   "lang": "en-US",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "start_url": "https://shiny.john-coene.com/coronavirus",
   "display": "standalone",
   "icons": [
     {
-      "src": "icons/128x128.png",
+      "src": "www/icon/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "icons/144x144.png",
+      "src": "www/icon/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "icons/152x152.png",
+      "src": "www/icon/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "icons/192x192.png",
+      "src": "www/icon/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/256x256.png",
+      "src": "www/icon/icon-256x256.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "icons/512x512.png",
+      "src": "www/icon/icon-512x512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "www/icon/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "www/icon/icon-96x96.png",
+      "sizes": "96x96",
       "type": "image/png"
     }
   ]

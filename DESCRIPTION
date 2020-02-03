@@ -28,9 +28,11 @@ Imports:
     tidyselect,
     shinyMobile,
     countrycode,
-    googlesheets4
+    googlesheets4,
+    echarts4r.maps
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
 Remotes:
-  JohnCoene/countup
+  JohnCoene/countup,
+  JohnCoene/echarts4r.maps

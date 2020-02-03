@@ -4,8 +4,9 @@ spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDF
 theme <- "dark"
 
 # global variables
-globalVariables(c(".", "cases", "type", "country"))
+globalVariables(c(".", "cases", "type", "country", "chinese", "country_iso2c"))
 
+#' Dataframe to match for echarts4r geojson to work.
 chinese_provinces <- data.frame(
   state = c("Anhui", "Beijing", "Chongqing", "Fujian", "Gansu", "Guangdong", 
     "Guangxi", "Guizhou", "Hainan", "Hebei", "Heilongjiang", "Henan", 
