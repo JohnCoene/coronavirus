@@ -52,7 +52,19 @@ golem_add_external_resources <- function(){
     golem::activate_js(),
     golem::favicon(),
     waiter::use_waiter(include_js = FALSE),
-    tags$link(rel="stylesheet", type="text/css", href="www/style.css")
+    tags$link(rel="stylesheet", type="text/css", href="www/style.css"),
+    HTML(
+      "
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-74544116-1'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-74544116-1');
+</script>"
+    )
   )
 }
 
