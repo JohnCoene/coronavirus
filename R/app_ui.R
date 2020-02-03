@@ -21,14 +21,16 @@ app_ui <- function() {
             mod_count_ui("count_ui_3", "recovered")
           )
         ),
+        mod_trend_ui("trend_ui_1"),
         navbar = f7Navbar(
-          title = "Dashboard",
+          title = "Coronavirus Tracker",
           hairline = TRUE,
           shadow = TRUE
         ),
         toolbar = f7Toolbar(
           position = "bottom",
           f7Link(label = "Author", src = "https://john-coene.com", external = TRUE),
+          f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE),
           f7Link(label = "Data", src = "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/", external = TRUE)
         )
       )

@@ -21,9 +21,9 @@ Imports:
     tidyr,
     waiter,
     countup,
-    anytime,
     magrittr,
     RPostgres,
+    lubridate,
     tidyselect,
     shinyMobile,
     googlesheets4

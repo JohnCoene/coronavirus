@@ -94,3 +94,13 @@ pivot <- function(df){
     values_ptypes = list(cases = "character")
   )
 }
+
+#' Convert
+#' 
+#' Convert dates.
+#' 
+#' @keywords internal
+as_date <- function(date){
+  date <- lubridate::mdy_hm(date, "%m/%d/%Y %H:%M %p")
+  date[!is.na(date)]
+}

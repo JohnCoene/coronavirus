@@ -39,7 +39,7 @@ crawl_coronavirus <- function(){
 
   df <- dplyr::bind_rows(confirmed, recovered, deaths) %>% 
     dplyr::mutate(
-      date = anytime::anytime(date),
+      date = as_date(date),
       cases = trimws(cases),
       cases = as.numeric(cases),
       cases = dplyr::case_when(
