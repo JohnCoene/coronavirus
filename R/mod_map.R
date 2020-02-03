@@ -15,7 +15,7 @@
 #' @importFrom shiny NS tagList 
 mod_map_ui <- function(id){
   ns <- NS(id)
-  
+
   f7Card(
     title = "Confirmed Cases - China",
     echarts4r::echarts4rOutput(ns("map"), height = "70vh")
@@ -37,16 +37,24 @@ mod_map_server <- function(input, output, session, df){
       dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
       dplyr::filter(type == "confirmed") %>% 
       dplyr::left_join(chinese_provinces, by = "state") %>% 
-      dplyr::group_by(date)
+      dplyr::arrange(desc(date))
 
     index <- length(unique(dat$date)) -1 
+    titles <- unique(dat$date) %>% 
+      purrr::map(function(x){
+        list(text = format(x, "%d %b %Hh"))
+      })
       
     dat %>% 
+      dplyr::group_by(date) %>% 
       echarts4r::e_charts(chinese, timeline = TRUE) %>% 
       echarts4r.maps::em_map("China") %>% 
       echarts4r::e_map(cases, map = "China") %>% 
       echarts4r::e_visual_map(cases, min = 0) %>% 
       echarts4r::e_theme(theme) %>% 
-      echarts4r::e_timeline_opts(currentIndex = index)
+      echarts4r::e_timeline_opts(currentIndex = index) %>% 
+      echarts4r::e_timeline_serie(
+        title = titles
+      )
   })
 }
