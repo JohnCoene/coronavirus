@@ -13,6 +13,7 @@ app_server <- function(input, output,session) {
 
   callModule(mod_trend_server, "trend_ui_1", df = df)
   callModule(mod_map_server, "map_ui_1", df = df)
+  callModule(mod_world_server, "world_ui_1", df = df)
 
   waiter::waiter_hide()
 }

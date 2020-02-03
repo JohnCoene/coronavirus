@@ -15,19 +15,10 @@
 #' @importFrom shiny NS tagList 
 mod_map_ui <- function(id){
   ns <- NS(id)
-  f7Row(
-    f7Col(
-      f7Card(
-        title = "Confirmed Cases - China",
-        echarts4r::echarts4rOutput(ns("map"), height = "70vh")
-      )
-    ),
-    f7Col(
-      f7Card(
-        title = "Confirmed Cases - Worldwide",
-        echarts4r::echarts4rOutput(ns("world"), height = "70vh")
-      )
-    )
+  
+  f7Card(
+    title = "Confirmed Cases - China",
+    echarts4r::echarts4rOutput(ns("map"), height = "70vh")
   )
 }
     
@@ -57,18 +48,5 @@ mod_map_server <- function(input, output, session, df){
       echarts4r::e_visual_map(cases, min = 0) %>% 
       echarts4r::e_theme(theme) %>% 
       echarts4r::e_timeline_opts(currentIndex = index)
-  })
-
-  output$world <- echarts4r::renderEcharts4r({
-    df %>% 
-      dplyr::filter(date == max(date)) %>%
-      echarts4r::e_country_names(country_iso2c, country) %>% 
-      dplyr::group_by(country) %>% 
-      dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
-      dplyr::ungroup() %>% 
-      echarts4r::e_charts(country) %>% 
-      echarts4r::e_map(cases) %>% 
-      echarts4r::e_visual_map(cases) %>% 
-      echarts4r::e_theme(theme)
   })
 }
