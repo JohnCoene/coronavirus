@@ -7,7 +7,7 @@
 #' @rdname config
 #' @export
 create_config <- function(){
-  file <- system.file("_coronavirus.yml", package = "coronavirus")
+  file <- system.file("coronavirus.yml", package = "coronavirus")
   created <- file.copy(file, to = config_file)
   if(created)
     cli::cli_alert_success("_coronavirus.yml file copied: fill it in")
