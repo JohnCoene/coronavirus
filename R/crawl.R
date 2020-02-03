@@ -16,50 +16,33 @@ crawl_coronavirus <- function(){
 
   # get data
   cli::cli_alert_info("Crawling data")
-  token <- get_token()
-  googlesheets::gs_auth(token = token)
-  sheets <- googlesheets::gs_url(spreadsheet, verbose = FALSE)
-  pages <- googlesheets::gs_ws_ls(sheets)
+  
+  # read data
+  confirmed <- googlesheets4::sheets_read(spreadsheet, sheet = "Confirmed")
+  recovered <- googlesheets4::sheets_read(spreadsheet, sheet = "Recovered")
+  deaths <- googlesheets4::sheets_read(spreadsheet, sheet = "Death")
 
-  msg <- paste("Found", length(pages), "pages of data")
-  cli::cli_alert_info(msg)
+  # add col
+  confirmed$type <- "confirmed"
+  recovered$type <- "recovered"
+  deaths$type <- "death"
 
-  # collect and clean
-  df <- purrr::map2(pages, 1:length(pages), function(x, y){
-    Sys.sleep(5)
-    sh <- tryCatch(
-      googlesheets::gs_read(sheets, x, col_types = readr::cols(), verbose = FALSE),
-      error = function(e) e
-    )
+  # rename
+  confirmed <- rename_sheets(confirmed)
+  recovered <- rename_sheets(recovered)
+  deaths <- rename_sheets(deaths)
 
-    while(inherits(sh, "error")){
-      Sys.sleep(5)
-      sh <- tryCatch(
-        googlesheets::gs_read(sheets, x, col_types = readr::cols(), verbose = FALSE),
-        error = function(e) e
-      )
-    }
-    sh$page_index <- y
-    return(sh)
-  }) %>% 
-    purrr::map_dfr(clean_columns) 
+  confirmed <- pivot(confirmed)
+  recovered <- pivot(recovered)
+  deaths <- pivot(deaths)
 
-  # run quietly
-  correct_quiet <- purrr::quietly(correct_dates)
-
-  # correct dates
-  df$last_update <- df$last_update %>% 
-    anytime::anytime() %>% 
-    purrr::map2(df$last_update, correct_quiet) %>% 
-    purrr::map("result") %>% 
-    unlist() %>% 
-    as.POSIXct(origin = "1970-01-01")
-
-  df <- geoloc(df)
+  df <- dplyr::bind_rows(confirmed, recovered, deaths) %>% 
+    dplyr::mutate(date = anytime::anytime(date))
 
   # save
   cli::cli_alert_success("Writing to database")
-  DBI::dbWriteTable(con, "daily", df, overwrite = TRUE, append = FALSE)
+  DBI::dbWriteTable(con, "data", df, overwrite = TRUE, append = FALSE)
 
   invisible(df)
 }
+
