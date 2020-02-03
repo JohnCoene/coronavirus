@@ -9,6 +9,9 @@ app_ui <- function() {
       dark_mode = TRUE,
       init = f7Init(skin = "md", theme = "dark"),
       waiter::waiter_show_on_load(loader, color = "#000"),
+      tags$head(
+        tags$meta(rel="manifest", href="./www/manifest.json")
+      ),
       f7SingleLayout(
         f7Row(
           f7Col(
