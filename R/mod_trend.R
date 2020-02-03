@@ -63,7 +63,7 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
       echarts4r::e_line(cases, name = "Confirmed Cases") %>% 
       echarts4r::e_line(model, name = "Model") %>% 
       echarts4r::e_tooltip(trigger = "axis") %>% 
-      echarts4r::e_theme("dark-bold")
+      echarts4r::e_theme(theme)
   })
 }
     

@@ -22,10 +22,12 @@ Imports:
     waiter,
     countup,
     magrittr,
+    echarts4r,
     RPostgres,
     lubridate,
     tidyselect,
     shinyMobile,
+    countrycode,
     googlesheets4
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus

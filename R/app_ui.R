@@ -22,6 +22,7 @@ app_ui <- function() {
           )
         ),
         mod_trend_ui("trend_ui_1"),
+        mod_map_ui("map_ui_1"),
         navbar = f7Navbar(
           title = "Coronavirus Tracker",
           hairline = TRUE,
@@ -54,7 +55,7 @@ golem_add_external_resources <- function(){
 }
 
 loader <- tagList(
-  waiter::spin_2(),
+  waiter::spin_loaders(42),
   br(),
   br(),
   "Loading data..."

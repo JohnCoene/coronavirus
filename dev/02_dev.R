@@ -9,6 +9,7 @@
 ## 
 golem::add_module( name = "trend" ) # Name of the module
 golem::add_module( name = "count" ) # Name of the module
+golem::add_module( name = "map" ) # Name of the module
 
 ## 2.2 Add dependencies
 

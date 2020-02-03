@@ -12,6 +12,7 @@ app_server <- function(input, output,session) {
   callModule(mod_count_server, "count_ui_3", df = df, type_filter = "recovered")
 
   callModule(mod_trend_server, "trend_ui_1", df = df)
+  callModule(mod_map_server, "map_ui_1", df = df)
 
   waiter::waiter_hide()
 }
