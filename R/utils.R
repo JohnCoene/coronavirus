@@ -157,7 +157,7 @@ geolocate <- function(search){
 }
 
 locate <- function(search, key){
-  srch <- gsub(" ", "+", srch)
+  srch <- gsub(" ", "+", search)
   url <- paste0(
     "https://maps.googleapis.com/maps/api/geocode/json?address=",
     srch,
