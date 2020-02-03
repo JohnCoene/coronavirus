@@ -15,19 +15,18 @@ Imports:
     cli,
     yaml,
     pool,
-    httr,
     shiny,
     golem,
     dplyr,
-    purrr,
-    readr,
+    tidyr,
     waiter,
     countup,
     anytime,
     magrittr,
     RPostgres,
-    shinythemes,
-    googlesheets
+    tidyselect,
+    shinyMobile,
+    googlesheets4
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues

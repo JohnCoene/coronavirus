@@ -45,7 +45,12 @@ crawl_coronavirus <- function(){
       cases = dplyr::case_when(
         is.na(cases) ~ 0,
         TRUE ~ cases
-      )
+      ),
+      country = dplyr::case_when(
+        country == "US" ~ "United States of America",
+        TRUE ~ country
+      ),
+      country_iso2c = countrycode::countrycode(country, "country.name", "iso2c")
     )
 
   # save

@@ -2,16 +2,10 @@
 % Please edit documentation in R/config.R
 \name{create_config}
 \alias{create_config}
-\alias{create_token}
 \title{Configuration}
 \usage{
 create_config()
-
-create_token(id, secret)
-}
-\arguments{
-\item{id, secret}{Google console credentials.}
 }
 \description{
-Creates a configuration file and Google sheets token.
+Creates a configuration file.
 }

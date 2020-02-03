@@ -1,8 +1,7 @@
 config_file <- "_coronavirus.yml"
-token_file <- "googlesheets.rds"
 spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo"
 
-globalVariables(c(".", "confirmed", "country_region", "last_update", "province_state"))
+globalVariables(c(".", "cases", "type"))
 
 #' Retrieve Config
 #' 
@@ -24,31 +23,6 @@ has_config <- function(){
   if(!has_config)
     stop(
       "Missing config file, see `create_config`", call. = FALSE
-    )
-
-  invisible()
-}
-
-#' Retrieve Token
-#' 
-#' Retrieves token file.
-#' 
-#' @keywords internal
-get_token <- function(){
-  has_token()
-  readRDS(token_file)
-}
-
-#' Has Config
-#' 
-#' Ensure config file is present.
-#' 
-#' @keywords internal
-has_token <- function(){
-  has_token <- file.exists(token_file)
-  if(!has_token)
-    stop(
-      "Missing config file, see `create_token`", call. = FALSE
     )
 
   invisible()

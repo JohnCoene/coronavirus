@@ -4,11 +4,34 @@ app_ui <- function() {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    fluidPage(
-      title = "coronavirus",
-      theme = shinythemes::shinytheme("cyborg"),
-      mod_dash_ui("dash_ui_1"),
-      waiter::waiter_show_on_load(loader, color = "#000")
+    f7Page(
+      title = "Coronavirus",
+      dark_mode = TRUE,
+      init = f7Init(skin = "md", theme = "dark"),
+      waiter::waiter_show_on_load(loader, color = "#000"),
+      f7SingleLayout(
+        f7Row(
+          f7Col(
+            mod_count_ui("count_ui_1", "confirmed")
+          ),
+          f7Col(
+            mod_count_ui("count_ui_2", "deaths")
+          ),
+          f7Col(
+            mod_count_ui("count_ui_3", "recovered")
+          )
+        ),
+        navbar = f7Navbar(
+          title = "Dashboard",
+          hairline = TRUE,
+          shadow = TRUE
+        ),
+        toolbar = f7Toolbar(
+          position = "bottom",
+          f7Link(label = "Author", src = "https://john-coene.com", external = TRUE),
+          f7Link(label = "Data", src = "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/", external = TRUE)
+        )
+      )
     )
   )
 }
@@ -29,7 +52,7 @@ golem_add_external_resources <- function(){
 }
 
 loader <- tagList(
-  waiter::spin_loaders(16),
+  waiter::spin_2(),
   br(),
   br(),
   "Loading data..."
