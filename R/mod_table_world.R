@@ -15,11 +15,14 @@
 #' @importFrom shiny NS tagList 
 mod_table_world_ui <- function(id, label){
   ns <- NS(id)
-  div(
-    class = "col resizable",
-     div(class = "block-header", label),
-     uiOutput(ns("table")),
-     span(class = "resize-handler")
+
+  f7Col(
+    f7ExpandableCard(
+      title = label,
+      id = "world_card",
+      subtitle = "Click for a breakdown of cases by country",
+      uiOutput(ns("table"))
+    )
   )
 }
     

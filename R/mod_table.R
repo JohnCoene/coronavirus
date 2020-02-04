@@ -15,11 +15,14 @@
 #' @importFrom shiny NS tagList 
 mod_china_ui <- function(id, label){
   ns <- NS(id)
-  div(
-    class = "col resizable",
-     div(class = "block-header", label),
-     uiOutput(ns("table")),
-     span(class = "resize-handler")
+
+  f7Col(
+    f7ExpandableCard(
+      title = label,
+      id = "china_card",
+      subtitle = "Click for a breakdown of cases by provinces in China",
+      uiOutput(ns("table"))
+    )
   )
 }
     
