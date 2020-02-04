@@ -5,8 +5,13 @@
 #' the data is pulled and the content of the database 
 #' is overwritten. 
 #' 
+#' @param deauth Forces deauthenticatication via googlesheets4.
+#' 
 #' @export
-crawl_coronavirus <- function(){
+crawl_coronavirus <- function(deauth = TRUE){
+
+  if(deauth)
+    googlesheets4::sheets_deauth()
 
   # manage connection pool
   con <- connect()
