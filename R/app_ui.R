@@ -151,7 +151,17 @@ golem_add_external_resources <- function(){
 
   gtag('config', 'UA-74544116-1');
 </script>"
-    )
+    ),
+    tags$meta(property="og:title", content="Coronavirus Tracker"),
+    tags$meta(property="og:type", content="article"),
+    tags$meta(property="og:url", content="https://shiny.john-coene.com/coronavirus"),
+    tags$meta(property="og:image", content="https://shiny.john-coene.com/coronavirus/www/coronavirus.png"),
+    tags$meta(property="og:description", content="A Coronavirus tracker app using John Hopkins and Weixin Data"),
+    tags$meta(name="twitter:card", content="summary_large_image"),
+    tags$meta(name="twitter:site", content="@jdatap"),
+    tags$meta(name="twitter:title", content="Coronavirus Tracker"),
+    tags$meta(name="twitter:description", content="A Coronavirus tracker app using John Hopkins and Weixin Data"),
+    tags$meta(name="twitter:image:src", content="https://shiny.john-coene.com/coronavirus/www/coronavirus.png")
   )
 }
 
