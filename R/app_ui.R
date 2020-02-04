@@ -9,7 +9,9 @@ app_ui <- function() {
       dark_mode = TRUE,
       init = f7Init(
         skin = "md", 
-        theme = "dark"
+        theme = "dark",
+        pullToRefresh = TRUE,
+        serviceWorker = "www/service-worker.js"
       ),
       manifest = "./www/manifest.json",
       waiter::waiter_show_on_load(loader, color = "#000"),
@@ -67,8 +69,7 @@ golem_add_external_resources <- function(){
 
   gtag('config', 'UA-74544116-1');
 </script>"
-    ),
-    tags$script(src = "www/service-worker.js")
+    )
   )
 }
 
