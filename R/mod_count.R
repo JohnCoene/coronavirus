@@ -13,16 +13,14 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
-mod_count_ui <- function(id, label, source = "John Hopkins"){
+mod_count_ui <- function(id, label, source = "John Hopkins", color = "#fff"){
   ns <- NS(id)
   f7Card(
-    h5(
-      class = "center",
-      label, 
+    h2(
+      class = "center count",
+      span(countup::countupOutput(ns("cnt")), style = paste0("color:", color, ";")),
       br(),
-      countup::countupOutput(ns("cnt")), 
-      br(),
-      tags$small(source)
+      span(label, class = "count-small")
     )
   )
 }

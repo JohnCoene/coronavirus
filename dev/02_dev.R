@@ -14,6 +14,7 @@ golem::add_module( name = "world" ) # Name of the module
 golem::add_module( name = "table" ) # Name of the module
 golem::add_module( name = "table_world" ) # Name of the module
 golem::add_module( name = "count_weixin" ) # Name of the module
+golem::add_module( name = "chiny_trend" ) # Name of the module
 
 ## 2.2 Add dependencies
 

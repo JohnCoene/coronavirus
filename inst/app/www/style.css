@@ -11,3 +11,19 @@ body{
 .center{
   text-align: center;
 }
+
+.count{
+  font-size:1.8vw;
+}
+
+.count-small{
+  font-size: 1vw;
+}
+
+a{
+  color:white !important;
+}
+
+.tab-link.active-state {
+  color: white !important;
+}

@@ -5,7 +5,7 @@
 \alias{mod_count_weixin_server}
 \title{mod_count_weixin_ui and mod_count_weixin_server}
 \usage{
-mod_count_weixin_ui(id, label = NULL, source = "Weixin")
+mod_count_weixin_ui(id, label = NULL, source = "Weixin", color = "#fff")
 
 mod_count_weixin_server(input, output, session, df, column)
 }

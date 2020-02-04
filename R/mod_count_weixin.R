@@ -13,15 +13,14 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
-mod_count_weixin_ui <- function(id, label = NULL, source = "Weixin"){
+mod_count_weixin_ui <- function(id, label = NULL, source = "Weixin", color = "#fff"){
   ns <- NS(id)
   f7Card(
-    h5(
-      class = "center",
-      if(!is.null(label)) tagList(label, br()),
-      countup::countupOutput(ns("cnt")),
+    h2(
+      class = "center count",
+      span(countup::countupOutput(ns("cnt")), style = paste0("color:", color, ";")),
       br(),
-      tags$small(source)
+      if(!is.null(label)) tagList(span(label, class = "count-small"), br())
     )
   )
 }

@@ -5,7 +5,7 @@
 \alias{mod_count_server}
 \title{mod_count_ui and mod_count_server}
 \usage{
-mod_count_ui(id, label, source = "John Hopkins")
+mod_count_ui(id, label, source = "John Hopkins", color = "#fff")
 
 mod_count_server(
   input,
