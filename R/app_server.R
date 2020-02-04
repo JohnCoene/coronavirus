@@ -1,7 +1,7 @@
 #' @import shiny
 app_server <- function(input, output,session) {
   con <- connect()
-  df <- DBI::dbReadTable(con, "data")
+  df <- DBI::dbReadTable(con, "jhu")
 
   on.exit({
     disconnect(con)

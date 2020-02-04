@@ -58,9 +58,17 @@ crawl_coronavirus <- function(deauth = TRUE){
       country_iso2c = countrycode::countrycode(country, "country.name", "iso2c")
     )
 
+  china <- nCov2019::get_nCov2019()
+  china_daily <- china$chinaDayList %>% 
+    dplyr::mutate(
+      date = paste0("2020.", date),
+      date = as.Date(date, "%Y.%m.%d")
+    )
+
   # save
   cli::cli_alert_success("Writing to database")
-  DBI::dbWriteTable(con, "data", df, overwrite = TRUE, append = FALSE)
+  DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
+  DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
 
   invisible(df)
 }

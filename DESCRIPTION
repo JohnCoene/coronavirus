@@ -22,6 +22,7 @@ Imports:
     purrr,
     waiter,
     countup,
+    nCov2019,
     magrittr,
     echarts4r,
     RPostgres,
@@ -36,4 +37,5 @@ URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
 Remotes:
   JohnCoene/countup,
-  JohnCoene/echarts4r.maps
+  JohnCoene/echarts4r.maps,
+  GuangchuangYu/nCov2019  

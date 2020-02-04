@@ -56,10 +56,3 @@ mod_china_server <- function(input, output, session, df){
       as_f7_table(card = TRUE)
   })
 }
-    
-## To be copied in the UaI
-# mod_table_ui("table_ui_1")
-    
-## To be copied in the server
-# callModule(mod_table_server, "table_ui_1")
- 
