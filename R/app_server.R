@@ -1,10 +1,9 @@
 #' @import shiny
 app_server <- function(input, output,session) {
-  con <- connect()
-
   data <- golem::get_golem_options("data")
 
   if(is.null(data)){
+    con <- connect()
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
     on.exit({
