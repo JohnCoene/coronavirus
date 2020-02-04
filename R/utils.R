@@ -4,7 +4,12 @@ spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDF
 theme <- "dark"
 
 # global variables
-globalVariables(c(".", "cases", "type", "country", "chinese", "country_iso2c"))
+globalVariables(
+  c(
+    ".", "cases", "type", "country", "chinese", "country_iso2c",
+    "confirmed", "death", "desc", "recovered", "state"
+  )
+)
 
 #' Dataframe to match for echarts4r geojson to work.
 chinese_provinces <- data.frame(
@@ -153,4 +158,57 @@ pivot <- function(df){
 as_date <- function(date){
   date <- lubridate::mdy_hm(date, "%m/%d/%Y %H:%M %p")
   date[!is.na(date)]
+}
+
+#' Table
+#' 
+#' Create shinyMobile table.
+#' 
+#' @param df Data.frame.
+#' @param card Whether to use as card.
+#' 
+#' @keywords internal
+as_f7_table <- function(df, card = FALSE){
+  headers <- purrr::map(df, class2f7)
+  colnames <- names(headers)
+
+  headers <- purrr::map2(headers, colnames, function(x, y){
+    tags$th(class = x, y)
+  }) 
+  
+  df_list <- purrr::transpose(df)
+
+  table <- purrr::map(df_list, function(row){
+    r <- purrr::map(row, function(cell){
+      tags$th(class = class2f7(cell), cell)
+    })
+    tags$tr(r)
+  })
+
+  cl <- "data-table"
+
+  if(card)
+    cl <- paste(cl, "card")
+
+  div(
+    class = cl,
+    tags$table(
+      tags$thead(
+        tags$tr(headers)
+      ),
+      tags$tbody(table)
+    )
+  )
+}
+
+#' Get CSS class based on cell class
+#' 
+#' @param x Value.
+#' 
+#' @keywords internal
+class2f7 <- function(x){
+  if(inherits(x, "numeric"))
+    return("numeric-cell")
+  
+  return("label-cell")
 }

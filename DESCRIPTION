@@ -19,6 +19,7 @@ Imports:
     golem,
     dplyr,
     tidyr,
+    purrr,
     waiter,
     countup,
     magrittr,

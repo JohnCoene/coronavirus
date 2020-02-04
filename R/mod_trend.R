@@ -22,9 +22,7 @@ mod_trend_ui <- function(id){
     )
   )
 }
-    
-# Module Server
-    
+
 #' @rdname mod_trend
 #' @export
 #' @keywords internal
@@ -48,7 +46,7 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
     cases <- dat$cases
     model <- nls(cases ~ (x ^ b), start = c(b = 2), trace = T)
 
-    predict_days <- 3
+    predict_days <- 5
 
     x <- rev(1:(nrow(dat) + predict_days))
     pred <- x ^ coef(model)
@@ -57,7 +55,7 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
     df <- data.frame(
       date = rev(dates),
       cases = c(rep(NA, predict_days), cases),
-      model = pred
+      model = floor(pred)
     )
 
     df %>% 

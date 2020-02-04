@@ -14,6 +14,8 @@ app_server <- function(input, output,session) {
   callModule(mod_trend_server, "trend_ui_1", df = df)
   callModule(mod_map_server, "map_ui_1", df = df)
   callModule(mod_world_server, "world_ui_1", df = df)
+  callModule(mod_china_server, "table_china", df = df)
+  callModule(mod_table_world_server, "table_world", df = df)
 
   waiter::waiter_hide()
 }
