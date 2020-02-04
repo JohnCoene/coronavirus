@@ -7,7 +7,10 @@ app_ui <- function() {
     f7Page(
       title = "Coronavirus",
       dark_mode = TRUE,
-      init = f7Init(skin = "md", theme = "dark"),
+      init = f7Init(
+        skin = "md", 
+        theme = "dark"
+      ),
       manifest = "./www/manifest.json",
       waiter::waiter_show_on_load(loader, color = "#000"),
       f7SingleLayout(
@@ -64,7 +67,8 @@ golem_add_external_resources <- function(){
 
   gtag('config', 'UA-74544116-1');
 </script>"
-    )
+    ),
+    tags$script(src = "www/service-worker.js")
   )
 }
 
