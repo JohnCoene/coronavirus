@@ -13,8 +13,12 @@ crawl_coronavirus <- function(deauth = TRUE){
   if(deauth)
     googlesheets4::sheets_deauth()
 
-  # manage connection pool
-  con <- connect()
+  con <- NULL
+  if(file.exists(config_file)){
+    # manage connection pool
+    con <- connect()
+  }
+
   on.exit({
     disconnect(con)
   })
@@ -67,10 +71,17 @@ crawl_coronavirus <- function(deauth = TRUE){
     dplyr::mutate_if(is.character, as.numeric)
 
   # save
-  cli::cli_alert_success("Writing to database")
-  DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
-  DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
+  if(file.exists(config_file)){
+    cli::cli_alert_success("Writing to database")
+    DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
+    DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
+  }
 
-  invisible(df)
+  dat <- list(
+    jhu = df,
+    weixin = china_daily
+  )
+
+  invisible(dat)
 }
 

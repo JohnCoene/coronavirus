@@ -7,7 +7,7 @@
 \usage{
 connect()
 
-disconnect(con)
+disconnect(con = NULL)
 }
 \arguments{
 \item{con}{Output of \code{connect}.}

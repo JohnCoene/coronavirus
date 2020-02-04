@@ -21,7 +21,18 @@ install.packages("remotes")
 remotes::install_github("JohnCoene/coronavirus")
 ```
 
-## Usage
+## Dev
+
+You can test the app before preparing any kind of deployment you can test like so.
+
+```r
+library(coronavirus)
+
+virus <- crawl_coronavirus()
+run_app(virus)
+```
+
+## Production
 
 Create the config file required to run the crawler. :warning: you should only have to do this once.
 

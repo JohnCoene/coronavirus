@@ -119,8 +119,9 @@ connect <- function(){
 
 #' @rdname connect
 #' @keywords internal
-disconnect <- function(con){
-  pool::poolClose(con)
+disconnect <- function(con = NULL){
+  if(!is.null(con))
+    pool::poolClose(con)
 }
 
 #' Rename

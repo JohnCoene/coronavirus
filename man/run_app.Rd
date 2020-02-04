@@ -4,8 +4,11 @@
 \alias{run_app}
 \title{Run the Shiny Application}
 \usage{
-run_app()
+run_app(data = NULL)
+}
+\arguments{
+\item{data}{list as returned by \code{\link{crawl_coronavirus}}, otherwise uses database.}
 }
 \description{
-Run the Shiny Application
+Run the dashboard
 }

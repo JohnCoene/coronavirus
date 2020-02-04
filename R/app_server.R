@@ -1,12 +1,19 @@
 #' @import shiny
 app_server <- function(input, output,session) {
   con <- connect()
-  df <- DBI::dbReadTable(con, "jhu")
-  china_daily <- DBI::dbReadTable(con, "weixin")
 
-  on.exit({
-    disconnect(con)
-  })
+  data <- golem::get_golem_options("data")
+
+  if(is.null(data)){
+    df <- DBI::dbReadTable(con, "jhu")
+    china_daily <- DBI::dbReadTable(con, "weixin")
+    on.exit({
+      disconnect(con)
+    })
+  } else {
+    df <- data$jhu
+    china_daily <- data$weixin
+  }
 
   # counts jhu
   callModule(mod_count_server, "count_ui_1", df = df, type_filter = "confirmed")
