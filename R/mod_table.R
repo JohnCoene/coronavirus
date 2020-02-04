@@ -15,9 +15,11 @@
 #' @importFrom shiny NS tagList 
 mod_china_ui <- function(id, label){
   ns <- NS(id)
-  f7Block(
-     f7BlockHeader(text = label),
-     uiOutput(ns("table"))
+  div(
+    class = "col resizable",
+     div(class = "block-header", label),
+     uiOutput(ns("table")),
+     span(class = "resize-handler")
   )
 }
     

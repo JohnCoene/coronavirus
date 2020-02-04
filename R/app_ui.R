@@ -30,9 +30,9 @@ app_ui <- function() {
         mod_trend_ui("trend_ui_1"),
         mod_map_ui("map_ui_1"),
         mod_world_ui("world_ui_1"),
-        f7Flex(
-          f7Block(mod_china_ui("table_china", "China")),
-          f7Block(mod_table_world_ui("table_world", "Rest of the world"))
+        f7Row(
+          mod_china_ui("table_china", "China"),
+          mod_table_world_ui("table_world", "Rest of the world")
         ),
         navbar = f7Navbar(
           title = "Coronavirus Tracker",
