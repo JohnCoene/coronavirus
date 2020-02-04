@@ -16,13 +16,19 @@ app_ui <- function() {
       f7SingleLayout(
         f7Row(
           f7Col(
-            mod_count_ui("count_ui_1", "confirmed")
+            mod_count_ui("count_ui_1", "Confirmed"),
+            mod_count_weixin_ui("count_weixin_ui_1")
           ),
           f7Col(
-            mod_count_ui("count_ui_2", "deaths")
+            mod_count_ui("count_ui_2", "Deaths"),
+            mod_count_weixin_ui("count_weixin_ui_2")
           ),
           f7Col(
-            mod_count_ui("count_ui_3", "recovered")
+            mod_count_ui("count_ui_3", "Recovered"),
+            mod_count_weixin_ui("count_weixin_ui_3")
+          ),
+          f7Col(
+            mod_count_weixin_ui("count_weixin_ui_4", label = "Suspected")
           )
         ),
         mod_trend_ui("trend_ui_1"),

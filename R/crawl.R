@@ -63,7 +63,8 @@ crawl_coronavirus <- function(deauth = TRUE){
     dplyr::mutate(
       date = paste0("2020.", date),
       date = as.Date(date, "%Y.%m.%d")
-    )
+    ) %>% 
+    dplyr::mutate_if(is.character, as.numeric)
 
   # save
   cli::cli_alert_success("Writing to database")
