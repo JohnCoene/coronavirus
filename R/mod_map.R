@@ -41,6 +41,7 @@ mod_map_server <- function(input, output, session, df){
 
     index <- length(unique(dat$date)) -1 
     titles <- unique(dat$date) %>% 
+      rev() %>% 
       purrr::map(function(x){
         list(text = format(x, "%d %b %Hh"))
       })
