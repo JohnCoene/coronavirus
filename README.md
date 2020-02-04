@@ -42,4 +42,11 @@ run_app()
 - Data from Wixin using [nCov2019](https://github.com/GuangchuangYu/nCov2019) by Guangchuang Yu
 - The [shinyMobile](https://github.com/RinteRface/shinyMobile) framework
 
+## To do
+
+- API
+- Predictive model (currently limited to a fit)
+
+## Contribute
+
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
