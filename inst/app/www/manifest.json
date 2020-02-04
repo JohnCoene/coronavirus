@@ -5,7 +5,7 @@
   "lang": "en-US",
   "theme_color": "#000000",
   "background_color": "#000000",
-  "start_url": "https://shiny.john-coene.com/coronavirus",
+  "start_url": "https://shiny.john-coene.com",
   "display": "standalone",
   "icons": [
     {
