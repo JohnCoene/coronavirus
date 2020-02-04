@@ -10,10 +10,8 @@ app_ui <- function() {
       init = f7Init(
         skin = "md", 
         theme = "dark",
-        pullToRefresh = TRUE,
         serviceWorker = "www/service-worker.js"
       ),
-      manifest = "./www/manifest.json",
       waiter::waiter_show_on_load(loader, color = "#000"),
       f7SingleLayout(
         f7Row(
@@ -32,7 +30,7 @@ app_ui <- function() {
         mod_world_ui("world_ui_1"),
         f7Row(
           mod_china_ui("table_china", "China"),
-          mod_table_world_ui("table_world", "Rest of the world")
+          mod_table_world_ui("table_world", "World")
         ),
         navbar = f7Navbar(
           title = "Coronavirus Tracker",
