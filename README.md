@@ -40,6 +40,35 @@ crawl_coronavirus()
 run_app()
 ```
 
+## Deploy
+
+:+1: Open an issue if you have problems deploying, I'm more than happy helping.
+
+You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal with.
+
+```bash
+sudo su - -c "R -e \"install.packages('remotes')\""
+sudo su - -c "R -e \"remotes::install_github('JohnCoene/coronavirus')\""
+```
+
+Once this done create a directory under `/srv/shiny-server/`, where you can create the config file.
+
+```bash
+cd /srv/shiny-server
+mkdir coronavirus
+cd ./coronavirus
+R -e "coronavirus::create_config()"
+vi _coronavirus.yml
+```
+
+Fill in the config file and create the app.
+
+```bash
+echo "coronavirus::run_app()" > app.R 
+```
+
+You can then visit `http://my.server.ip:3838/coronavirus`, you can change the port in the `/etc/shiny-server/shiny-server.conf` file, change it to `80` to have your app at `http://my.server.ip/coronavirus`.
+
 ## Credits
 
 - Data from [John Hopkins GIS dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
