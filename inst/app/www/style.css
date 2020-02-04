@@ -13,11 +13,11 @@ body{
 }
 
 .count{
-  font-size:1.8vw;
+  font-size: .9em;
 }
 
 .count-small{
-  font-size: 1vw;
+  font-size: .7em;
 }
 
 a{

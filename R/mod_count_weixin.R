@@ -17,8 +17,8 @@ mod_count_weixin_ui <- function(id, label = NULL, source = "Weixin", color = "#f
   ns <- NS(id)
   f7Card(
     h2(
-      class = "center count",
-      span(countup::countupOutput(ns("cnt")), style = paste0("color:", color, ";")),
+      class = "center",
+      span(countup::countupOutput(ns("cnt")), style = paste0("color:", color, ";"), class = "count"),
       br(),
       if(!is.null(label)) tagList(span(label, class = "count-small"), br())
     )
