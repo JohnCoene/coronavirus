@@ -21,7 +21,7 @@ remotes::install_github("JohnCoene/coronavirus")
 
 ## Usage
 
-The function `crawl_coronavirus` crawls the data and overrides the whole database, it is intended to be used via a cron job.
+The function `crawl_coronavirus` crawls the data and overrides the whole Postgres database, it is intended to be used via a cron job.
 
 ``` r
 library(coronavirus)
