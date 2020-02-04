@@ -8,3 +8,4 @@ $run_dev.*
 ^CODE_OF_CONDUCT\.md$
 ^_coronavirus\.yml$
 googlesheets.rds
+^\.httr-oauth$

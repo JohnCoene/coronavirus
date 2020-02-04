@@ -65,7 +65,15 @@ chinese_provinces <- data.frame(
 #' @keywords internal
 get_config <- function(){
   has_config()
-  yaml::read_yaml(config_file)
+  config <- yaml::read_yaml(config_file)
+  check_config(config)
+  return(config)
+}
+
+check_config <- function(config){
+  if(config$database$user == "me" && config$database$password == "password" && config$database$name == "name")
+    stop("Complete the config file: _coronavirus.yml")
+  invisible()
 }
 
 #' Has Config
