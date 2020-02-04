@@ -50,11 +50,12 @@ mod_map_server <- function(input, output, session, df){
       echarts4r::e_charts(chinese, timeline = TRUE) %>% 
       echarts4r.maps::em_map("China") %>% 
       echarts4r::e_map(cases, map = "China") %>% 
-      echarts4r::e_visual_map(cases, min = 0) %>% 
+      echarts4r::e_visual_map(cases, min = 0, textStyle = list(color = "#fff")) %>% 
       echarts4r::e_theme(theme) %>% 
       echarts4r::e_timeline_opts(currentIndex = index) %>% 
       echarts4r::e_timeline_serie(
         title = titles
-      )
+      ) %>% 
+      echarts4r::e_timeline_opts(playInterval = 1000, symbolSize = 5)
   })
 }
