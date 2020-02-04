@@ -20,7 +20,7 @@ mod_china_ui <- function(id, label){
     f7ExpandableCard(
       title = label,
       id = "china_card",
-      subtitle = "Click for a breakdown of cases by provinces in China",
+      subtitle = "Cases by provinces in China",
       uiOutput(ns("table"))
     )
   )

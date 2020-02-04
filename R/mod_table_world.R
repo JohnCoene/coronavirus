@@ -20,7 +20,7 @@ mod_table_world_ui <- function(id, label){
     f7ExpandableCard(
       title = label,
       id = "world_card",
-      subtitle = "Click for a breakdown of cases by country",
+      subtitle = "Cases by country",
       uiOutput(ns("table"))
     )
   )
