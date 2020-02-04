@@ -1,5 +1,5 @@
 database:
   name: name
-  host: 123.456.7.8
+  host: localhost
   user: me
   password: password

@@ -21,14 +21,18 @@ remotes::install_github("JohnCoene/coronavirus")
 
 ## Usage
 
-The function `crawl_coronavirus` crawls the data and overrides the whole Postgres database, it is intended to be used via a cron job.
+Create the config file required to run the crawler. :warning: you should only have to do this once.
 
 ``` r
 library(coronavirus)
 
 # create and fill config file
 create_config()
+```
 
+Fill in the config file created with the credentials to your Postgres database. Then run the crawler and launch the app. Every time you want to update the data, re-run `crawl_coronavirus`.
+
+```r
 # crawl data
 crawl_coronavirus()
 
