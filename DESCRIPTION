@@ -35,4 +35,5 @@ URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
 Remotes:
   JohnCoene/countup,
-  JohnCoene/echarts4r.maps
+  JohnCoene/echarts4r.maps,
+  JohnCoene/shinyMobile
