@@ -142,7 +142,6 @@ In `v0.0.3`:
 
 - Deaths and recovered numbers for DianXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
 - Number of suspected by city given by DianXiangYing is wildly inaccurate, has been removed.
-- Corrected legend on timeline in JHU tab, data was correct, legend had issues.
 
 ## Credits
 
