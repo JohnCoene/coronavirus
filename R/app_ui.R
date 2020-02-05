@@ -136,7 +136,7 @@ app_ui <- function() {
             swipeable = TRUE,
             active = FALSE,
             h1("DXY Data", class = "center"),
-            waiter::waiter_hide_on_render("city_map_confirmed-map"),
+            waiter::waiter_hide_on_render("count_ui_1-cnt"),
             f7Row(
               f7Col(mod_count_weixin_ui("count_dxy_ui_1_dxy", "Confirmed")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_2_dxy", "Suspected")),
@@ -148,7 +148,7 @@ app_ui <- function() {
               f7Col(mod_city_map_ui("city_map_recovered", "Recovered")),
               f7Col(mod_city_map_ui("city_map_deaths", "Deaths"))
             ),
-            mod_dxy_table_ui("count_ui_1-cnt")
+            mod_dxy_table_ui("dxy_table_ui_1")
           )
         )
       )

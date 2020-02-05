@@ -17,7 +17,7 @@ mod_dxy_table_ui <- function(id){
   ns <- NS(id)
   f7ExpandableCard(
     title = "Cities",
-    id = "city_card",
+    id = "china_card",
     subtitle = "Cases by city in China",
     uiOutput(ns("table"))
   )
