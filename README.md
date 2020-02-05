@@ -6,7 +6,7 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-[Dashboard](https://shiny.john-coene.com/coronavirus) | [changelog](news.md) 
+[Dashboard](https://shiny.john-coene.com/coronavirus) | [changelog](NEWS.md) 
 
 Dashboard to track the spread of the coronavirus, based on three data sources, built with [shinyMobile](https://rinterface.github.io/shinyMobile/) and [echarts4r](https://echarts4r.john-coene.com/).
 
@@ -23,7 +23,7 @@ remotes::install_github("JohnCoene/coronavirus")
 
 ## Dev
 
-You can test the app before preparing any kind of deployment you can test like so.
+You can test the app before preparing any kind of deployment (e.g.: set up a database) you can test like so.
 
 ```r
 library(coronavirus)
