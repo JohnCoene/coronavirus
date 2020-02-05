@@ -17,7 +17,8 @@ mod_city_map_ui <- function(id, label){
   ns <- NS(id)
   f7Card(
     title = label,
-    echarts4r::echarts4rOutput(ns("map"))
+    echarts4r::echarts4rOutput(ns("map")),
+    footer = "Points are log scaled, tooltip values are real values."
   )
 }
     
@@ -34,7 +35,7 @@ mod_city_map_server <- function(input, output, session, df, column, name){
     range <- range(df[[column]])
 
     rescaling <- paste0(
-      "function(data){ return ((data[3] - ", range[1], ") / (", range[2], " - ", range[1],") * 50);}"
+      "function(data){ return (Math.log(data[3]) * 3);}"
     )
 
     df %>% 
