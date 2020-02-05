@@ -25,10 +25,11 @@ app_ui <- function() {
             side = "left", 
             theme = "dark",
             effect = "cover",
-            p("Tracks data on Novel Coronavirus 2019 using data from John Hopkins and Weixin (WeChat). The Database is refreshed every 4 hour, the code is open-source, see below."),
+            p("Tracks data on Novel Coronavirus 2019 using data from John Hopkins, Weixin (WeChat), and DianXiangYing (DXY). The Database is refreshed every hour, the code is open-source so you can deploy it yourself, see below."),
             f7Link(label = "Author", src = "https://john-coene.com", external = TRUE),
             f7Link(label = "John Hopkins Data", src = "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/htmlview?usp=sharing&sle=true", external = TRUE),
             f7Link(label = "Weixin Data", src = "https://github.com/GuangchuangYu/nCov2019", external = TRUE),
+            f7Link(label = "DXY Data", src = "https://ncov.dxy.cn/ncovh5/view/pneumonia", external = TRUE),
             f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE)
           )
         ),
@@ -66,6 +67,13 @@ app_ui <- function() {
               f7Col(
                 mod_count_weixin_ui("count_weixin_ui_3", "Recovered")
               )
+            ),
+            h1("DXY Data", class = "center"),
+            f7Row(
+              f7Col(mod_count_weixin_ui("count_dxy_ui_1", "Confirmed")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_2", "Suspected")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_3", "Deaths")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_4", "Recovered"))
             )
           ),
           f7Tab(
@@ -121,6 +129,28 @@ app_ui <- function() {
               f7Col(mod_china_trend_ui("china_trend_ui_dead", "Deaths")),
               f7Col(mod_china_trend_ui("china_trend_ui_heal", "Recovered"))
             )
+          ),
+          f7Tab(
+            tabName = "DXY",
+            icon = f7Icon("square_grid_3x2"),
+            swipeable = TRUE,
+            active = FALSE,
+            h1("DXY Data", class = "center"),
+            f7Row(
+              f7Col(mod_count_weixin_ui("count_dxy_ui_1_dxy", "Confirmed")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_2_dxy", "Suspected")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_3_dxy", "Deaths")),
+              f7Col(mod_count_weixin_ui("count_dxy_ui_4_dxy", "Recovered"))
+            ),
+            f7Row(
+              f7Col(mod_city_map_ui("city_map_confirmed", "Confirmed")),
+              f7Col(mod_city_map_ui("city_map_suspected", "Suspected"))
+            ),
+            f7Row(
+              f7Col(mod_city_map_ui("city_map_recovered", "Recovered")),
+              f7Col(mod_city_map_ui("city_map_deaths", "Deaths"))
+            ),
+            mod_dxy_table_ui("dxy_table_ui_1")
           )
         )
       )

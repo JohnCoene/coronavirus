@@ -24,7 +24,7 @@ crawl_coronavirus <- function(deauth = TRUE){
   })
 
   # get data
-  cli::cli_alert_info("Crawling data")
+  cli::cli_alert_info("Crawling data from John Hopkins")
   
   # read data
   confirmed <- googlesheets4::sheets_read(spreadsheet, sheet = "Confirmed")
@@ -62,6 +62,8 @@ crawl_coronavirus <- function(deauth = TRUE){
       country_iso2c = countrycode::countrycode(country, "country.name", "iso2c")
     )
 
+  cli::cli_alert_info("Crawling data from Weixin")
+
   china <- nCov2019::get_nCov2019()
   china_daily <- china$chinaDayList %>% 
     dplyr::mutate(
@@ -70,16 +72,29 @@ crawl_coronavirus <- function(deauth = TRUE){
     ) %>% 
     dplyr::mutate_if(is.character, as.numeric)
 
+  cli::cli_alert_info("Crawling data from DXY")
+  dxy <- xml2::read_html(dxy_url) %>% 
+    rvest::html_node("#getAreaStat") %>% 
+    rvest::html_text() %>% 
+    gsub("try \\{ window.getAreaStat = ", "", .) %>% 
+    gsub("\\}catch\\(e\\)\\{\\}", "", .) %>% 
+    jsonlite::fromJSON() %>% 
+    dplyr::pull(cities) %>% 
+    purrr::map_dfr(tibble::as_tibble) %>% 
+    dplyr::left_join(china_cities_location, by = "cityName")
+
   # save
   if(file.exists(config_file)){
     cli::cli_alert_success("Writing to database")
     DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
+    DBI::dbWriteTable(con, "dxy", dxy, overwrite = TRUE, append = FALSE)
   }
 
   dat <- list(
     jhu = df,
-    weixin = china_daily
+    weixin = china_daily,
+    dxy = dxy
   )
 
   invisible(dat)

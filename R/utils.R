@@ -2,12 +2,15 @@
 config_file <- "_coronavirus.yml"
 spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo"
 theme <- "dark"
+dxy_url <- "https://ncov.dxy.cn/ncovh5/view/pneumonia"
 
 # global variables
 globalVariables(
   c(
     ".", "cases", "type", "country", "chinese", "country_iso2c",
-    "confirmed", "death", "desc", "recovered", "state"
+    "confirmed", "death", "desc", "recovered", "state", "cityName",
+    "china_cities_location", "cities", "lat", "lon", "value",
+    "confirmedCount", "curedCount", "deadCount", "suspectedCount"
   )
 )
 
@@ -220,4 +223,65 @@ class2f7 <- function(x){
     return("numeric-cell")
   
   return("label-cell")
+}
+
+#' Geolocate DXY Data
+#' 
+#' Geolocate DianXiangYuan data. 
+#' 
+#' @details This is used internally to create database of geolocated Chinese cities.
+#' 
+#' @keywords internal
+geoloc_dxy <- function(df){
+
+  key <- Sys.getenv("GOOGLE_GEOCODE_KEY")
+
+  if(key == "")
+    stop("Missing `GOOGLE_GEOCODE_KEY` environment variable", call. = FALSE)
+
+  search <- dplyr::select(df, cityName) %>% 
+    dplyr::filter(!is.na(cityName)) %>% 
+    dplyr::pull(cityName) %>% 
+    unique() %>% 
+    purrr::map_dfr(locate, key = key)
+}
+
+#' Geolocate
+#' 
+#' Get geolocation using Google Geocode API.
+#' 
+#' @keywords internal
+locate <- function(search, key){
+
+  msg <- paste("Locating", search)
+  cli::cli_alert_info(msg)
+  
+  url <- paste0(
+    "https://maps.googleapis.com/maps/api/geocode/json?address=",
+    search,
+    "&key=", key
+  )
+
+  json <- tryCatch(httr::GET(url), error = function(e) e)
+
+  while(inherits(json, "error")){
+    Sys.sleep(.5)
+    json <- tryCatch(httr::GET(url), error = function(e) e)
+  }
+
+  cnt <- httr::content(json)
+
+  loc <- data.frame(lat = NA_real_, lng = NA_real_)
+
+  Sys.sleep(1)
+
+  if(length(cnt$results)){
+    if(length(cnt$results[[1]]$geometry$location))
+      loc <- cnt$results[[1]]$geometry$location
+  }
+
+  loc$search <- search
+
+  return(loc)
+  
 }

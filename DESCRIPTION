@@ -10,24 +10,31 @@ Description: Tracking the Coronavirus.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.10)
 Imports:
     DBI,
     cli,
     yaml,
     pool,
+    httr,
+    xml2,
     shiny,
     golem,
     dplyr,
     tidyr,
     purrr,
+    rvest,
     waiter,
+    tibble,
     countup,
     nCov2019,
     magrittr,
+    jsonlite,
     echarts4r,
     RPostgres,
     lubridate,
     tidyselect,
+    htmlwidgets,
     shinyMobile,
     countrycode,
     googlesheets4,

@@ -6,12 +6,14 @@ app_server <- function(input, output,session) {
     con <- connect()
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
+    dxy <- DBI::dbReadTable(con, "dxy")
     on.exit({
       disconnect(con)
     })
   } else {
     df <- data$jhu
     china_daily <- data$weixin
+    dxy <- data$dxy
   }
 
   # counts jhu
@@ -57,6 +59,74 @@ app_server <- function(input, output,session) {
     mod_count_weixin_server, "count_weixin_ui_4_wx", 
     df = china_daily, column = "suspect"
   )
+
+  # dxy
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_1", 
+    df = dxy, column = "confirmedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_2", 
+    df = dxy, column = "suspectedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_3", 
+    df = dxy, column = "curedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_4", 
+    df = dxy, column = "deadCount"
+  )
+
+  # dxy tab
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_1_dxy", 
+    df = dxy, column = "confirmedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_2_dxy", 
+    df = dxy, column = "suspectedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_3_dxy", 
+    df = dxy, column = "curedCount"
+  )
+  callModule(
+    mod_count_weixin_server, "count_dxy_ui_4_dxy", 
+    df = dxy, column = "deadCount"
+  )
+  # maps
+  callModule(
+    mod_city_map_server, 
+    "city_map_confirmed", 
+    df = dxy, 
+    column = "confirmedCount",
+    name = "Confirmed"
+  )
+  callModule(
+    mod_city_map_server, 
+    "city_map_suspected", 
+    df = dxy, 
+    column = "suspectedCount",
+    name = "Suspected"
+  )
+  callModule(
+    mod_city_map_server, 
+    "city_map_recovered", 
+    df = dxy, 
+    column = "curedCount",
+    name = "Recovered"
+  )
+  callModule(
+    mod_city_map_server, 
+    "city_map_deaths", 
+    df = dxy, 
+    column = "deadCount",
+    name = "Deaths"
+  )
+
+  # table
+  callModule(mod_dxy_table_server, "dxy_table_ui_1", df = dxy)
 
   # weixin tab chart
   callModule(mod_china_trend_server, "china_trend_ui_confirm", df = china_daily, column = "confirm")
