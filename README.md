@@ -138,7 +138,7 @@ All set!
 
 - Data from [John Hopkins GIS dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
 - Data from Wixin using [nCov2019](https://github.com/GuangchuangYu/nCov2019) by Guangchuang Yu
-- Data from [DianXianYing](https://ncov.dxy.cn/ncovh5/view/pneumonia)
+- Data from [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia)
 - The [shinyMobile](https://github.com/RinteRface/shinyMobile) framework
 
 ## To do
