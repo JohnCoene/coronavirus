@@ -66,10 +66,6 @@ app_server <- function(input, output,session) {
     df = dxy, column = "confirmedCount"
   )
   callModule(
-    mod_count_weixin_server, "count_dxy_ui_2", 
-    df = dxy, column = "suspectedCount"
-  )
-  callModule(
     mod_count_weixin_server, "count_dxy_ui_3", 
     df = dxy, column = "curedCount"
   )
@@ -82,10 +78,6 @@ app_server <- function(input, output,session) {
   callModule(
     mod_count_weixin_server, "count_dxy_ui_1_dxy", 
     df = dxy, column = "confirmedCount"
-  )
-  callModule(
-    mod_count_weixin_server, "count_dxy_ui_2_dxy", 
-    df = dxy, column = "suspectedCount"
   )
   callModule(
     mod_count_weixin_server, "count_dxy_ui_3_dxy", 

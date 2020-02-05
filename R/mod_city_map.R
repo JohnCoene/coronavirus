@@ -17,7 +17,7 @@ mod_city_map_ui <- function(id, label){
   ns <- NS(id)
   f7Card(
     title = label,
-    echarts4r::echarts4rOutput(ns("map")),
+    echarts4r::echarts4rOutput(ns("map"), height = "70vh"),
     footer = "Points are log scaled, tooltip values are real values."
   )
 }

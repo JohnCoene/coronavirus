@@ -71,7 +71,6 @@ app_ui <- function() {
             h1("DXY Data", class = "center"),
             f7Row(
               f7Col(mod_count_weixin_ui("count_dxy_ui_1", "Confirmed")),
-              f7Col(mod_count_weixin_ui("count_dxy_ui_2", "Suspected")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_3", "Deaths")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_4", "Recovered"))
             )
@@ -139,7 +138,6 @@ app_ui <- function() {
             waiter::waiter_hide_on_render("count_ui_1-cnt"),
             f7Row(
               f7Col(mod_count_weixin_ui("count_dxy_ui_1_dxy", "Confirmed")),
-              f7Col(mod_count_weixin_ui("count_dxy_ui_2_dxy", "Suspected")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_3_dxy", "Deaths")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_4_dxy", "Recovered"))
             ),
