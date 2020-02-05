@@ -64,6 +64,8 @@ mod_city_map_server <- function(input, output, session, df, column, name){
       echarts4r::e_visual_map(
         value,
         scale = NULL,
+        position = "top",
+        orient = "horizontal",
         textStyle = list(color = "#fff")
       ) %>% 
       echarts4r::e_tooltip(

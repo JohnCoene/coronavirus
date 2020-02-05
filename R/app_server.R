@@ -105,13 +105,6 @@ app_server <- function(input, output,session) {
   )
   callModule(
     mod_city_map_server, 
-    "city_map_suspected", 
-    df = dxy, 
-    column = "suspectedCount",
-    name = "Suspected"
-  )
-  callModule(
-    mod_city_map_server, 
     "city_map_recovered", 
     df = dxy, 
     column = "curedCount",
@@ -145,5 +138,4 @@ app_server <- function(input, output,session) {
   callModule(mod_china_server, "table_china", df = df)
   callModule(mod_table_world_server, "table_world", df = df)
 
-  waiter::waiter_hide()
 }

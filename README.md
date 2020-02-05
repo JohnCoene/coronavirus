@@ -57,7 +57,7 @@ run_app()
 
 :+1: Open an issue if you have problems deploying, I'm more than happy helping.
 
-You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal with.
+You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal with. This also works on [shinyapps.io](https://www.shinyapps.io/).
 
 ```bash
 sudo su - -c "R -e \"install.packages('remotes')\""
