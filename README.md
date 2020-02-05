@@ -134,6 +134,13 @@ In that file place the following to crawl every hour. If you want to set another
 
 All set!
 
+## Corrections
+
+:warning: Corrected inaccuracies
+
+- Deaths and recovered numbers for DianXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
+- Number of suspected by city given by DianXiangYing is widly inaccurate, has been removed.
+
 ## Credits
 
 - Data from [John Hopkins GIS dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)

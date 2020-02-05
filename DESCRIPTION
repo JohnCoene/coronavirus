@@ -1,6 +1,6 @@
 Package: coronavirus
 Title: Tracking the Coronavirus
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: 
   c(
     person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
