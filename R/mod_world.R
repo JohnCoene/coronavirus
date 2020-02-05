@@ -39,7 +39,17 @@ mod_world_server <- function(input, output, session, df){
       dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
       dplyr::ungroup() %>% 
       echarts4r::e_charts(country) %>% 
-      echarts4r::e_map(cases, itemStyle = list(areaColor = "#242323")) %>% 
+      echarts4r::e_map(
+        cases, itemStyle = list(
+          areaColor = "#242323"
+        ),
+        label = list(
+          emphasis = list(
+            color = "#ffffff",
+            fontSite = 15
+          )
+        )
+      ) %>% 
       echarts4r::e_visual_map(cases, textStyle = list(color = "#fff")) %>% 
       echarts4r::e_theme(theme)
   })

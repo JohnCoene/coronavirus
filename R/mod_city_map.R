@@ -18,7 +18,7 @@ mod_city_map_ui <- function(id, label){
   f7Card(
     title = label,
     echarts4r::echarts4rOutput(ns("map"), height = "70vh"),
-    footer = "Points are log scaled, tooltip values are real values."
+    footer = "Points are log scaled, tooltips give real values."
   )
 }
     
@@ -49,8 +49,13 @@ mod_city_map_server <- function(input, output, session, df, column, name, connec
         itemStyle = list(
           areaColor = "#242323",
           emphasis = list(
-            areaColor = "#242323",
-            color = "#ffffff"
+            areaColor = "#242323"
+          )
+        ),
+        label = list(
+          emphasis = list(
+            color = "#ffffff",
+            fontSite = 15
           )
         ),
         boundingCoords = list(

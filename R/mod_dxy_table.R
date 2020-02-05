@@ -38,7 +38,6 @@ mod_dxy_table_server <- function(input, output, session, df){
       dplyr::select(
         City = cityName,
         Confirmed = confirmedCount,
-        Suspected = suspectedCount, 
         Recovered = curedCount,
         Deaths = deadCount
       ) %>% 
