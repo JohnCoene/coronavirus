@@ -105,8 +105,12 @@ After editing the config file place a script.R file.
 
 ```r
 # in script.R
-googlesheets4::sheets_deauth()
+googlesheets4::sheets_deauth() # force deauth 
+
+# otherwise not available internally
 data("china_cities_location", package = "coronavirus")
+
+# crawl
 coronavirus::crawl_coronavirus()
 ```
 
