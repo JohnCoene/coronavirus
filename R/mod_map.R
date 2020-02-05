@@ -57,6 +57,6 @@ mod_map_server <- function(input, output, session, df){
       echarts4r::e_timeline_serie(
         title = titles
       ) %>% 
-      echarts4r::e_timeline_opts(playInterval = 800, symbolSize = 4)
+      echarts4r::e_timeline_opts(playInterval = 500, symbolSize = 4)
   })
 }

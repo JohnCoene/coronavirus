@@ -52,6 +52,10 @@ mod_city_map_server <- function(input, output, session, df, column, name){
             areaColor = "#242323",
             color = "#fff"
           )
+        ),
+        boundingCoords = list(
+          c(106, 37),
+          c(118, 22)
         )
       ) %>% 
       echarts4r::e_scatter(

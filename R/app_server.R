@@ -67,11 +67,11 @@ app_server <- function(input, output,session) {
   )
   callModule(
     mod_count_weixin_server, "count_dxy_ui_3", 
-    df = dxy, column = "curedCount"
+    df = dxy, column = "deadCount"
   )
   callModule(
     mod_count_weixin_server, "count_dxy_ui_4", 
-    df = dxy, column = "deadCount"
+    df = dxy, column = "curedCount"
   )
 
   # dxy tab
@@ -81,11 +81,11 @@ app_server <- function(input, output,session) {
   )
   callModule(
     mod_count_weixin_server, "count_dxy_ui_3_dxy", 
-    df = dxy, column = "curedCount"
+    df = dxy, column = "deadCount"
   )
   callModule(
     mod_count_weixin_server, "count_dxy_ui_4_dxy", 
-    df = dxy, column = "deadCount"
+    df = dxy, column = "curedCount"
   )
   # maps
   callModule(
