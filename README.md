@@ -82,11 +82,53 @@ echo "coronavirus::run_app()" > app.R
 
 You can then visit `http://my.server.ip:3838/coronavirus`, you can change the port in the `/etc/shiny-server/shiny-server.conf` file, change it to `80` to have your app at `http://my.server.ip/coronavirus`.
 
+See the data section below to set up the crom job.
+
 ## Data
 
 See Credits below for the data sources. The package contains a dataset named `china_cities_location` which contains the geographic coordinates of Chinese cities as returned by the DXY data source. I will update it regularly, reinstall the package to get the updated version, or run the `dxy` file in the `data-raw` directory and rebuild the package with `devtools::install`. 
 
 This is done so because it requires a Google Geocode API key (set as `GOOGLE_GEOCODE_KEY` environment variable) and would make the package much more cumbersome to run.
+
+**Cronjob**
+
+To set up the cronjob, recreate your config file somewhere in your home directory.
+
+```
+cd /home
+mkdir ncov
+R -e "coronavirus::create_config()"
+vi _coronavirus.yml
+```
+
+After editing the config file place a script.R file.
+
+```r
+# in script.R
+googlesheets4::sheets_deauth()
+data("china_cities_location", package = "coronavirus")
+coronavirus::crawl_coronavirus()
+```
+
+You should test that all works fine by running the crawler once from the terminal.
+
+```bash
+Rscript script.R
+```
+
+Then set up the cron job.
+
+```bash
+crontab -e
+```
+
+In that file place the following to crawl every hour. If you want to set another interval consult [crontab guru](https://crontab.guru/).
+
+```bash
+0 * * * * cd /home/ncov && Rscript script.R
+```
+
+All set!
 
 ## Credits
 
