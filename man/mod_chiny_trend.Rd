@@ -7,7 +7,14 @@
 \usage{
 mod_china_trend_ui(id, label)
 
-mod_china_trend_server(input, output, session, df, column = "confirm")
+mod_china_trend_server(
+  input,
+  output,
+  session,
+  df,
+  column = "confirm",
+  connect = FALSE
+)
 }
 \arguments{
 \item{id}{shiny id}

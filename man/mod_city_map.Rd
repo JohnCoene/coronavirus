@@ -7,7 +7,7 @@
 \usage{
 mod_city_map_ui(id, label)
 
-mod_city_map_server(input, output, session, df, column, name)
+mod_city_map_server(input, output, session, df, column, name, connect = FALSE)
 }
 \arguments{
 \item{id}{shiny id}

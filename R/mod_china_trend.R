@@ -27,16 +27,23 @@ mod_china_trend_ui <- function(id, label){
 #' @export
 #' @keywords internal
     
-mod_china_trend_server <- function(input, output, session, df, column = "confirm"){
+mod_china_trend_server <- function(input, output, session, df, column = "confirm", connect = FALSE){
   ns <- session$ns
 
   output$trend <- echarts4r::renderEcharts4r({
-    df %>% 
+    e <- df %>% 
       echarts4r::e_charts(date) %>% 
       echarts4r::e_area_(column) %>% 
       echarts4r::e_visual_map_(column, show = FALSE) %>% 
       echarts4r::e_theme(theme) %>% 
-      echarts4r::e_legend(FALSE)
+      echarts4r::e_legend(FALSE) %>% 
+      echarts4r::e_tooltip(trigger = "axis") %>% 
+      echarts4r::e_group("weixinTrend")
+
+    if(connect)
+      e <- echarts4r::e_connect_group(e, "weixinTrend")
+
+    return(e)
   })
 }
     

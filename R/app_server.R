@@ -2,6 +2,11 @@
 app_server <- function(input, output,session) {
   data <- golem::get_golem_options("data")
 
+  echarts4r::e_common(
+    font_family = "Quicksand",
+    theme = theme
+  )
+
   if(is.null(data)){
     con <- connect()
     df <- DBI::dbReadTable(con, "jhu")
@@ -107,7 +112,8 @@ app_server <- function(input, output,session) {
     "city_map_deaths", 
     df = dxy, 
     column = "deadCount",
-    name = "Deaths"
+    name = "Deaths",
+    connect = TRUE
   )
 
   # table
@@ -117,7 +123,13 @@ app_server <- function(input, output,session) {
   callModule(mod_china_trend_server, "china_trend_ui_confirm", df = china_daily, column = "confirm")
   callModule(mod_china_trend_server, "china_trend_ui_heal", df = china_daily, column = "heal")
   callModule(mod_china_trend_server, "china_trend_ui_dead", df = china_daily, column = "dead")
-  callModule(mod_china_trend_server, "china_trend_ui_suspect", df = china_daily, column = "suspect")
+  callModule(
+    mod_china_trend_server, 
+    "china_trend_ui_suspect", 
+    df = china_daily, 
+    column = "suspect",
+    connect = TRUE
+  )
 
   # trend
   callModule(mod_trend_server, "trend_ui_1", df = df)

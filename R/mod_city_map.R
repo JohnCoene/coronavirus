@@ -28,7 +28,7 @@ mod_city_map_ui <- function(id, label){
 #' @export
 #' @keywords internal
     
-mod_city_map_server <- function(input, output, session, df, column, name){
+mod_city_map_server <- function(input, output, session, df, column, name, connect = FALSE){
   ns <- session$ns
 
   output$map <- echarts4r::renderEcharts4r({
@@ -38,7 +38,7 @@ mod_city_map_server <- function(input, output, session, df, column, name){
       "function(data){ return (Math.log(data[3]) * 3);}"
     )
 
-    df %>% 
+    e <- df %>% 
       dplyr::select(cityName, lat, lon, value = column) %>%
       dplyr::slice(1:100) %>% 
       echarts4r::e_charts(lon) %>% 
@@ -50,7 +50,7 @@ mod_city_map_server <- function(input, output, session, df, column, name){
           areaColor = "#242323",
           emphasis = list(
             areaColor = "#242323",
-            color = "#fff"
+            color = "#ffffff"
           )
         ),
         boundingCoords = list(
@@ -81,6 +81,12 @@ mod_city_map_server <- function(input, output, session, df, column, name){
       ")
       ) %>% 
       echarts4r::e_legend(FALSE) %>% 
-      echarts4r::e_theme(theme)
+      echarts4r::e_theme(theme) %>% 
+      echarts4r::e_group("dxyMap")
+
+    if(connect)
+      e <- echarts4r::e_connect_group(e, "dxyMap")
+
+    return(e)
   })
 }
