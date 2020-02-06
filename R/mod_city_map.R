@@ -60,6 +60,12 @@ mod_city_map_server <- function(input, output, session, df){
         map = "China",
         itemStyle = list(
           areaColor = "#242323"
+        ),
+        label = list(
+          emphasis = list(
+            color = "#ffffff",
+            fontSite = 15
+          )
         )
       ) %>% 
       echarts4r::e_visual_map(
@@ -100,6 +106,12 @@ mod_city_map_server <- function(input, output, session, df){
         map = pinyin,
         itemStyle = list(
           areaColor = "#242323"
+        ),
+        label = list(
+          emphasis = list(
+            color = "#ffffff",
+            fontSite = 15
+          )
         )
       ) %>% 
       echarts4r::e_visual_map(
