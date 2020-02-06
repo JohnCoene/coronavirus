@@ -30,7 +30,7 @@ Imports:
     nCov2019,
     magrittr,
     jsonlite,
-    echarts4r,
+    echarts4r (>= 0.3.0),
     RPostgres,
     lubridate,
     tidyselect,

@@ -109,7 +109,7 @@ mod_city_map_server <- function(input, output, session, df){
           color = palette
         )
       ) %>% 
-      echarts4r::e_show_loading()
+      echarts4r::e_show_loading(color = "#ffffff")
 
   })
 }

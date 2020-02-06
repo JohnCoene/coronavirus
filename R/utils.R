@@ -5,11 +5,10 @@ theme <- "dark"
 dxy_url <- "https://ncov.dxy.cn/ncovh5/view/pneumonia"
 
 # pallettes for DXY
-deaths_pal <- c("#FFF7F3", "#FDE0DD", "#FCC5C0", "#FA9FB5", "#F768A1", "#DD3497", 
-  "#AE017E", "#7A0177", "#49006A")
-recovered_pal <- c("#FFFFE5", "#F7FCB9", "#D9F0A3", "#ADDD8E", "#78C679", "#41AB5D", 
-  "#238443", "#006837", "#004529")
-confirmed_pal <- c("#bf444c", "#d88273", "#f6efa6") %>% rev()
+deaths_pal <- c("#263238", "#455a64", "#607d8b", "#90a4ae", "#cfd8dc") %>% rev()
+recovered_pal <- c("#1b5e20", "#388e3c", "#4caf50", "#81c784", "#c8e6c9") %>% rev()
+confirmed_pal <- c("#311b92", "#512da8", "#673ab7", "#9575cd", "#d1c4e9") %>% rev()
+suspected_pal <- c("#b71c1c", "#d32f2f", "#f44336", "#e57373", "#ffcdd2") %>% rev()
 
 # global variables
 globalVariables(

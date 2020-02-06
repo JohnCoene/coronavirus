@@ -31,10 +31,19 @@ mod_china_trend_server <- function(input, output, session, df, column = "confirm
   ns <- session$ns
 
   output$trend <- echarts4r::renderEcharts4r({
+
+    palette <- column_to_palette(column)
+
     e <- df %>% 
       echarts4r::e_charts(date) %>% 
       echarts4r::e_area_(column) %>% 
-      echarts4r::e_visual_map_(column, show = FALSE) %>% 
+      echarts4r::e_visual_map_(
+        column, 
+        show = FALSE,
+        inRange = list(
+          color = palette
+        )
+      ) %>% 
       echarts4r::e_theme(theme) %>% 
       echarts4r::e_legend(FALSE) %>% 
       echarts4r::e_tooltip(trigger = "axis") %>% 
@@ -47,9 +56,13 @@ mod_china_trend_server <- function(input, output, session, df, column = "confirm
   })
 }
     
-## To be copied in the UI
-# mod_chiny_trend_ui("china_trend_ui_1")
-    
-## To be copied in the server
-# callModule(mod_china_trend_server, "china_trend_ui_1")
+column_to_palette <- function(x){
+  switch(
+    x,
+    "confirm" = confirmed_pal,
+    "dead" = deaths_pal,
+    "heal" = recovered_pal,
+    "suspect" = suspected_pal
+  )
+}
  

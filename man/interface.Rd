@@ -3,12 +3,12 @@
 \name{interface}
 \alias{interface}
 \alias{input_to_case}
-\alias{case_to_palette}
+\alias{input_to_palette}
 \title{Input to Case Conversion}
 \usage{
 input_to_case(x)
 
-case_to_palette(x)
+input_to_palette(x)
 }
 \arguments{
 \item{x}{input value.}

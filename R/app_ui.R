@@ -1,5 +1,7 @@
 #' @import shiny
 app_ui <- function() {
+  version <- paste0("v", packageVersion("coronavirus"))
+
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
@@ -30,7 +32,8 @@ app_ui <- function() {
             f7Link(label = "John Hopkins Data", src = "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/htmlview?usp=sharing&sle=true", external = TRUE),
             f7Link(label = "Weixin Data", src = "https://github.com/GuangchuangYu/nCov2019", external = TRUE),
             f7Link(label = "DXY Data", src = "https://ncov.dxy.cn/ncovh5/view/pneumonia", external = TRUE),
-            f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE)
+            f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE),
+            tags$pre(tags$code(version))
           )
         ),
         f7Tabs(
