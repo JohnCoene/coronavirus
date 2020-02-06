@@ -24,39 +24,10 @@ chinese_provinces <- data.frame(
     "Zhejiang", "Hong Kong", "Taiwan"
   ),
   chinese = c(
-    "安徽",
-    "北京",
-    "重庆",
-    "福建",
-    "甘肃",
-    "广东",
-    "广西",
-    "贵州",
-    "海南",
-    "河北",
-    "黑龙江",
-    "河南",
-    "湖北",
-    "湖南",
-    "内蒙古",
-    "江苏",
-    "江西",
-    "吉林",
-    "辽宁",
-    "宁夏",
-    "青海",
-    "陕西",
-    "山东",
-    "上海",
-    "山西",
-    "四川",
-    "天津",
-    "西藏",
-    "新疆",
-    "云南",
-    "浙江",
-    "香港",
-    "台湾"
+    "安徽", "北京", "重庆", "福建", "甘肃", "广东", "广西", "贵州", "海南", "河北", 
+    "黑龙江", "河南", "湖北", "湖南", "内蒙古", "江苏", "江西", "吉林", "辽宁", "宁夏", 
+    "青海", "陕西", "山东", "上海", "山西", "四川", "天津", "西藏", "新疆", "云南",
+    "浙江", "香港","台湾"
   ),
   stringsAsFactors = FALSE
 )
@@ -285,43 +256,3 @@ locate <- function(search, key){
   return(loc)
   
 }
-
-# scrape_sina <- function(){
-#   url <- "https://news.sina.cn/zt_d/yiqing0121"
-#   html <- decapitated::chrome_read_html(url)
-
-#   table <- html %>% 
-#     rvest::html_node(".m_list") 
-    
-#   table_data <- table %>% 
-#     rvest::html_nodes(".m_sub_wap")
-
-#   scrape_row <- function(row){
-#     r <- row %>% 
-#       rvest::html_nodes("span")
-
-#     values <- rvest::html_text(r)
-#     classes <- rvest::html_attr(r, "class")
-
-#     df <- values %>% 
-#       t() %>% 
-#       as.data.frame(stringsAsFactors = FALSE)
-    
-#     names(df) <- classes
-#     return(df)
-#   }
-
-#   scrape_sub_table <- function(sub_table){
-#     sub_table %>% 
-#       rvest::html_nodes(".m_sub_item") %>% 
-#       purrr::map(scrape_row)
-#   }
-
-#   df <- purrr::map(table_data, scrape_sub_table) %>% 
-#     purrr::map_dfr(dplyr::bind_rows) %>% 
-#     dplyr::select(-c6)
-
-#   names(df) <- c("county", "confirmed", "cured", "death")
-#   return(df)
-# }
-

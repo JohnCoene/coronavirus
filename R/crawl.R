@@ -101,4 +101,3 @@ crawl_coronavirus <- function(deauth = TRUE){
 
   invisible(dat)
 }
-
