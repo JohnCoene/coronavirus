@@ -4,6 +4,7 @@
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build status](https://travis-ci.org/JohnCoene/coronavirus.svg?branch=master)](https://travis-ci.org/JohnCoene/coronavirus)
 <!-- badges: end -->
 
 [Dashboard](https://shiny.john-coene.com/coronavirus) | [Changelog](NEWS.md) 

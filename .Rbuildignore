@@ -9,3 +9,4 @@ $run_dev.*
 ^_coronavirus\.yml$
 googlesheets.rds
 ^\.httr-oauth$
+^\.travis\.yml$

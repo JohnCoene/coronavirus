@@ -1,3 +1,7 @@
+# coronavirus 0.0.4
+
+- Revamped DXY tab, uses counties and provinces instead of geolocated cities.
+
 # coronavirus 0.0.3
 
 - Connect all charts in dxy and weixin tabs
