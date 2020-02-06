@@ -27,9 +27,11 @@ crawl_coronavirus <- function(deauth = TRUE){
   cli::cli_alert_info("Crawling data from John Hopkins")
   
   # read data
-  confirmed <- googlesheets4::sheets_read(spreadsheet, sheet = "Confirmed")
-  recovered <- googlesheets4::sheets_read(spreadsheet, sheet = "Recovered")
-  deaths <- googlesheets4::sheets_read(spreadsheet, sheet = "Death")
+  suppressMessages({
+    confirmed <- googlesheets4::sheets_read(spreadsheet, sheet = "Confirmed")
+    recovered <- googlesheets4::sheets_read(spreadsheet, sheet = "Recovered")
+    deaths <- googlesheets4::sheets_read(spreadsheet, sheet = "Death")
+  })
 
   # add col
   confirmed$type <- "confirmed"

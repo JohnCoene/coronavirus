@@ -321,6 +321,7 @@ locate <- function(search, key){
 #     purrr::map_dfr(dplyr::bind_rows) %>% 
 #     dplyr::select(-c6)
 
-#   names(df) <- c("province", "confirmed", "cured", "death")
+#   names(df) <- c("county", "confirmed", "cured", "death")
 #   return(df)
 # }
+
