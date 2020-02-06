@@ -1,38 +1,25 @@
-<div align="center">
-
-![](/inst/app/www/coronavirus.png)
-
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build status](https://travis-ci.org/JohnCoene/coronavirus.svg?branch=master)](https://travis-ci.org/JohnCoene/coronavirus)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
-[Dashboard](https://shiny.john-coene.com/coronavirus) | [Docs](https://coronavirus.john-coene.com) | [Changelog](NEWS.md)
-
 Dashboard to track the spread of the coronavirus, based on three data sources, built with [shinyMobile](https://rinterface.github.io/shinyMobile/) and [echarts4r](https://echarts4r.john-coene.com/).
-
-</div>
 
 ## Get it
 
 You can view the [dashboard](https://shiny.john-coene.com/coronavirus) online or download the package to run it locally or deploy it.
 
 ``` r
-# install.packages("remotes")
+install.packages("remotes")
 remotes::install_github("JohnCoene/coronavirus")
 ```
 
-## Test
+## Credits
 
-You can test the app before preparing any kind of deployment (e.g.: set up a database), visit the [docs](https://coronavirus.john-coene.com) if you want to deploy it.
-
-```r
-library(coronavirus)
-
-virus <- crawl_coronavirus()
-run_app(virus)
-```
+- UI: [shinyMobile](https://github.com/RinteRface/shinyMobile) framework
+- Data: [John Hopkins](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6), (https://github.com/GuangchuangYu/nCov2019) thanks to Guangchuang Yu, [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia)
+- Visualisations: [echarts4r](https://echarts4r.john-coene.com)
 
 ## Contribute
 

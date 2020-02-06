@@ -1,0 +1,56 @@
+# Prod
+
+Create the required config file to run the crawler. You should only have to do this once.
+
+```r
+library(coronavirus)
+
+# create and fill config file
+create_config()
+```
+
+Fill in the config file created with the credentials to a Postgres database, then run the crawler. Every time you want to update the data, re-run `crawl_coronavirus`, it collects fresh data and overwrites everything.
+
+```r
+# crawl data
+crawl_coronavirus()
+```
+
+Finally launch the app.
+
+```r
+# launch the dashboard
+run_app()
+```
+
+
+## Deploy
+
+You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal. Note that This also works on [shinyapps.io](https://www.shinyapps.io/).
+
+```bash
+sudo su - -c "R -e \"install.packages('remotes')\""
+sudo su - -c "R -e \"remotes::install_github('JohnCoene/coronavirus')\""
+```
+
+Once this done create a directory under `/srv/shiny-server/`, where you can create the config file.
+
+```bash
+cd /srv/shiny-server
+mkdir coronavirus
+cd ./coronavirus
+R -e "coronavirus::create_config()"
+vi _coronavirus.yml
+```
+
+Fill in the config file and create the app.
+
+```bash
+echo "coronavirus::run_app()" > app.R 
+```
+
+You can then visit `http://my.server.ip:3838/coronavirus`, you can change the port in the `/etc/shiny-server/shiny-server.conf` file, change it to `80` to have your app at `http://my.server.ip/coronavirus`.
+
+Open an issue if you have problems deploying, I'm more than happy helping.
+
+That is the dashboard setup and running, go to the [data](data.md) section to see how to create a cronjob to automatically update the data.

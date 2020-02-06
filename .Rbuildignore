@@ -10,3 +10,4 @@ $run_dev.*
 googlesheets.rds
 ^\.httr-oauth$
 ^\.travis\.yml$
+^docs$
