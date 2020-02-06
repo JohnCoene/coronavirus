@@ -44,5 +44,6 @@ URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
 Remotes:
   JohnCoene/countup,
+  JohnCoene/echarts4r,
   JohnCoene/echarts4r.maps,
   GuangchuangYu/nCov2019  
