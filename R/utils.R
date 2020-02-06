@@ -10,7 +10,8 @@ globalVariables(
     ".", "cases", "type", "country", "chinese", "country_iso2c",
     "confirmed", "death", "desc", "recovered", "state", "cityName",
     "china_cities_location", "cities", "lat", "lon", "value",
-    "confirmedCount", "curedCount", "deadCount", "suspectedCount"
+    "confirmedCount", "curedCount", "deadCount", "suspectedCount",
+    "province", "province_pinyin", "variable"
   )
 )
 
