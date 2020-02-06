@@ -46,6 +46,8 @@ mod_city_map_server <- function(input, output, session, df){
   output$map <- echarts4r::renderEcharts4r({
     selected <- input_to_case(input$variable)
 
+    palette <- input_to_palette(input$variable)
+
     df %>% 
       dplyr::select(province, province_pinyin, variable = selected) %>% 
       dplyr::group_by(province, province_pinyin) %>% 
@@ -60,12 +62,19 @@ mod_city_map_server <- function(input, output, session, df){
           areaColor = "#242323"
         )
       ) %>% 
-      echarts4r::e_visual_map(cases, textStyle = list(color = "#fff"))
+      echarts4r::e_visual_map(
+        cases, 
+        textStyle = list(color = "#fff"),
+        inRange = list(
+          color = palette
+        )
+      )
   })
 
   output$region <- echarts4r::renderEcharts4r({
     req(input$map_clicked_data)
 
+    palette <- input_to_palette(input$variable)
     selected_variable <- input_to_case(input$variable)
     selected <- input$map_clicked_data$name
 
@@ -93,7 +102,14 @@ mod_city_map_server <- function(input, output, session, df){
           areaColor = "#242323"
         )
       ) %>% 
-      echarts4r::e_visual_map(variable, textStyle = list(color = "#fff"))
+      echarts4r::e_visual_map(
+        variable, 
+        textStyle = list(color = "#fff"),
+        inRange = list(
+          color = palette
+        )
+      ) %>% 
+      echarts4r::e_show_loading()
 
   })
 }
@@ -119,6 +135,7 @@ url_to_geojson <- function(province){
 #' 
 #' @param x input value.
 #' 
+#' @name interface
 #' @keywords internal
 input_to_case <- function(x){
   switch(
@@ -126,5 +143,16 @@ input_to_case <- function(x){
     "Confirmed" = "confirmedCount",
     "Deaths" = "deadCount",
     "Recovered" = "curedCount"
+  )
+}
+
+#' @rdname interface
+#' @keywords internal
+input_to_palette <- function(x){
+  switch(
+    x,
+    "Confirmed" = confirmed_pal,
+    "Deaths" = deaths_pal,
+    "Recovered" = recovered_pal
   )
 }

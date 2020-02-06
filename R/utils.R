@@ -4,6 +4,13 @@ spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDF
 theme <- "dark"
 dxy_url <- "https://ncov.dxy.cn/ncovh5/view/pneumonia"
 
+# pallettes for DXY
+deaths_pal <- c("#FFF7F3", "#FDE0DD", "#FCC5C0", "#FA9FB5", "#F768A1", "#DD3497", 
+  "#AE017E", "#7A0177", "#49006A")
+recovered_pal <- c("#FFFFE5", "#F7FCB9", "#D9F0A3", "#ADDD8E", "#78C679", "#41AB5D", 
+  "#238443", "#006837", "#004529")
+confirmed_pal <- c("#bf444c", "#d88273", "#f6efa6") %>% rev()
+
 # global variables
 globalVariables(
   c(
