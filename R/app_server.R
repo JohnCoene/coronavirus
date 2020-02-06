@@ -21,14 +21,11 @@ app_server <- function(input, output,session) {
     dxy <- data$dxy
   }
 
+
   # counts jhu
   callModule(mod_count_server, "count_ui_1", df = df, type_filter = "confirmed")
   callModule(mod_count_server, "count_ui_2", df = df, type_filter = "death")
   callModule(mod_count_server, "count_ui_3", df = df, type_filter = "recovered")
-  # jhu tab
-  callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
-  callModule(mod_count_server, "count_ui_2_jhu", df = df, type_filter = "death")
-  callModule(mod_count_server, "count_ui_3_jhu", df = df, type_filter = "recovered")
 
   # counts weixin
   callModule(
@@ -47,23 +44,6 @@ app_server <- function(input, output,session) {
     mod_count_weixin_server, "count_weixin_ui_4", 
     df = china_daily, column = "suspect"
   )
-  # weixin tab
-  callModule(
-    mod_count_weixin_server, "count_weixin_ui_1_wx", 
-    df = china_daily, column = "confirm"
-  )
-  callModule(
-    mod_count_weixin_server, "count_weixin_ui_2_wx", 
-    df = china_daily, column = "dead"
-  )
-  callModule(
-    mod_count_weixin_server, "count_weixin_ui_3_wx", 
-    df = china_daily, column = "heal"
-  )
-  callModule(
-    mod_count_weixin_server, "count_weixin_ui_4_wx", 
-    df = china_daily, column = "suspect"
-  )
 
   # dxy
   callModule(
@@ -79,67 +59,87 @@ app_server <- function(input, output,session) {
     df = dxy, column = "curedCount"
   )
 
-  # dxy tab
-  callModule(
-    mod_count_weixin_server, "count_dxy_ui_1_dxy", 
-    df = dxy, column = "confirmedCount"
-  )
-  callModule(
-    mod_count_weixin_server, "count_dxy_ui_3_dxy", 
-    df = dxy, column = "deadCount"
-  )
-  callModule(
-    mod_count_weixin_server, "count_dxy_ui_4_dxy", 
-    df = dxy, column = "curedCount"
-  )
-  # maps
-  callModule(
-    mod_city_map_server, 
-    "city_map_confirmed", 
-    df = dxy, 
-    column = "confirmedCount",
-    name = "Confirmed"
-  )
-  callModule(
-    mod_city_map_server, 
-    "city_map_recovered", 
-    df = dxy, 
-    column = "curedCount",
-    name = "Recovered"
-  )
-  callModule(
-    mod_city_map_server, 
-    "city_map_deaths", 
-    df = dxy, 
-    column = "deadCount",
-    name = "Deaths",
-    connect = TRUE
-  )
+  # -------------------- Load tab by tab for more responsiveness
 
-  # table
-  callModule(mod_dxy_table_server, "dxy_table_ui_1", df = dxy)
+  # track initialised tabs
+  dxy_init <- jhu_init <- wx_init <- FALSE
 
-  # weixin tab chart
-  callModule(mod_china_trend_server, "china_trend_ui_confirm", df = china_daily, column = "confirm")
-  callModule(mod_china_trend_server, "china_trend_ui_heal", df = china_daily, column = "heal")
-  callModule(mod_china_trend_server, "china_trend_ui_dead", df = china_daily, column = "dead")
-  callModule(
-    mod_china_trend_server, 
-    "china_trend_ui_suspect", 
-    df = china_daily, 
-    column = "suspect",
-    connect = TRUE
-  )
+  observeEvent(input$tabs, {
+    if(input$tabs == "DXY" && !dxy_init){
+      dxy_init <- TRUE
+      # dxy tab
+      callModule(
+        mod_count_weixin_server, "count_dxy_ui_1_dxy", 
+        df = dxy, column = "confirmedCount"
+      )
+      callModule(
+        mod_count_weixin_server, "count_dxy_ui_3_dxy", 
+        df = dxy, column = "deadCount"
+      )
+      callModule(
+        mod_count_weixin_server, "count_dxy_ui_4_dxy", 
+        df = dxy, column = "curedCount"
+      )
+      # maps
+      callModule(
+        mod_city_map_server, 
+        "city_map_1", 
+        df = dxy
+      )
 
-  # trend
-  callModule(mod_trend_server, "trend_ui_1", df = df)
+      # table
+      callModule(mod_dxy_table_server, "dxy_table_ui_1", df = dxy)
+    } else if(input$tabs == "John Hopkins" && !jhu_init){
+      jhu_init <- TRUE
 
-  # maps
-  callModule(mod_map_server, "map_ui_1", df = df)
-  callModule(mod_world_server, "world_ui_1", df = df)
+      # jhu tab
+      callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
+      callModule(mod_count_server, "count_ui_2_jhu", df = df, type_filter = "death")
+      callModule(mod_count_server, "count_ui_3_jhu", df = df, type_filter = "recovered")
 
-  # tables
-  callModule(mod_china_server, "table_china", df = df)
-  callModule(mod_table_world_server, "table_world", df = df)
+      # trend
+      callModule(mod_trend_server, "trend_ui_1", df = df)
+
+      # maps
+      callModule(mod_map_server, "map_ui_1", df = df)
+      callModule(mod_world_server, "world_ui_1", df = df)
+
+      # tables
+      callModule(mod_china_server, "table_china", df = df)
+      callModule(mod_table_world_server, "table_world", df = df)
+    } else if(input$tabs == "Weixin" && !wx_init){
+      wx_init <- TRUE
+
+      # weixin tab
+      callModule(
+        mod_count_weixin_server, "count_weixin_ui_1_wx", 
+        df = china_daily, column = "confirm"
+      )
+      callModule(
+        mod_count_weixin_server, "count_weixin_ui_2_wx", 
+        df = china_daily, column = "dead"
+      )
+      callModule(
+        mod_count_weixin_server, "count_weixin_ui_3_wx", 
+        df = china_daily, column = "heal"
+      )
+      callModule(
+        mod_count_weixin_server, "count_weixin_ui_4_wx", 
+        df = china_daily, column = "suspect"
+      )
+
+      # weixin tab chart
+      callModule(mod_china_trend_server, "china_trend_ui_confirm", df = china_daily, column = "confirm")
+      callModule(mod_china_trend_server, "china_trend_ui_heal", df = china_daily, column = "heal")
+      callModule(mod_china_trend_server, "china_trend_ui_dead", df = china_daily, column = "dead")
+      callModule(
+        mod_china_trend_server, 
+        "china_trend_ui_suspect", 
+        df = china_daily, 
+        column = "suspect",
+        connect = TRUE
+      )
+    }
+  })
 
 }

@@ -40,7 +40,8 @@ mod_world_server <- function(input, output, session, df){
       dplyr::ungroup() %>% 
       echarts4r::e_charts(country) %>% 
       echarts4r::e_map(
-        cases, itemStyle = list(
+        cases, 
+        itemStyle = list(
           areaColor = "#242323"
         ),
         label = list(

@@ -15,7 +15,6 @@ crawl_coronavirus <- function(deauth = TRUE){
 
   con <- NULL
   if(file.exists(config_file)){
-    # manage connection pool
     con <- connect()
   }
 
@@ -75,15 +74,29 @@ crawl_coronavirus <- function(deauth = TRUE){
     dplyr::mutate_if(is.character, as.numeric)
 
   cli::cli_alert_info("Crawling data from DXY")
-  dxy <- xml2::read_html(dxy_url) %>% 
+  dxy_list <- xml2::read_html(dxy_url) %>% 
     rvest::html_node("#getAreaStat") %>% 
     rvest::html_text() %>% 
     gsub("try \\{ window.getAreaStat = ", "", .) %>% 
     gsub("\\}catch\\(e\\)\\{\\}", "", .) %>% 
-    jsonlite::fromJSON() %>% 
+    jsonlite::fromJSON() 
+  
+  dxy <- dxy_list %>% 
     dplyr::pull(cities) %>% 
+    purrr::map2(dxy_list$provinceShortName, function(city, province){
+      if(nrow(city))
+        city$province <- province
+      return(city)
+    }) %>% 
+    purrr::map2(dxy_list$provinceName, function(city, province){
+      if(nrow(city))
+        city$province_long <- province
+      return(city)
+    }) %>% 
     purrr::map_dfr(tibble::as_tibble) %>% 
-    dplyr::left_join(china_cities_location, by = "cityName")
+    dplyr::left_join(china_cities_location, by = "cityName") %>% 
+    dplyr::left_join(chinese_provinces, by = c("province" = "chinese")) %>% 
+    dplyr::rename(province_pinyin = state)
 
   # save
   if(file.exists(config_file)){

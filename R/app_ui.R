@@ -35,6 +35,7 @@ app_ui <- function() {
         ),
         f7Tabs(
           animated = TRUE,
+          id = 'tabs',
           f7Tab(
             tabName = "Home",
             icon = f7Icon("rectangle_3_offgrid"),
@@ -141,11 +142,7 @@ app_ui <- function() {
               f7Col(mod_count_weixin_ui("count_dxy_ui_3_dxy", "Deaths")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_4_dxy", "Recovered"))
             ),
-            f7Col(mod_city_map_ui("city_map_confirmed", "Confirmed")),
-            f7Row(
-              f7Col(mod_city_map_ui("city_map_recovered", "Recovered")),
-              f7Col(mod_city_map_ui("city_map_deaths", "Deaths"))
-            ),
+            mod_city_map_ui("city_map_1"),
             mod_dxy_table_ui("dxy_table_ui_1")
           )
         )

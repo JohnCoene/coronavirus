@@ -5,9 +5,9 @@
 \alias{mod_city_map_server}
 \title{mod_city_map_ui and mod_city_map_server}
 \usage{
-mod_city_map_ui(id, label)
+mod_city_map_ui(id)
 
-mod_city_map_server(input, output, session, df, column, name, connect = FALSE)
+mod_city_map_server(input, output, session, df)
 }
 \arguments{
 \item{id}{shiny id}

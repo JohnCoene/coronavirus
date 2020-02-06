@@ -13,12 +13,24 @@
 #' @keywords internal
 #' @export 
 #' @importFrom shiny NS tagList 
-mod_city_map_ui <- function(id, label){
+mod_city_map_ui <- function(id){
   ns <- NS(id)
-  f7Card(
-    title = label,
-    echarts4r::echarts4rOutput(ns("map"), height = "70vh"),
-    footer = "Points are log scaled, tooltips give real values."
+  tagList(
+    f7Radio(
+      ns("variable"),
+      label = "Cases to plot",
+      choices = c("Confirmed", "Deaths", "Recovered"),
+      selected = "Confirmed"
+    ),
+    f7Card(
+      title = "Provinces",
+      echarts4r::echarts4rOutput(ns("map"), height = "50vh"),
+      footer = "Select a county to see displayed below"
+    ),
+    f7Card(
+      title = "Counties",
+      echarts4r::echarts4rOutput(ns("region"), height = "50vh"),
+    )
   )
 }
     
@@ -28,70 +40,91 @@ mod_city_map_ui <- function(id, label){
 #' @export
 #' @keywords internal
     
-mod_city_map_server <- function(input, output, session, df, column, name, connect = FALSE){
+mod_city_map_server <- function(input, output, session, df){
   ns <- session$ns
 
   output$map <- echarts4r::renderEcharts4r({
-    range <- range(df[[column]])
+    selected <- input_to_case(input$variable)
 
-    rescaling <- paste0(
-      "function(data){ return (Math.log(data[3]) * 3);}"
-    )
-
-    e <- df %>% 
-      dplyr::select(cityName, lat, lon, value = column) %>%
-      dplyr::slice(1:100) %>% 
-      echarts4r::e_charts(lon) %>% 
-      echarts4r.maps::em_map("China") %>%  
-      echarts4r::e_geo(
-        "China",
-        roam = TRUE,
+    df %>% 
+      dplyr::select(province, province_pinyin, variable = selected) %>% 
+      dplyr::group_by(province, province_pinyin) %>% 
+      dplyr::summarise(cases = sum(variable, ny.rm = TRUE)) %>% 
+      dplyr::ungroup() %>% 
+      echarts4r::e_chart(province) %>% 
+      echarts4r.maps::em_map("China") %>% 
+      echarts4r::e_map(
+        cases, 
+        map = "China",
         itemStyle = list(
-          areaColor = "#242323",
-          emphasis = list(
-            areaColor = "#242323"
-          )
-        ),
-        label = list(
-          emphasis = list(
-            color = "#ffffff",
-            fontSite = 15
-          )
-        ),
-        boundingCoords = list(
-          c(106, 37),
-          c(118, 22)
+          areaColor = "#242323"
         )
       ) %>% 
-      echarts4r::e_scatter(
-        lat, value, 
-        bind = cityName,
-        coord_system = "geo",
-        name = name,
-        scale = NULL,
-        scale_js = rescaling
-      ) %>% 
-      echarts4r::e_visual_map(
-        value,
-        scale = NULL,
-        position = "top",
-        orient = "horizontal",
-        textStyle = list(color = "#fff")
-      ) %>% 
-      echarts4r::e_tooltip(
-        formatter = htmlwidgets::JS("
-          function(params){
-            return(params.name + ': ' + params.value[3])
-          }
-      ")
-      ) %>% 
-      echarts4r::e_legend(FALSE) %>% 
-      echarts4r::e_theme(theme) %>% 
-      echarts4r::e_group("dxyMap")
-
-    if(connect)
-      e <- echarts4r::e_connect_group(e, "dxyMap")
-
-    return(e)
+      echarts4r::e_visual_map(cases, textStyle = list(color = "#fff"))
   })
+
+  output$region <- echarts4r::renderEcharts4r({
+    req(input$map_clicked_data)
+
+    selected_variable <- input_to_case(input$variable)
+    selected <- input$map_clicked_data$name
+
+    subset <- df %>% 
+      dplyr::select(cityName, province, province_pinyin, variable = selected_variable) %>% 
+      dplyr::filter(province == selected) %>% 
+      dplyr::mutate(cityName = substr(cityName, 1, 2))
+
+    pinyin <- unique(subset$province_pinyin)
+    geojson <- url_to_geojson(pinyin) %>% 
+      jsonlite::read_json()
+
+    geojson$features <- geojson$features %>% 
+      purrr::map(function(x){ 
+        x$properties$name <- substr(x$properties$name, 1, 2)
+        return(x)
+      })
+
+    echarts4r::e_charts(subset, cityName) %>% 
+      echarts4r::e_map_register(pinyin, geojson) %>% 
+      echarts4r::e_map(
+        variable, 
+        map = pinyin,
+        itemStyle = list(
+          areaColor = "#242323"
+        )
+      ) %>% 
+      echarts4r::e_visual_map(variable, textStyle = list(color = "#fff"))
+
+  })
+}
+
+#' County Geojson
+#' 
+#' Get url to a county's geojson.
+#' 
+#' @param province Province pinyin.
+#' 
+#' @keywords internal
+url_to_geojson <- function(province){
+  province <- tolower(province)
+  province <- ifelse(province == "tibet", "xizang", province)
+  province <- ifelse(province == "inner mongolia", "neimenggu", province)
+  province <- ifelse(province == "shaanxi", "shanxi1", province)
+  paste0("https://raw.githubusercontent.com/apache/incubator-echarts/master/map/json/province/", province, ".json")
+}
+
+#' Input to Case Conversion
+#' 
+#' Converts case name input to dxy column name
+#' 
+#' @param x input value.
+#' 
+#' @keywords internal
+input_to_case <- function(x){
+  switch(
+    x,
+    "Confirmed" = "confirmedCount",
+    "Deaths" = "deadCount",
+    "Recovered" = "curedCount"
+  )
 }
