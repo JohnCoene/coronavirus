@@ -18,7 +18,7 @@ remotes::install_github("JohnCoene/coronavirus")
 ## Credits
 
 - UI: [shinyMobile](https://github.com/RinteRface/shinyMobile) framework
-- Data: [John Hopkins](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6), (https://github.com/GuangchuangYu/nCov2019) thanks to Guangchuang Yu, [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia)
+- Data: [John Hopkins](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6), the [nCov2019](https://github.com/GuangchuangYu/nCov2019) package by Guangchuang Yu, and [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia)
 - Visualisations: [echarts4r](https://echarts4r.john-coene.com)
 
 ## Contribute
