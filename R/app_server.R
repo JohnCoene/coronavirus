@@ -64,8 +64,13 @@ app_server <- function(input, output,session) {
   # track initialised tabs
   dxy_init <- jhu_init <- wx_init <- FALSE
 
+  w <- waiter::Waiter$new(html = loader, color = "#000")
+
   observeEvent(input$tabs, {
     if(input$tabs == "DXY" && !dxy_init){
+      
+      w$show()
+
       dxy_init <- TRUE
       # dxy tab
       callModule(
@@ -89,8 +94,13 @@ app_server <- function(input, output,session) {
 
       # table
       callModule(mod_dxy_table_server, "dxy_table_ui_1", df = dxy)
+
+      w$hide()
+
     } else if(input$tabs == "John Hopkins" && !jhu_init){
       jhu_init <- TRUE
+
+      w$show()
 
       # jhu tab
       callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
@@ -107,8 +117,13 @@ app_server <- function(input, output,session) {
       # tables
       callModule(mod_china_server, "table_china", df = df)
       callModule(mod_table_world_server, "table_world", df = df)
+
+      w$hide()
+
     } else if(input$tabs == "Weixin" && !wx_init){
       wx_init <- TRUE
+
+      w$show()
 
       # weixin tab
       callModule(
@@ -139,6 +154,8 @@ app_server <- function(input, output,session) {
         column = "suspect",
         connect = TRUE
       )
+
+      w$hide()
     }
   })
 
