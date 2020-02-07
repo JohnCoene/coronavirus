@@ -8,9 +8,9 @@
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
-[Dashboard](https://shiny.john-coene.com/coronavirus) | [Docs](https://coronavirus.john-coene.com) | [Changelog](NEWS.md)
-
 Dashboard to track the spread of the coronavirus, based on three data sources, built with [shinyMobile](https://rinterface.github.io/shinyMobile/) and [echarts4r](https://echarts4r.john-coene.com/).
+
+[Dashboard](https://shiny.john-coene.com/coronavirus) | [Docs](https://coronavirus.john-coene.com) | [Changelog](NEWS.md)
 
 </div>
 
