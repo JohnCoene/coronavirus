@@ -25,7 +25,7 @@ mod_city_map_ui <- function(id){
     f7Card(
       title = "Provinces",
       echarts4r::echarts4rOutput(ns("map"), height = "50vh"),
-      footer = "Select a county to see it displayed below"
+      footer = "Select a province to see its counties displayed below"
     ),
     f7Card(
       title = "Counties",
@@ -58,10 +58,11 @@ mod_city_map_server <- function(input, output, session, df){
       echarts4r::e_map(
         cases, 
         map = "China",
+        name = selected,
         itemStyle = list(
           areaColor = "#eee",
           emphasis = list(
-            areaColor = "#ffffff"
+            areaColor = "#2196f3"
           )
         ),
         label = list(
@@ -73,6 +74,15 @@ mod_city_map_server <- function(input, output, session, df){
       ) %>% 
       echarts4r::e_visual_map(
         cases, 
+        type = "piecewise",
+        formatter = htmlwidgets::JS(
+          "function(min, max){
+            return(Math.floor(min / 100) * 100 + ' - ' + Math.floor(max / 100) * 100)
+          }"
+        ),
+        right = "center",
+        top = "top",
+        orient = "horizontal",
         textStyle = list(color = "#fff"),
         inRange = list(
           color = palette
@@ -106,11 +116,12 @@ mod_city_map_server <- function(input, output, session, df){
       echarts4r::e_map_register(pinyin, geojson) %>% 
       echarts4r::e_map(
         variable, 
+        name = selected_variable,
         map = pinyin,
         itemStyle = list(
           areaColor = "#eee",
           emphasis = list(
-            areaColor = "#ffffff"
+            areaColor = "#2196f3"
           )
         ),
         label = list(
@@ -125,7 +136,10 @@ mod_city_map_server <- function(input, output, session, df){
         textStyle = list(color = "#fff"),
         inRange = list(
           color = palette
-        )
+        ),
+        orient = "horizontal",
+        top = "bottom",
+        right = "center"
       ) %>% 
       echarts4r::e_show_loading(color = "#ffffff")
 
