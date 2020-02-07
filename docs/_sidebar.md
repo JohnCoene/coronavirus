@@ -1,4 +1,6 @@
 * [Home](/)
 * [Get Started](get-started.md)
-* [Prod](prod.md)
+* [Setup](prod.md)
 * [Data](data.md)
+* [Changelog](new.md)
+* [CoC](coc.md)
