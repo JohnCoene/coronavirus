@@ -194,5 +194,5 @@ golem_add_external_resources <- function(){
 loader <- tagList(
   waiter::spin_loaders(42),
   br(),
-  h3("Loading data...")
+  h3("Loading data")
 )

@@ -59,12 +59,15 @@ mod_city_map_server <- function(input, output, session, df){
         cases, 
         map = "China",
         itemStyle = list(
-          areaColor = "#242323"
+          areaColor = "#eee",
+          emphasis = list(
+            areaColor = "#ffffff"
+          )
         ),
         label = list(
           emphasis = list(
-            color = "#ffffff",
-            fontSite = 15
+            color = "#000",
+            fontSite = 18
           )
         )
       ) %>% 
@@ -105,12 +108,15 @@ mod_city_map_server <- function(input, output, session, df){
         variable, 
         map = pinyin,
         itemStyle = list(
-          areaColor = "#242323"
+          areaColor = "#eee",
+          emphasis = list(
+            areaColor = "#ffffff"
+          )
         ),
         label = list(
           emphasis = list(
-            color = "#ffffff",
-            fontSite = 15
+            color = "#000",
+            fontSite = 18
           )
         )
       ) %>% 
