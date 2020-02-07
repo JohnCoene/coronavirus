@@ -51,6 +51,8 @@ echo "coronavirus::run_app()" > app.R
 
 You can then visit `http://my.server.ip:3838/coronavirus`, you can change the port in the `/etc/shiny-server/shiny-server.conf` file, change it to `80` to have your app at `http://my.server.ip/coronavirus`.
 
-Open an issue if you have problems deploying, I'm more than happy helping.
+Note that it's always a good idea to recrawl the data with `crawl_coronavirus` after reinstalling the package, in the event it requires changes database-side.
 
-That is the dashboard setup and running, go to the [data](data.md) section to see how to create a cronjob to automatically update the data.
+That is the dashboard set up and running, go to the [data](data.md) section to see how to create a cronjob to automatically update the data.
+
+Open an issue if you have problems deploying, I'm more than happy helping.
