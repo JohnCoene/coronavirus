@@ -27,3 +27,21 @@ a{
 .tab-link.active-state {
   color: white !important;
 }
+
+#ss-connect-dialog{
+  display: none;
+}
+
+#shiny-disconnected-overlay{
+  background-color: #000;
+  opacity: 1;
+}
+
+.centered {
+  z-index: 9999999;
+  text-align: center;
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

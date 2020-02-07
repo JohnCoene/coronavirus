@@ -166,6 +166,7 @@ golem_add_external_resources <- function(){
     golem::favicon(),
     waiter::use_waiter(include_js = FALSE),
     tags$link(rel="stylesheet", type="text/css", href="www/style.css"),
+    tags$script(src="www/script.js"),
     HTML(
       "
 <!-- Global site tag (gtag.js) - Google Analytics -->
