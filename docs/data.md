@@ -20,14 +20,13 @@ vi _coronavirus.yml
 After editing the config file place a script.R file.
 
 ```r
+library(coronavirus)
+
 # in script.R
 googlesheets4::sheets_deauth() # force deauth 
 
-# otherwise not available internally
-data("china_cities_location", package = "coronavirus")
-
 # crawl
-coronavirus::crawl_coronavirus()
+crawl_coronavirus()
 ```
 
 You should test that all works fine by running the crawler once from the terminal.
