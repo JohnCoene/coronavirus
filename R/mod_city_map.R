@@ -25,7 +25,7 @@ mod_city_map_ui <- function(id){
     f7Card(
       title = "Provinces",
       echarts4r::echarts4rOutput(ns("map"), height = "50vh"),
-      footer = "Select a county to see displayed below"
+      footer = "Select a county to see it displayed below"
     ),
     f7Card(
       title = "Counties",
