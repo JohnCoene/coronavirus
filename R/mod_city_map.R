@@ -22,6 +22,7 @@ mod_city_map_ui <- function(id){
       choices = c("Confirmed", "Deaths", "Recovered"),
       selected = "Confirmed"
     ),
+    f7Toggle(ns("log"), "Logarithmic Scale"),
     f7Card(
       title = "Provinces",
       echarts4r::echarts4rOutput(ns("map"), height = "50vh"),
@@ -48,11 +49,25 @@ mod_city_map_server <- function(input, output, session, df){
 
     palette <- input_to_palette(input$variable)
 
+    formatter <- NULL
+    if(!input$log)
+      formatter <- htmlwidgets::JS(
+          "function(min, max){
+            return(Math.floor(min / 100) * 100 + ' - ' + Math.floor(max / 100) * 100)
+          }")
+
     df %>% 
       dplyr::select(province, province_pinyin, variable = selected) %>% 
       dplyr::group_by(province, province_pinyin) %>% 
       dplyr::summarise(cases = sum(variable, ny.rm = TRUE)) %>% 
       dplyr::ungroup() %>% 
+      dplyr::mutate(
+        cases = as.numeric(cases),
+        cases = dplyr::case_when(
+          input$log ~ log1p(cases),
+          TRUE ~ cases
+        )
+      ) %>% 
       echarts4r::e_chart(province) %>% 
       echarts4r.maps::em_map("China") %>% 
       echarts4r::e_map(
@@ -74,12 +89,9 @@ mod_city_map_server <- function(input, output, session, df){
       ) %>% 
       echarts4r::e_visual_map(
         cases, 
+        precision = 1,
         type = "piecewise",
-        formatter = htmlwidgets::JS(
-          "function(min, max){
-            return(Math.floor(min / 100) * 100 + ' - ' + Math.floor(max / 100) * 100)
-          }"
-        ),
+        formatter = formatter,
         right = "center",
         top = "top",
         orient = "horizontal",
@@ -100,7 +112,14 @@ mod_city_map_server <- function(input, output, session, df){
     subset <- df %>% 
       dplyr::select(cityName, province, province_pinyin, variable = selected_variable) %>% 
       dplyr::filter(province == selected) %>% 
-      dplyr::mutate(cityName = substr(cityName, 1, 2))
+      dplyr::mutate(cityName = substr(cityName, 1, 2)) %>% 
+      dplyr::mutate(
+        variable = as.numeric(variable),
+        variable = dplyr::case_when(
+          input$log ~ log1p(variable),
+          TRUE ~ variable
+        )
+      )
 
     pinyin <- unique(subset$province_pinyin)
     geojson <- url_to_geojson(pinyin) %>% 

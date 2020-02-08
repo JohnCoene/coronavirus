@@ -17,6 +17,7 @@ mod_china_trend_ui <- function(id, label){
   ns <- NS(id)
   f7Card(
     title = label,
+    f7Toggle(ns("log"), "Logarithmic Scale log(1 + x)"),
     echarts4r::echarts4rOutput(ns("trend"))
   )
 }
@@ -33,6 +34,9 @@ mod_china_trend_server <- function(input, output, session, df, column = "confirm
   output$trend <- echarts4r::renderEcharts4r({
 
     palette <- column_to_palette(column)
+
+    if(input$log)
+      df[[column]] <- log1p(df[[column]])
 
     e <- df %>% 
       echarts4r::e_charts(date) %>% 
