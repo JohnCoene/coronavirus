@@ -17,16 +17,10 @@ R -e "coronavirus::create_config()"
 vi _coronavirus.yml
 ```
 
-After editing the config file place a script.R file.
+After editing the config file we can create the script that will crawl fresh data. There is a convenience `create_script` function to do so.
 
-```r
-library(coronavirus)
-
-# in script.R
-googlesheets4::sheets_deauth() # force deauth 
-
-# crawl
-crawl_coronavirus()
+```bash
+R -e "coronavirus::create_script()"
 ```
 
 You should test that all works fine by running the crawler once from the terminal.
@@ -57,3 +51,4 @@ In `v0.0.3`:
 
 - Deaths and recovered numbers for DianXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
 - Number of suspected by city given by DianXiangYing is wildly inaccurate, has been removed.
+- Replaced Map on JHU tab as color scaling was inaccurate due to timeline.
