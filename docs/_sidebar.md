@@ -1,4 +1,5 @@
 * [Home](/)
+* [Tracker](tracker.md)
 * [Get Started](get-started.md)
 * [Setup](prod.md)
 * [Data](data.md)

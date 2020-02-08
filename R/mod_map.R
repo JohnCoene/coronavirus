@@ -58,6 +58,11 @@ mod_map_server <- function(input, output, session, df){
       echarts4r::e_bar(confirmed, name = "Confirmed") %>% 
       echarts4r::e_bar(recovered, name = "Recovered") %>% 
       echarts4r::e_bar(death, name = "Deaths") %>%  
+      echarts4r::e_legend(
+        orient = "vertical",
+        right = 25,
+        top = 50
+      ) %>% 
       echarts4r::e_tooltip(
         trigger = "axis",
         axisPointer = list(

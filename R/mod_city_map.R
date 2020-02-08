@@ -141,6 +141,7 @@ mod_city_map_server <- function(input, output, session, df){
         top = "bottom",
         right = "center"
       ) %>% 
+      echarts4r::e_title(selected, top = 10, left = 10) %>% 
       echarts4r::e_show_loading(color = "#ffffff")
 
   })
