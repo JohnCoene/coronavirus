@@ -18,6 +18,7 @@ mod_map_ui <- function(id){
 
   f7Card(
     title = "Confirmed Cases - China",
+    f7Toggle(ns("log"), "Logarithmic Scale log(1 + x)"),
     echarts4r::echarts4rOutput(ns("map"), height = "70vh")
   )
 }
@@ -37,7 +38,13 @@ mod_map_server <- function(input, output, session, df){
       dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
       dplyr::left_join(chinese_provinces, by = "state") %>% 
       dplyr::arrange(desc(date)) %>% 
-      dplyr::select(state, type, date, cases)
+      dplyr::select(state, type, date, cases) %>% 
+      dplyr::mutate(
+        cases = dplyr::case_when(
+          input$log ~ log1p(cases),
+          TRUE ~ cases
+        )
+      )
 
     index <- length(unique(dat$date)) -1 
     titles <- unique(dat$date) %>% 
