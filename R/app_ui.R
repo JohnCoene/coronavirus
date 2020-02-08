@@ -146,6 +146,7 @@ app_ui <- function() {
               f7Col(mod_count_weixin_ui("count_dxy_ui_4_dxy", "Recovered"))
             ),
             mod_city_map_ui("city_map_1"),
+            mod_geo_lines_ui("geo_lines_map"),
             mod_dxy_table_ui("dxy_table_ui_1")
           )
         )

@@ -12,9 +12,24 @@ app_server <- function(input, output,session) {
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
     dxy <- DBI::dbReadTable(con, "dxy")
+
+    if("log" %in% DBI::dbListTables(con)){
+      log <- DBI::dbGetQuery(con, "SELECT MAX(last_updated) FROM log;")
+
+       f7Toast(
+         session,
+         text = paste("Last updated on", format(log, "%d %b at %Hh")),
+         position = "bottom",
+         closeTimeout = 3500,
+         closeButton = FALSE
+       )
+
+    }
+
     on.exit({
       disconnect(con)
     })
+    
   } else {
     df <- data$jhu
     china_daily <- data$weixin
@@ -96,6 +111,8 @@ app_server <- function(input, output,session) {
       callModule(mod_dxy_table_server, "dxy_table_ui_1", df = dxy)
 
       w$hide()
+
+      callModule(mod_geo_lines_server, "geo_lines_map")
 
     } else if(input$tabs == "John Hopkins" && !jhu_init){
       jhu_init <- TRUE

@@ -1,6 +1,7 @@
 # coronavirus 0.0.4
 
-- Revamped DXY tab, uses counties and provinces instead of geolocated cities.
+- Revamped DXY tab, uses counties and provinces instead of geo-located cities.
+- John Hopkins Map of china changed to bar chart.
 
 # coronavirus 0.0.3
 

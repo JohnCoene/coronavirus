@@ -98,12 +98,15 @@ crawl_coronavirus <- function(deauth = TRUE){
     dplyr::left_join(chinese_provinces, by = c("province" = "chinese")) %>% 
     dplyr::rename(province_pinyin = state)
 
+  log <- tibble::tibble(last_updated = Sys.time())
+
   # save
   if(file.exists(config_file)){
     cli::cli_alert_success("Writing to database")
     DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "dxy", dxy, overwrite = TRUE, append = FALSE)
+    DBI::dbWriteTable(con, "log", log, append = TRUE)
   }
 
   dat <- list(
