@@ -15,10 +15,12 @@ app_server <- function(input, output,session) {
 
     if("log" %in% DBI::dbListTables(con)){
       log <- DBI::dbGetQuery(con, "SELECT MAX(last_updated) FROM log;")
+      
+      diff <- difftime(Sys.time(), log$max) %>% as.integer() 
 
        f7Toast(
          session,
-         text = paste("Last updated on", format(log, "%d %b at %Hh")),
+         text = paste("Last updated", diff, "minutes ago"),
          position = "bottom",
          closeTimeout = 3500,
          closeButton = FALSE
