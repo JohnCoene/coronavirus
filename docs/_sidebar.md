@@ -3,5 +3,5 @@
 * [Get Started](get-started.md)
 * [Setup](prod.md)
 * [Data](data.md)
-* [Changelog](new.md)
+* [Changelog](news.md)
 * [CoC](coc.md)
