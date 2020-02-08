@@ -3,6 +3,7 @@
 export("%>%")
 export(crawl_coronavirus)
 export(create_config)
+export(create_script)
 export(mod_china_server)
 export(mod_china_trend_server)
 export(mod_china_trend_ui)

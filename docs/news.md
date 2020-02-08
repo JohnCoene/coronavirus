@@ -2,6 +2,7 @@
 
 - Revamped DXY tab, uses counties and provinces instead of geo-located cities.
 - John Hopkins Map of china changed to bar chart.
+- Added `create_script` to easily create cronjob script.
 
 # coronavirus 0.0.3
 

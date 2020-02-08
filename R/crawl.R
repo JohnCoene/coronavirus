@@ -117,3 +117,19 @@ crawl_coronavirus <- function(deauth = TRUE){
 
   invisible(dat)
 }
+
+#' Cronjob
+#' 
+#' Create script file for cronjob.
+#' 
+#' @export 
+create_script <- function(){
+  file <- system.file("scrape.R", package = "coronavirus")
+  created <- file.copy(file, to = "script.R")
+  if(created)
+    cli::cli_alert_success("script.R file copied")
+  else
+    cli::cli_alert_danger("Cannot create script")
+  
+  invisible()
+}
