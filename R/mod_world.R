@@ -51,7 +51,12 @@ mod_world_server <- function(input, output, session, df){
           )
         )
       ) %>% 
-      echarts4r::e_visual_map(cases, textStyle = list(color = "#fff")) %>% 
+      echarts4r::e_visual_map(
+        cases, 
+        textStyle = list(color = "#fff"),
+        orient = "horizontal",
+        right = "center"
+      ) %>% 
       echarts4r::e_theme(theme)
   })
 }
