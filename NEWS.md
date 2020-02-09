@@ -1,3 +1,8 @@
+# coronavirus 0.0.5
+
+- Add hubei default province in DXY tab.
+- Add shinyscroll to scroll to selected province in DXY tab.
+
 # coronavirus 0.0.4
 
 - Revamped DXY tab, uses counties and provinces instead of geo-located cities.

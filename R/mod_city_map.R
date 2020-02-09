@@ -103,11 +103,16 @@ mod_city_map_server <- function(input, output, session, df){
   })
 
   output$region <- echarts4r::renderEcharts4r({
-    req(input$map_clicked_data)
+
+    if(is.null(input$map_clicked_data)) {
+      selected <- default_province
+    } else {
+      selected <- input$map_clicked_data$name
+      shinyscroll::scroll(ns("region"))
+    }
 
     palette <- input_to_palette(input$variable)
     selected_variable <- input_to_case(input$variable)
-    selected <- input$map_clicked_data$name
 
     subset <- df %>% 
       dplyr::select(cityName, province, province_pinyin, variable = selected_variable) %>% 

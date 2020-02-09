@@ -31,4 +31,6 @@ chinese_provinces <- data.frame(
   stringsAsFactors = FALSE
 )
 
-usethis::use_data(china_cities_location, chinese_provinces, internal = TRUE)
+default_province <- "湖北"
+
+usethis::use_data(china_cities_location, chinese_provinces, default_province, internal = TRUE, overwrite = TRUE)

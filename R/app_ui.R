@@ -168,6 +168,7 @@ golem_add_external_resources <- function(){
     waiter::use_waiter(include_js = FALSE),
     tags$link(rel="stylesheet", type="text/css", href="www/style.css"),
     sever::use_sever(),
+    shinyscroll::use_shinyscroll(),
     HTML(
       "
 <!-- Global site tag (gtag.js) - Google Analytics -->

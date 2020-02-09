@@ -1,6 +1,6 @@
 Package: coronavirus
 Title: Tracking the Coronavirus
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: 
   c(
     person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
@@ -35,6 +35,7 @@ Imports:
     RPostgres,
     lubridate,
     tidyselect,
+    shinyscroll,
     htmlwidgets,
     shinyMobile,
     countrycode,
@@ -48,5 +49,6 @@ Remotes:
   JohnCoene/echarts4r,
   JohnCoene/echarts4r.maps,
   GuangchuangYu/nCov2019,
-  JohnCoene/sever  ,
+  JohnCoene/sever,
+  JohnCoene/shinyscroll,
   RinteRface/shinyMobile

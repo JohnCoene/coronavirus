@@ -2,7 +2,7 @@
 
 ![logo](_media/mask.png)
 
-# Coronavirus <small>0.0.4</small>
+# Coronavirus <small>0.0.5</small>
 
 > An open-source nCov-2019 tracker.
 

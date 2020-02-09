@@ -45,3 +45,9 @@ a{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+:root {
+  --f7-tabbar-link-active-border-color: #ffa352;
+  --f7-toggle-active-color: #ffa352;
+  --f7-radio-active-color: #ffa352;
+}
