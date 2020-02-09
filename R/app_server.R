@@ -128,8 +128,6 @@ app_server <- function(input, output,session) {
 
       w$hide()
 
-      callModule(mod_geo_lines_server, "geo_lines_map")
-
     } else if(input$tabs == "John Hopkins" && !jhu_init){
       jhu_init <- TRUE
 
