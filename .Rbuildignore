@@ -12,3 +12,4 @@ googlesheets.rds
 ^\.travis\.yml$
 ^docs$
 ^test\.R$
+^\.github$
