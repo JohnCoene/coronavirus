@@ -1,7 +1,7 @@
 # coronavirus 0.0.4
 
 - Revamped DXY tab, uses counties and provinces instead of geo-located cities.
-- John Hopkins Map of china changed to bar chart.
+- John Hopkins added timeline bar chart.
 - Added `create_script` to easily create cronjob script.
 - Use translation as internal dataset instead of utils data.frame due to encoding issue see [#6](https://github.com/JohnCoene/coronavirus/issues/6).
 - Force Shiny version `1.4.0`, see [#6](https://github.com/JohnCoene/coronavirus/issues/6).
