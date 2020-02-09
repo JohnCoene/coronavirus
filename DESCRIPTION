@@ -18,6 +18,7 @@ Imports:
     pool,
     httr,
     xml2,
+    sever,
     shiny (>= 1.4.0),
     golem,
     dplyr,
@@ -46,4 +47,5 @@ Remotes:
   JohnCoene/countup,
   JohnCoene/echarts4r,
   JohnCoene/echarts4r.maps,
-  GuangchuangYu/nCov2019  
+  GuangchuangYu/nCov2019,
+  JohnCoene/sever  

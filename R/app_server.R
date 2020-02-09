@@ -2,6 +2,20 @@
 app_server <- function(input, output,session) {
   data <- golem::get_golem_options("data")
 
+  sever::sever(
+    tagList(
+      h1("Whoops!"),
+      p("It looks like you were disconnected"),
+      shiny::tags$button(
+        "Reload",
+        style = "color:#000;background-color:#fff;",
+        class = "button button-raised",
+        onClick = "location.reload();"
+      )
+    ),
+    bg_color = "#000"
+  )
+
   echarts4r::e_common(
     font_family = "Quicksand",
     theme = theme
@@ -11,7 +25,7 @@ app_server <- function(input, output,session) {
     con <- connect()
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
-    dxy <- DBI::dbReadTable(con, "dxy")
+    dxy <- DBI::dbReadTable(con, "dxy") 
 
     if("log" %in% DBI::dbListTables(con)){
       log <- DBI::dbGetQuery(con, "SELECT MAX(last_updated) FROM log;")
