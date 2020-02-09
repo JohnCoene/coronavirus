@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700|Ubuntu+Mono&display=swap');
+
+nav, a{
+  color: #fff;
+}
+
+
+:root {
+  --base-font-size: 14px;
+  --theme-color   : #fff;
+  --base-background-color: #fff;
+  --base-font-family: 'Quicksand', sans-serif;
+  --copycode-background: #000;
+  --copycode-color: #fff;
+  --code-font-family:'Ubuntu Mono', monospace;
+  --cover-background-color: #000;
+  --cover-color: #fff;
+  --cover-background-mask-color: #000;
+  --cover-button-border: 1px solid #fff;
+  --cover-button-color: #fff;
+  --cover-heading-color: #fff;
+  --cover-button-primary-background: #fff;
+  --cover-button-primary-color: #000;
+  --navbar-menu-link-color: #000;
+  --navbar-root-color: #ffffff;
+  --sidebar-name-color: #fff;
+}

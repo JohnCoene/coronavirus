@@ -1,6 +1,6 @@
 # Get Started
 
-## Get it
+## Install
 
 The tracker takes the form of a package, you can get it from Github with the `remotes` package.
 
