@@ -66,7 +66,7 @@ mod_time_provinces_server <- function(input, output, session, df){
         min = mn,
         orient = "horizontal",
         right = "center",
-        top = "top",
+        top = 25,
         textStyle = list(color = "#fff")
       ) %>% 
       echarts4r::e_theme(theme) %>% 
