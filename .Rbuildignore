@@ -13,3 +13,5 @@ googlesheets.rds
 ^docs$
 ^test\.R$
 ^\.github$
+^\.circleci$
+^\.circleci/config\.yml$
