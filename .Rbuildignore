@@ -16,3 +16,4 @@ googlesheets.rds
 ^\.circleci$
 ^\.circleci/config\.yml$
 ^\.github/workflows/R-CMD-check\.yaml$
+^FUNDING\.yml$
