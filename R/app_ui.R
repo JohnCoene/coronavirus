@@ -98,6 +98,7 @@ app_ui <- function() {
             ),
             mod_trend_ui("trend_ui_1"),
             mod_map_ui("map_ui_1"),
+            mod_time_provinces_ui("time_provinces_1"),
             mod_world_ui("world_ui_1"),
             f7Row(
               mod_china_ui("table_china", "China"),

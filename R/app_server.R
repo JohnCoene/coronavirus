@@ -146,6 +146,7 @@ app_server <- function(input, output,session) {
       # maps
       callModule(mod_map_server, "map_ui_1", df = df)
       callModule(mod_world_server, "world_ui_1", df = df)
+      callModule(mod_time_provinces_server, "time_provinces_1", df = df)
 
       # tables
       callModule(mod_china_server, "table_china", df = df)

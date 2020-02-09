@@ -18,6 +18,7 @@ golem::add_module( name = "chiny_trend" ) # Name of the module
 golem::add_module( name = "city_map" ) # Name of the module
 golem::add_module( name = "dxy_table" ) # Name of the module
 golem::add_module( name = "geo_lines" ) # Name of the module
+golem::add_module( name = "time_provinces" ) # Name of the module
 
 ## 2.2 Add dependencies
 
