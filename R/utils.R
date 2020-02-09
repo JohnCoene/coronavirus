@@ -17,26 +17,8 @@ globalVariables(
     "confirmed", "death", "desc", "recovered", "state", "cityName",
     "china_cities_location", "cities", "lat", "lon", "value",
     "confirmedCount", "curedCount", "deadCount", "suspectedCount",
-    "province", "province_pinyin", "variable"
+    "province", "province_pinyin", "variable", "chinese_provinces"
   )
-)
-
-#' Dataframe to match for echarts4r geojson to work.
-chinese_provinces <- data.frame(
-  state = c("Anhui", "Beijing", "Chongqing", "Fujian", "Gansu", "Guangdong", 
-    "Guangxi", "Guizhou", "Hainan", "Hebei", "Heilongjiang", "Henan", 
-    "Hubei", "Hunan", "Inner Mongolia", "Jiangsu", "Jiangxi", "Jilin", 
-    "Liaoning", "Ningxia", "Qinghai", "Shaanxi", "Shandong", "Shanghai", 
-    "Shanxi", "Sichuan", "Tianjin", "Tibet", "Xinjiang", "Yunnan", 
-    "Zhejiang", "Hong Kong", "Taiwan"
-  ),
-  chinese = c(
-    "安徽", "北京", "重庆", "福建", "甘肃", "广东", "广西", "贵州", "海南", "河北", 
-    "黑龙江", "河南", "湖北", "湖南", "内蒙古", "江苏", "江西", "吉林", "辽宁", "宁夏", 
-    "青海", "陕西", "山东", "上海", "山西", "四川", "天津", "西藏", "新疆", "云南",
-    "浙江", "香港","台湾"
-  ),
-  stringsAsFactors = FALSE
 )
 
 #' Retrieve Config
