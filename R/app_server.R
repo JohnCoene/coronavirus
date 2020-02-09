@@ -36,7 +36,7 @@ app_server <- function(input, output,session) {
          session,
          text = paste("Last updated", diff, "minutes ago"),
          position = "bottom",
-         closeTimeout = 3500,
+         closeTimeout = 5000,
          closeButton = FALSE
        )
 
