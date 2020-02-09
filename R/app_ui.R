@@ -9,6 +9,7 @@ app_ui <- function() {
     f7Page(
       title = "Coronavirus",
       dark_mode = TRUE,
+      manifest = "https://shiny.john-coene.com/www/manifest.json",
       init = f7Init(
         skin = "md", 
         theme = "dark"
