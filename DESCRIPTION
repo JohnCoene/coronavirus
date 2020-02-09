@@ -18,7 +18,7 @@ Imports:
     pool,
     httr,
     xml2,
-    shiny,
+    shiny (>= 1.4.0),
     golem,
     dplyr,
     tidyr,
