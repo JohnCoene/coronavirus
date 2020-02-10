@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-![logo](_media/mask.png)
+![logo](_media/microbe.png)
 
 # Coronavirus <small>0.0.5</small>
 
