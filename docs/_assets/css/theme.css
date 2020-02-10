@@ -7,7 +7,7 @@ nav, a{
 
 :root {
   --base-font-size: 14px;
-  --theme-color   : #fff;
+  --theme-color   : #000;
   --base-background-color: #fff;
   --base-font-family: 'Quicksand', sans-serif;
   --copycode-background: #000;
