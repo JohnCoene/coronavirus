@@ -43,6 +43,8 @@ In that file place the following to crawl every hour. If you want to set another
 
 All set!
 
+Though every version should be backward compatible, it's good practice to re-run a crawl after installing a new version of the package. 
+
 ## Corrections
 
 :warning: Corrected inaccuracies

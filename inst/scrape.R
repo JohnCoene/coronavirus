@@ -1,3 +1,1 @@
-library(coronavirus)
-googlesheets4::sheets_deauth()
-crawl_coronavirus()
+coronavirus::crawl_coronavirus()
