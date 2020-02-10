@@ -2,7 +2,7 @@
 
 ## Sources
 
-- Data from [John Hopkins GIS dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6) accessed via googlesheets4.
+- Data from [John Hopkins GIS dashboard](https://github.com/CSSEGISandData/2019-nCoV) accessed via readr (used to be from Google sheet).
 - Data from Weixin using the [nCov2019](https://github.com/GuangchuangYu/nCov2019) package thanks to Guangchuang Yu
 - Data from [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia) scraped using rvest.
 
