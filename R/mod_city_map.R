@@ -77,7 +77,7 @@ mod_city_map_server <- function(input, output, session, df){
         itemStyle = list(
           areaColor = "#eee",
           emphasis = list(
-            areaColor = "#2196f3"
+            areaColor = "#ffa352"
           )
         ),
         label = list(
@@ -145,7 +145,7 @@ mod_city_map_server <- function(input, output, session, df){
         itemStyle = list(
           areaColor = "#eee",
           emphasis = list(
-            areaColor = "#2196f3"
+            areaColor = "#ffa352"
           )
         ),
         label = list(
