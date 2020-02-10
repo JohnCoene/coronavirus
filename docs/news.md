@@ -1,4 +1,6 @@
-# coronavirus 0.0.5
+# Changelog
+
+## coronavirus 0.0.5
 
 - Add hubei default province in DXY tab.
 - Add shinyscroll to scroll to selected province in DXY tab.
@@ -7,7 +9,7 @@
 - Switch to using [Github](https://github.com/CSSEGISandData/2019-nCoV) instead of spreadsheet for JHU data. 
 - Add death rate and plot to JHU dashboard
 
-# coronavirus 0.0.4
+## coronavirus 0.0.4
 
 - Revamped DXY tab, uses counties and provinces instead of geo-located cities.
 - John Hopkins added timeline bar chart.
@@ -16,7 +18,7 @@
 - Force Shiny version `1.4.0`, see [#6](https://github.com/JohnCoene/coronavirus/issues/6).
 - Improve loader on DXY city map
 
-# coronavirus 0.0.3
+## coronavirus 0.0.3
 
 - Connect all charts in dxy and weixin tabs
 - Corrected deaths and recovered in dianxiangying data, was swapped, see [#2](https://github.com/JohnCoene/coronavirus/issues/2)
@@ -24,11 +26,11 @@
 - JHU timeline uses time scale for better, more accurate representation of events.
 - Corrected legend on timeline in JHU tab
 
-# coronavirus 0.0.2
+## coronavirus 0.0.2
 
 - Added DXY data source and corresponding tab
 - Corrected Timeline map dates on JHU map
 
-# coronavirus 0.0.1
+## coronavirus 0.0.1
 
 * Initial version
