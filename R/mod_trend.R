@@ -60,13 +60,18 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
     )
 
     type <- ifelse(input$log, "log", "value")
+    ls <- list(
+      shadowColor = "rgba(0, 0, 0, 0.8)",
+      shadowBlur = 5,
+      shadowOffsetY = 3
+    )
 
     df %>% 
       echarts4r::e_charts(date) %>% 
-      echarts4r::e_line(cases, name = "Confirmed Cases") %>% 
-      echarts4r::e_line(model, name = "Fit") %>% 
+      echarts4r::e_line(cases, name = "Confirmed Cases", lineStyle = ls) %>% 
+      echarts4r::e_line(model, name = "Fit", lineStyle = ls) %>% 
       echarts4r::e_tooltip(trigger = "axis") %>% 
-      echarts4r::e_theme(theme) %>% 
+      echarts4r::e_theme(theme) %>%
       echarts4r::e_y_axis(type = type)
   })
 }

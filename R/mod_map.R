@@ -53,6 +53,12 @@ mod_map_server <- function(input, output, session, df){
         list(text = format(x, "%d %B %H:00"))
       })
 
+    bs <- list(
+      shadowColor = "rgba(0, 0, 0, 0.8)",
+      shadowBlur = 5,
+      shadowOffsetX = 3
+    )
+
     dat %>% 
       tidyr::pivot_wider(
         c(state, date),
@@ -62,8 +68,8 @@ mod_map_server <- function(input, output, session, df){
       dplyr::arrange(desc(date), desc(confirmed)) %>% 
       dplyr::group_by(date) %>% 
       echarts4r::e_charts(state, timeline = TRUE) %>% 
-      echarts4r::e_bar(confirmed, name = "Confirmed") %>% 
-      echarts4r::e_bar(recovered, name = "Recovered") %>% 
+      echarts4r::e_bar(confirmed, name = "Confirmed", itemStyle = bs) %>% 
+      echarts4r::e_bar(recovered, name = "Recovered", itemStyle = bs) %>% 
       echarts4r::e_bar(death, name = "Deaths") %>%  
       echarts4r::e_legend(
         orient = "vertical",
