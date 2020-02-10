@@ -150,6 +150,9 @@ app_server <- function(input, output,session) {
       callModule(mod_china_server, "table_china", df = df)
       callModule(mod_table_world_server, "table_world", df = df)
 
+      # death rate
+      callModule(mod_jhu_death_rate_server, "jhu_death_rate_ui_1", df = df)
+
       w$hide()
 
     } else if(input$tabs == "Weixin" && !wx_init){

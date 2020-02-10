@@ -19,7 +19,7 @@ mod_trend_ui <- function(id){
     f7Card(
       title = "Trend & Prediction",
       f7Toggle(ns("log"), "Logarithmic Scale"),
-      echarts4r::echarts4rOutput(ns("trend"))
+      echarts4r::echarts4rOutput(ns("trend"), height = 400)
     )
   )
 }
@@ -72,6 +72,7 @@ mod_trend_server <- function(input, output, session, df = df, type_filter = "con
       echarts4r::e_line(model, name = "Fit", lineStyle = ls) %>% 
       echarts4r::e_tooltip(trigger = "axis") %>% 
       echarts4r::e_theme(theme) %>%
+      echarts4r::e_group("JHU") %>% 
       echarts4r::e_y_axis(type = type)
   })
 }
