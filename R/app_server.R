@@ -93,16 +93,17 @@ app_server <- function(input, output,session) {
   # -------------------- Load tab by tab for more responsiveness
 
   # track initialised tabs
-  dxy_init <- jhu_init <- wx_init <- FALSE
+  dxy_init <- jhu_init <- wx_init <- TRUE
 
   w <- waiter::Waiter$new(html = loader, color = "#000")
 
   observeEvent(input$tabs, {
-    if(input$tabs == "DXY" && !dxy_init){
+
+    if(all(input$tabs == "DXY", dxy_init)){
       
       w$show()
 
-      dxy_init <- TRUE
+      dxy_init <- FALSE
       # dxy tab
       callModule(
         mod_count_weixin_server, "count_dxy_ui_1_dxy", 
@@ -128,8 +129,8 @@ app_server <- function(input, output,session) {
 
       w$hide()
 
-    } else if(input$tabs == "John Hopkins" && !jhu_init){
-      jhu_init <- TRUE
+    } else if(all(input$tabs == "John Hopkins", jhu_init)){
+      jhu_init <- FALSE
 
       w$show()
 
@@ -155,8 +156,8 @@ app_server <- function(input, output,session) {
 
       w$hide()
 
-    } else if(input$tabs == "Weixin" && !wx_init){
-      wx_init <- TRUE
+    } else if(all(input$tabs == "Weixin", wx_init)){
+      wx_init <- FALSE
 
       w$show()
 
