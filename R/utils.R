@@ -11,8 +11,8 @@ recovered_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/m
 # pallettes for DXY
 deaths_pal <- c("#263238", "#455a64", "#607d8b", "#90a4ae", "#cfd8dc") %>% rev()
 recovered_pal <- c("#1b5e20", "#388e3c", "#4caf50", "#81c784", "#c8e6c9") %>% rev()
-confirmed_pal <- c("#311b92", "#512da8", "#673ab7", "#9575cd", "#d1c4e9") %>% rev()
-suspected_pal <- c("#b71c1c", "#d32f2f", "#f44336", "#e57373", "#ffcdd2") %>% rev()
+confirmed_pal <- c("#bf444c", "#d88273", "#f6efa6") %>%  rev()
+suspected_pal <- c("#311b92", "#512da8", "#673ab7", "#9575cd", "#d1c4e9") %>% rev()
 
 # global variables
 globalVariables(
