@@ -1,8 +1,12 @@
 # constants
 config_file <- "_coronavirus.yml"
-spreadsheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo"
 theme <- "dark"
 dxy_url <- "https://ncov.dxy.cn/ncovh5/view/pneumonia"
+
+# jhu
+confirmed_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Confirmed.csv"
+deaths_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Deaths.csv"
+recovered_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Recovered.csv"
 
 # pallettes for DXY
 deaths_pal <- c("#263238", "#455a64", "#607d8b", "#90a4ae", "#cfd8dc") %>% rev()

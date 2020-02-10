@@ -5,13 +5,8 @@
 #' the data is pulled and the content of the database 
 #' is overwritten. 
 #' 
-#' @param deauth Forces deauthenticatication via googlesheets4.
-#' 
 #' @export
-crawl_coronavirus <- function(deauth = TRUE){
-
-  if(deauth)
-    googlesheets4::sheets_deauth()
+crawl_coronavirus <- function(){
 
   con <- NULL
   if(file.exists(config_file)){
@@ -27,9 +22,9 @@ crawl_coronavirus <- function(deauth = TRUE){
   
   # read data
   suppressMessages({
-    confirmed <- googlesheets4::sheets_read(spreadsheet, sheet = "Confirmed")
-    recovered <- googlesheets4::sheets_read(spreadsheet, sheet = "Recovered")
-    deaths <- googlesheets4::sheets_read(spreadsheet, sheet = "Death")
+    confirmed <- readr::read_csv(confirmed_sheet, col_types = readr::cols())
+    recovered <- readr::read_csv(recovered_sheet, col_types = readr::cols())
+    deaths <- readr::read_csv(deaths_sheet, col_types = readr::cols())
   })
 
   # add col

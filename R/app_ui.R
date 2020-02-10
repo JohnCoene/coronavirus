@@ -29,7 +29,7 @@ app_ui <- function() {
             effect = "cover",
             p("Tracks data on Novel Coronavirus 2019 using data from John Hopkins, Weixin (WeChat), and DianXiangYing (DXY). The Database is refreshed every hour, the code is open-source so you can deploy it yourself, see below."),
             f7Link(label = "Author", src = "https://john-coene.com", external = TRUE),
-            f7Link(label = "John Hopkins Data", src = "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/htmlview?usp=sharing&sle=true", external = TRUE),
+            f7Link(label = "John Hopkins Data", src = "https://github.com/CSSEGISandData/2019-nCoV", external = TRUE),
             f7Link(label = "Weixin Data", src = "https://github.com/GuangchuangYu/nCov2019", external = TRUE),
             f7Link(label = "DXY Data", src = "https://ncov.dxy.cn/ncovh5/view/pneumonia", external = TRUE),
             f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE),

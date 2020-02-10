@@ -4,10 +4,7 @@
 \alias{crawl_coronavirus}
 \title{Crawl Data}
 \usage{
-crawl_coronavirus(deauth = TRUE)
-}
-\arguments{
-\item{deauth}{Forces deauthenticatication via googlesheets4.}
+crawl_coronavirus()
 }
 \description{
 Crawl John Hopkin's data and store in database. 

@@ -25,6 +25,7 @@ Imports:
     tidyr,
     purrr,
     rvest,
+    readr,
     waiter,
     tibble,
     countup,
@@ -39,7 +40,6 @@ Imports:
     htmlwidgets,
     shinyMobile,
     countrycode,
-    googlesheets4,
     echarts4r.maps
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus

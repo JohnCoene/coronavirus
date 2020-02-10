@@ -4,6 +4,7 @@
 - Add shinyscroll to scroll to selected province in DXY tab.
 - Extend toast duration to 5 seconds.
 - Remove coordinates of cities from crawl.
+- Switch to using [Github](https://github.com/CSSEGISandData/2019-nCoV) instead of spreadsheet for JHU data.
 
 # coronavirus 0.0.4
 
