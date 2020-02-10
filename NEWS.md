@@ -3,6 +3,7 @@
 - Add hubei default province in DXY tab.
 - Add shinyscroll to scroll to selected province in DXY tab.
 - Extend toast duration to 5 seconds.
+- Remove coordinates of cities from crawl.
 
 # coronavirus 0.0.4
 

@@ -95,10 +95,9 @@ disconnect <- function(con = NULL){
 #' 
 #' @keywords internal
 rename_sheets <- function(df){
-  names(df)[1:5] <- c(
+  names(df)[1:4] <- c(
     "state",
     "country",
-    "first", 
     "lat", 
     "lon"
   )

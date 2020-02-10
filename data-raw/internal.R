@@ -31,6 +31,11 @@ chinese_provinces <- data.frame(
   stringsAsFactors = FALSE
 )
 
+# default
 default_province <- "湖北"
 
-usethis::use_data(china_cities_location, chinese_provinces, default_province, internal = TRUE, overwrite = TRUE)
+# population
+fl <- system.file("extdata/population.csv", package = "coronavirus")
+china_population <- readr::read_csv(fl, col_types = readr::cols())
+
+usethis::use_data(china_cities_location, chinese_provinces, default_province, china_population, internal = TRUE, overwrite = TRUE)

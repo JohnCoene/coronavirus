@@ -94,7 +94,6 @@ crawl_coronavirus <- function(deauth = TRUE){
       return(city)
     }) %>% 
     purrr::map_dfr(tibble::as_tibble) %>% 
-    dplyr::left_join(china_cities_location, by = "cityName") %>% 
     dplyr::left_join(chinese_provinces, by = c("province" = "chinese")) %>% 
     dplyr::rename(province_pinyin = state)
 
