@@ -36,7 +36,7 @@ Imports:
     RPostgres,
     lubridate,
     tidyselect,
-    shinyscroll,
+    shinyscroll (>= 0.0.2),
     htmlwidgets,
     shinyMobile,
     countrycode,
