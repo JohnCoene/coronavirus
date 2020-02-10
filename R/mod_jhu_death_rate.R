@@ -18,7 +18,7 @@ mod_jhu_death_rate_ui <- function(id){
   f7Card(
     id = ns("card"),
     title = "Death Rate",
-    echarts4r::echarts4rOutput(ns("trend"), height = 423),
+    echarts4r::echarts4rOutput(ns("trend"), height = 385),
     footer = "Confirmed / deaths"
   )
 }

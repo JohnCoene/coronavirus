@@ -29,7 +29,8 @@ mod_city_map_ui <- function(id){
       footer = "Select a province to see its counties displayed below"
     ),
     f7Card(
-      title = "Counties",
+      title = "Cities",
+      id = ns("cities"),
       echarts4r::echarts4rOutput(ns("region"), height = "50vh"),
     )
   )
@@ -108,7 +109,7 @@ mod_city_map_server <- function(input, output, session, df){
       selected <- default_province
     } else {
       selected <- input$map_clicked_data$name
-      shinyscroll::scroll(ns("region"))
+      shinyscroll::scroll(ns("cities"), "start")
     }
 
     palette <- input_to_palette(input$variable)
