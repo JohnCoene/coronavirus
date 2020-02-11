@@ -7,10 +7,10 @@ nav, a{
 
 :root {
   --base-font-size: 14px;
-  --theme-color   : #000;
+  --theme-color   : #298614;
   --base-background-color: #fff;
   --base-font-family: 'Quicksand', sans-serif;
-  --copycode-background: #000;
+  --copycode-background: #298614;
   --copycode-color: #fff;
   --code-font-family:'Ubuntu Mono', monospace;
   --cover-background-color: #000;
@@ -19,9 +19,9 @@ nav, a{
   --cover-button-border: 1px solid #fff;
   --cover-button-color: #fff;
   --cover-heading-color: #fff;
-  --cover-button-primary-background: #fff;
-  --cover-button-primary-color: #000;
+  --cover-button-primary-background: #298614;
+  --cover-button-primary-color: #fff;
   --navbar-menu-link-color: #000;
   --navbar-root-color: #ffffff;
-  --sidebar-name-color: #fff;
+  --sidebar-name-color: #298614;
 }
