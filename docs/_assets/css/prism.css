@@ -1,16 +1,18 @@
 /* PrismJS 1.19.0
-https://prismjs.com/download.html#themes=prism-funky&languages=markup+css+clike+javascript+bash+r */
+https://prismjs.com/download.html#themes=prism-twilight&languages=markup+css+clike+javascript+bash+r */
 /**
- * prism.js Funky theme
- * Based on “Polyfilling the gaps” talk slides http://lea.verou.me/polyfilling-the-gaps/
- * @author Lea Verou
+ * prism.js Twilight theme
+ * Based (more or less) on the Twilight theme originally of Textmate fame.
+ * @author Remy Bach
  */
-
  code[class*="language-"],
  pre[class*="language-"] {
+   color: white;
+   background: none;
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
    font-size: 1em;
    text-align: left;
+   text-shadow: 0 -.1em .2em black;
    white-space: pre;
    word-spacing: normal;
    word-break: normal;
@@ -27,26 +29,50 @@ https://prismjs.com/download.html#themes=prism-funky&languages=markup+css+clike+
    hyphens: none;
  }
  
- /* Code blocks */
- pre[class*="language-"] {
-   padding: .4em .8em;
-   margin: .5em 0;
-   overflow: auto;
-   background: url('data:image/svg+xml;charset=utf-8,<svg%20version%3D"1.1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"100"%20height%3D"100"%20fill%3D"rgba(0%2C0%2C0%2C.2)">%0D%0A<polygon%20points%3D"0%2C50%2050%2C0%200%2C0"%20%2F>%0D%0A<polygon%20points%3D"0%2C100%2050%2C100%20100%2C50%20100%2C0"%20%2F>%0D%0A<%2Fsvg>');
-   background-size: 1em 1em;
+ pre[class*="language-"],
+ :not(pre) > code[class*="language-"] {
+   background: hsl(0, 0%, 8%); /* #141414 */
  }
  
- code[class*="language-"] {
-   background: black;
-   color: white;
-   box-shadow: -.3em 0 0 .3em black, .3em 0 0 .3em black;
+ /* Code blocks */
+ pre[class*="language-"] {
+   border-radius: .5em;
+   border: .3em solid hsl(0, 0%, 33%); /* #282A2B */
+   box-shadow: 1px 1px .5em black inset;
+   margin: .5em 0;
+   overflow: auto;
+   padding: 1em;
+ }
+ 
+ pre[class*="language-"]::-moz-selection {
+   /* Firefox */
+   background: hsl(200, 4%, 16%); /* #282A2B */
+ }
+ 
+ pre[class*="language-"]::selection {
+   /* Safari */
+   background: hsl(200, 4%, 16%); /* #282A2B */
+ }
+ 
+ /* Text Selection colour */
+ pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+ code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+   text-shadow: none;
+   background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
+ }
+ 
+ pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+ code[class*="language-"]::selection, code[class*="language-"] ::selection {
+   text-shadow: none;
+   background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
  }
  
  /* Inline code */
  :not(pre) > code[class*="language-"] {
-   padding: .2em;
    border-radius: .3em;
-   box-shadow: none;
+   border: .13em solid hsl(0, 0%, 33%); /* #545454 */
+   box-shadow: 1px 1px .3em -.1em black inset;
+   padding: .15em .2em .05em;
    white-space: normal;
  }
  
@@ -54,52 +80,54 @@ https://prismjs.com/download.html#themes=prism-funky&languages=markup+css+clike+
  .token.prolog,
  .token.doctype,
  .token.cdata {
-   color: #aaa;
+   color: hsl(0, 0%, 47%); /* #777777 */
  }
  
  .token.punctuation {
-   color: #999;
+   opacity: .7;
  }
  
  .token.namespace {
    opacity: .7;
  }
  
- .token.property,
  .token.tag,
  .token.boolean,
  .token.number,
- .token.constant,
- .token.symbol {
-   color: #0cf;
+ .token.deleted {
+   color: hsl(14, 58%, 55%); /* #CF6A4C */
  }
  
+ .token.keyword,
+ .token.property,
  .token.selector,
+ .token.constant,
+ .token.symbol,
+ .token.builtin {
+   color: hsl(53, 89%, 79%); /* #F9EE98 */
+ }
+ 
  .token.attr-name,
+ .token.attr-value,
  .token.string,
  .token.char,
- .token.builtin {
-   color: yellow;
- }
- 
  .token.operator,
  .token.entity,
  .token.url,
  .language-css .token.string,
+ .style .token.string,
  .token.variable,
  .token.inserted {
-   color: yellowgreen;
+   color: hsl(76, 21%, 52%); /* #8F9D6A */
  }
  
- .token.atrule,
- .token.attr-value,
- .token.keyword {
-   color: deeppink;
+ .token.atrule {
+   color: hsl(218, 22%, 55%); /* #7587A6 */
  }
  
  .token.regex,
  .token.important {
-   color: orange;
+   color: hsl(42, 75%, 65%); /* #E9C062 */
  }
  
  .token.important,
@@ -114,19 +142,60 @@ https://prismjs.com/download.html#themes=prism-funky&languages=markup+css+clike+
    cursor: help;
  }
  
- .token.deleted {
-   color: red;
+ pre[data-line] {
+   padding: 1em 0 1em 3em;
+   position: relative;
  }
  
- /* Plugin styles: Diff Highlight */
- pre.diff-highlight.diff-highlight > code .token.deleted:not(.prefix),
- pre > code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
-   background-color: rgba(255, 0, 0, .3);
-   display: inline;
+ /* Markup */
+ .language-markup .token.tag,
+ .language-markup .token.attr-name,
+ .language-markup .token.punctuation {
+   color: hsl(33, 33%, 52%); /* #AC885B */
  }
  
- pre.diff-highlight.diff-highlight > code .token.inserted:not(.prefix),
- pre > code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
-   background-color: rgba(0, 255, 128, .3);
-   display: inline;
+ /* Make the tokens sit above the line highlight so the colours don't look faded. */
+ .token {
+   position: relative;
+   z-index: 1;
+ }
+ 
+ .line-highlight {
+   background: hsla(0, 0%, 33%, 0.25); /* #545454 */
+   background: linear-gradient(to right, hsla(0, 0%, 33%, .1) 70%, hsla(0, 0%, 33%, 0)); /* #545454 */
+   border-bottom: 1px dashed hsl(0, 0%, 33%); /* #545454 */
+   border-top: 1px dashed hsl(0, 0%, 33%); /* #545454 */
+   left: 0;
+   line-height: inherit;
+   margin-top: 0.75em; /* Same as .prism’s padding-top */
+   padding: inherit 0;
+   pointer-events: none;
+   position: absolute;
+   right: 0;
+   white-space: pre;
+   z-index: 0;
+ }
+ 
+ .line-highlight:before,
+ .line-highlight[data-end]:after {
+   background-color: hsl(215, 15%, 59%); /* #8794A6 */
+   border-radius: 999px;
+   box-shadow: 0 1px white;
+   color: hsl(24, 20%, 95%); /* #F5F2F0 */
+   content: attr(data-start);
+   font: bold 65%/1.5 sans-serif;
+   left: .6em;
+   min-width: 1em;
+   padding: 0 .5em;
+   position: absolute;
+   text-align: center;
+   text-shadow: none;
+   top: .4em;
+   vertical-align: .3em;
+ }
+ 
+ .line-highlight[data-end]:after {
+   bottom: .4em;
+   content: attr(data-end);
+   top: auto;
  }
