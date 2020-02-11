@@ -38,7 +38,7 @@ Imports:
     tidyselect,
     shinyscroll (>= 0.0.2),
     htmlwidgets,
-    shinyMobile,
+    shinyMobile (>= 0.5.0),
     countrycode,
     echarts4r.maps
 RoxygenNote: 7.0.2

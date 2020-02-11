@@ -41,7 +41,7 @@ app_ui <- function() {
           id = 'tabs',
           f7Tab(
             tabName = "Home",
-            icon = f7Icon("rectangle_3_offgrid"),
+            icon = f7Icon("info_circle", old = FALSE),
             active = TRUE,
             swipeable = TRUE,
             waiter::waiter_show_on_load(loader, color = "#000"),
@@ -81,7 +81,7 @@ app_ui <- function() {
           ),
           f7Tab(
             tabName = "John Hopkins",
-            icon = f7Icon("square_line_vertical_square_fill"),
+            icon = f7Icon("waveform_path", old = FALSE),
             active = FALSE,
             swipeable = TRUE,
             h1("John Hopkins Data", class = "center"),
@@ -110,7 +110,7 @@ app_ui <- function() {
           ),
           f7Tab(
             tabName = "Weixin",
-            icon = f7Icon("square_grid_3x2"),
+            icon = f7Icon("waveform", old = FALSE),
             swipeable = TRUE,
             active = FALSE,
             h1("Weixin Data", class = "center"),
@@ -139,7 +139,7 @@ app_ui <- function() {
           ),
           f7Tab(
             tabName = "DXY",
-            icon = f7Icon("square_grid_3x2"),
+            icon = f7Icon("graph_circle", old = FALSE),
             swipeable = TRUE,
             active = FALSE,
             h1("DXY Data", class = "center"),

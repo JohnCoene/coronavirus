@@ -8,6 +8,7 @@
 - Remove coordinates of cities from crawl.
 - Switch to using [Github](https://github.com/CSSEGISandData/2019-nCoV) instead of spreadsheet for JHU data. 
 - Add death rate and plot to JHU dashboard
+- Added icons, thanks to Victor Perrier
 
 ## coronavirus 0.0.4
 
