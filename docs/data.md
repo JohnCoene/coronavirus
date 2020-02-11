@@ -4,7 +4,7 @@
 
 - Data from [John Hopkins GIS dashboard](https://github.com/CSSEGISandData/2019-nCoV) accessed via readr (used to be from Google sheet).
 - Data from Weixin using the [nCov2019](https://github.com/GuangchuangYu/nCov2019) package thanks to Guangchuang Yu
-- Data from [DianXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia) scraped using rvest.
+- Data from [DingXiangYing](https://ncov.dxy.cn/ncovh5/view/pneumonia) scraped using rvest.
 
 ## Cronjob
 
@@ -51,6 +51,6 @@ Though every version should be backward compatible, it's good practice to re-run
 
 In `v0.0.3`:
 
-- Deaths and recovered numbers for DianXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
-- Number of suspected by city given by DianXiangYing is wildly inaccurate, has been removed.
+- Deaths and recovered numbers for DingXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
+- Number of suspected by city given by DingXiangYing is wildly inaccurate, has been removed.
 - Replaced Map on JHU tab as color scaling was inaccurate due to timeline.

@@ -7,7 +7,7 @@
 geoloc_dxy(df)
 }
 \description{
-Geolocate DianXiangYuan data.
+Geolocate DingXiangYuan data.
 }
 \details{
 This is used internally to create database of geolocated Chinese cities.
