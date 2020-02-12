@@ -33,6 +33,7 @@ app_ui <- function() {
             f7Link(label = "Weixin Data", src = "https://github.com/GuangchuangYu/nCov2019", external = TRUE),
             f7Link(label = "DXY Data", src = "https://ncov.dxy.cn/ncovh5/view/pneumonia", external = TRUE),
             f7Link(label = "Code", src = "https://github.com/JohnCoene/coronavirus", external = TRUE),
+            f7Link(label = "Docs", src = "https://coronavirus.john-coene.com", external = TRUE),
             tags$pre(tags$code(version))
           )
         ),
