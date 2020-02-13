@@ -25,6 +25,7 @@ app_server <- function(input, output,session) {
     con <- connect()
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
+    china_total <- DBI::dbReadTable(con, "weixin_total")
     dxy <- DBI::dbReadTable(con, "dxy") 
 
     if("log" %in% DBI::dbListTables(con)){
@@ -50,6 +51,7 @@ app_server <- function(input, output,session) {
     df <- data$jhu
     china_daily <- data$weixin
     dxy <- data$dxy
+    china_total <- data$weixin_total
   }
 
 
@@ -61,19 +63,19 @@ app_server <- function(input, output,session) {
   # counts weixin
   callModule(
     mod_count_weixin_server, "count_weixin_ui_1", 
-    df = china_daily, column = "confirm"
+    df = china_total, column = "confirm"
   )
   callModule(
     mod_count_weixin_server, "count_weixin_ui_2", 
-    df = china_daily, column = "dead"
+    df = china_total, column = "dead"
   )
   callModule(
     mod_count_weixin_server, "count_weixin_ui_3", 
-    df = china_daily, column = "heal"
+    df = china_total, column = "heal"
   )
   callModule(
     mod_count_weixin_server, "count_weixin_ui_4", 
-    df = china_daily, column = "suspect"
+    df = china_total, column = "suspect"
   )
 
   # dxy
@@ -164,19 +166,19 @@ app_server <- function(input, output,session) {
       # weixin tab
       callModule(
         mod_count_weixin_server, "count_weixin_ui_1_wx", 
-        df = china_daily, column = "confirm"
+        df = china_total, column = "confirm"
       )
       callModule(
         mod_count_weixin_server, "count_weixin_ui_2_wx", 
-        df = china_daily, column = "dead"
+        df = china_total, column = "dead"
       )
       callModule(
         mod_count_weixin_server, "count_weixin_ui_3_wx", 
-        df = china_daily, column = "heal"
+        df = china_total, column = "heal"
       )
       callModule(
         mod_count_weixin_server, "count_weixin_ui_4_wx", 
-        df = china_daily, column = "suspect"
+        df = china_total, column = "suspect"
       )
 
       # weixin tab chart

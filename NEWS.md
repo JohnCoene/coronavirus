@@ -1,3 +1,7 @@
+# coronavirus 0.0.6
+
+- Add total numbers as returned by Weixin. :warning: great discrepancy between those and the daily figures.
+
 # coronavirus 0.0.5
 
 - Add hubei default province in DXY tab.

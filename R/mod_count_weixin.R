@@ -37,9 +37,7 @@ mod_count_weixin_server <- function(input, output, session, df, column){
   output$cnt <- countup::renderCountup({
     if("date" %in% names(df)) # weisin
       df %>% 
-        dplyr::filter(date == max(date)) %>%
         dplyr::pull(column) %>% 
-        sum(na.rm = TRUE) %>% 
         countup::countup()
     else # dxy
       df %>% 

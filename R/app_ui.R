@@ -136,6 +136,13 @@ app_ui <- function() {
             f7Row(
               f7Col(mod_china_trend_ui("china_trend_ui_dead", "Deaths")),
               f7Col(mod_china_trend_ui("china_trend_ui_heal", "Recovered"))
+            ),
+            f7Block(
+              f7BlockHeader("Data Integrity"),
+              p(
+                "There is a great discrepancy between total figures for China and",
+                "daily numbers reported."
+              )
             )
           ),
           f7Tab(

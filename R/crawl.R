@@ -67,6 +67,8 @@ crawl_coronavirus <- function(){
       date = as.Date(date, "%Y.%m.%d")
     ) %>% 
     dplyr::mutate_if(is.character, as.numeric)
+  
+  china_total <- as.data.frame(china$chinaTotal, stringsAsFactors = FALSE) 
 
   cli::cli_alert_info("Crawling data from DXY")
   dxy_list <- xml2::read_html(dxy_url) %>% 
@@ -98,6 +100,7 @@ crawl_coronavirus <- function(){
   if(file.exists(config_file)){
     cli::cli_alert_success("Writing to database")
     DBI::dbWriteTable(con, "jhu", df, overwrite = TRUE, append = FALSE)
+    DBI::dbWriteTable(con, "weixin_total", china_total, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "dxy", dxy, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "log", log, append = TRUE)
@@ -106,6 +109,7 @@ crawl_coronavirus <- function(){
   dat <- list(
     jhu = df,
     weixin = china_daily,
+    weixin_total = china_total,
     dxy = dxy
   )
 
