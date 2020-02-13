@@ -19,7 +19,7 @@ mod_jhu_death_rate_ui <- function(id){
     id = ns("card"),
     title = "Death Rate",
     echarts4r::echarts4rOutput(ns("trend"), height = 385),
-    footer = "Confirmed / deaths"
+    footer = "Resolved cases (death or recovery) / deaths"
   )
 }
     
@@ -54,7 +54,7 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
         )
       ) %>%
       dplyr::mutate(
-        rate = death / confirmed,
+        rate = deadCount / (deadCount + curedCount), # I'm making the change based on mod_dxy_table.R but I'm not 100% sure of the names of the variables
         rate = round(rate * 100, 3)
       ) %>% 
       echarts4r::e_charts(date2) %>% 
