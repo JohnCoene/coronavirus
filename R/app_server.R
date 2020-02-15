@@ -2,6 +2,8 @@
 app_server <- function(input, output,session) {
   data <- golem::get_golem_options("data")
 
+  sever::cleave("Sorry, I've encountered an error", bg_color = "#000", color = "#298614")
+
   sever::sever(
     tagList(
       h1("Whoops!"),

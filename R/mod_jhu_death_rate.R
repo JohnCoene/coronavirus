@@ -39,12 +39,12 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
     }")
 
     df %>% 
-      dplyr::filter(date == max(date)) %>% 
       dplyr::filter(country_iso2c == "CN") %>% 
+      dplyr::group_by(date, type) %>% 
       dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
       dplyr::ungroup() %>%
       tidyr::pivot_wider(
-        id_cols = date2,
+        id_cols = date,
         names_from = type,
         values_from = cases,
         values_fill = list(
@@ -55,7 +55,7 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
         rate = death / confirmed,
         rate = round(rate * 100, 3)
       ) %>% 
-      echarts4r::e_charts(date2) %>% 
+      echarts4r::e_charts(date) %>% 
       echarts4r::e_area(rate, name = "Death rate") %>% 
       echarts4r::e_tooltip(trigger = "axis") %>% 
       echarts4r::e_legend(FALSE) %>% 
