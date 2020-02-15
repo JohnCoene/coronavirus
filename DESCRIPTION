@@ -34,7 +34,6 @@ Imports:
     jsonlite,
     echarts4r (>= 0.3.0),
     RPostgres,
-    lubridate,
     tidyselect,
     shinyscroll (>= 0.0.2),
     htmlwidgets,

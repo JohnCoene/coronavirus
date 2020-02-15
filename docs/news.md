@@ -3,6 +3,7 @@
 # coronavirus 0.0.6
 
 - Add total numbers as returned by Weixin. :warning: great discrepancy between those and the daily figures.
+- Fixed to meet new John Hopkins data format.
 
 ## coronavirus 0.0.5
 

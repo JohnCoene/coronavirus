@@ -4,9 +4,9 @@ theme <- "dark"
 dxy_url <- "https://ncov.dxy.cn/ncovh5/view/pneumonia"
 
 # jhu
-confirmed_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Confirmed.csv"
-deaths_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Deaths.csv"
-recovered_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/time_series/time_series_2019-ncov-Recovered.csv"
+confirmed_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+deaths_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+recovered_sheet <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
 
 # pallettes for DXY
 deaths_pal <- c("#263238", "#455a64", "#607d8b", "#90a4ae", "#cfd8dc") %>% rev()
@@ -124,16 +124,6 @@ pivot <- function(df){
     values_to = c("cases"),
     values_ptypes = list(cases = "character")
   )
-}
-
-#' Convert
-#' 
-#' Convert dates.
-#' 
-#' @keywords internal
-as_date <- function(date){
-  date <- lubridate::mdy_hm(date, "%m/%d/%Y %H:%M %p")
-  date[!is.na(date)]
 }
 
 #' Table

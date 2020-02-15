@@ -39,8 +39,6 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
     }")
 
     df %>% 
-      dplyr::mutate(date2 = as.Date(date)) %>%
-      dplyr::group_by(date2, type) %>% 
       dplyr::filter(date == max(date)) %>% 
       dplyr::filter(country_iso2c == "CN") %>% 
       dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 

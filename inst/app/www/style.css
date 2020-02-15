@@ -49,5 +49,6 @@ a{
 :root {
   --f7-tabbar-link-active-border-color: #298614;
   --f7-toggle-active-color: #298614;
+  --f7-toggle-handle-color: #298614;
   --f7-radio-active-color: #298614;
 }
