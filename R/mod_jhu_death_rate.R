@@ -19,7 +19,7 @@ mod_jhu_death_rate_ui <- function(id){
     id = ns("card"),
     title = "Death Rate",
     echarts4r::echarts4rOutput(ns("trend"), height = 385),
-    footer = "Confirmed / deaths"
+    footer = "Confirmed / (deaths + recovered)"
   )
 }
     
@@ -52,7 +52,7 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
         )
       ) %>%
       dplyr::mutate(
-        rate = death / confirmed,
+        rate = death / (confirmed + recovered),
         rate = round(rate * 100, 3)
       ) %>% 
       echarts4r::e_charts(date) %>% 
