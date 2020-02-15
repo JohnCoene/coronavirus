@@ -18,3 +18,4 @@ googlesheets.rds
 ^\.github/workflows/R-CMD-check\.yaml$
 ^FUNDING\.yml$
 ^appveyor\.yml$
+^app\.R$
