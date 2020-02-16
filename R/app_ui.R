@@ -201,7 +201,19 @@ golem_add_external_resources <- function(){
     tags$meta(name="twitter:site", content="@jdatap"),
     tags$meta(name="twitter:title", content="Coronavirus Tracker"),
     tags$meta(name="twitter:description", content="A Coronavirus tracker app using John Hopkins and Weixin Data"),
-    tags$meta(name="twitter:image:src", content="https://shiny.john-coene.com/coronavirus/www/coronavirus.png")
+    tags$meta(name="twitter:image:src", content="https://shiny.john-coene.com/coronavirus/www/coronavirus.png"),
+    
+    # pwa materials (this is not a permanent fix). shinyMobile will
+    # handle this better soon!
+    tags$link(rel = "manifest", href = "www/manifest.json")
+    
+    # Launch screen for IOS
+    # Below is just an example in case you would like to try
+    # This is done by default for Android but not iOS :(
+    # Also you would have to handle as many devices as possible ...
+    # shiny::tags$link(href = "www/splashscreens/iphone5_splash.png", media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image")
+    
+    
   )
 }
 
