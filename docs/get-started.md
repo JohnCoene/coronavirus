@@ -9,7 +9,7 @@ The tracker takes the form of a package, you can get it from Github with the `re
 remotes::install_github("JohnCoene/coronavirus")
 ```
 
-Force reinstall the latest shinyMobile to ensure the icons work correctly.
+Ensure you are on the latest shinyMobile to ensure the icons and other things work correctly.
 
 ```r
 remotes::install_github("RinteRface/shinyMobile", force = TRUE) 
