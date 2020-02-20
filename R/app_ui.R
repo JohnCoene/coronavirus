@@ -202,6 +202,7 @@ golem_add_external_resources <- function(){
     tags$meta(name="twitter:title", content="Coronavirus Tracker"),
     tags$meta(name="twitter:description", content="A Coronavirus tracker app using John Hopkins and Weixin Data"),
     tags$meta(name="twitter:image:src", content="https://shiny.john-coene.com/coronavirus/www/coronavirus.png"),
+    shiny::tags$link(rel = "apple-touch-icon", href = "www/icons/apple-touch-icon.png"),
     
     # pwa materials (this is not a permanent fix). shinyMobile will
     # handle this better soon!
