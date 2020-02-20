@@ -207,7 +207,7 @@ golem_add_external_resources <- function(){
     # pwa materials (this is not a permanent fix). shinyMobile will
     # handle this better soon!
     tags$link(rel = "manifest", href = "www/manifest.json"),
-    tags$meta(name="theme-color", content="#000")
+    tags$meta(name="theme-color", content="#000000")
     
     # Launch screen for IOS
     # Below is just an example in case you would like to try
