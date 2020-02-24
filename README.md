@@ -1,6 +1,6 @@
 <div align="center">
 
-![](https://coronavirus.john-coene.com/_media/banner.png)
+<img src="./man/figures/logo.png" height="200px" />
 
 <!-- badges: start -->
 [![CircleCI build status](https://circleci.com/gh/JohnCoene/coronavirus.svg?style=svg)](https://circleci.com/gh/JohnCoene/coronavirus)
