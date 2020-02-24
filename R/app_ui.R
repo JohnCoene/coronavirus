@@ -215,7 +215,6 @@ golem_add_external_resources <- function(){
     # Also you would have to handle as many devices as possible ...
     # shiny::tags$link(href = "www/splashscreens/iphone5_splash.png", media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image")
     
-    
   )
 }
 

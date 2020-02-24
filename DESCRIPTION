@@ -29,7 +29,7 @@ Imports:
     waiter,
     tibble,
     countup,
-    nCov2019,
+    nCov2019 (>= 0.0.9),
     magrittr,
     jsonlite,
     echarts4r (>= 0.3.0),
