@@ -1,6 +1,6 @@
 # API
 
-The latest version (`0.1.0`) comes with an API that is freely available at [shiny.john-coene.com:8080](https://shiny.john-coene.com:8080/__swagger__/).
+The latest version (`0.1.0`) comes with an API that is freely available at [shiny.john-coene.com:8080](http://shiny.john-coene.com:8080/__swagger__/).
 
 ## Endpoints
 
