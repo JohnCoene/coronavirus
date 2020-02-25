@@ -1,4 +1,8 @@
-# Prod
+# Application
+
+Deploying the application requires a Postgres database.
+
+## Setup
 
 Create the required config file to run the crawler. You should only have to do this once.
 
@@ -22,7 +26,6 @@ Finally launch the app.
 # launch the dashboard
 run_app()
 ```
-
 
 ## Deploy
 
