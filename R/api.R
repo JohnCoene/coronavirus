@@ -23,9 +23,8 @@
 #' @name api
 #' @export
 run_api <- function(host = "0.0.0.0", port = 3000){
-  # check that file present and filled in
+  # check that file present
   has_config()
-  check_config()
 
   fl <- system.file("api/api.R", package = "coronavirus")
 
@@ -39,9 +38,8 @@ run_api <- function(host = "0.0.0.0", port = 3000){
 #' @rdname api
 #' @export
 copy_api_files <- function(){
-  # check that file present and filled in
+  # check that file present
   has_config()
-  check_config()
 
   api <- system.file("api/api.R", package = "coronavirus")
   dockerfile <- system.file("api/Dockerfile", package = "coronavirus")
