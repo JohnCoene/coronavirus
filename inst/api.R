@@ -1,3 +1,9 @@
+con <- coronavirus:::connect()
+
+on.exit({
+  coronavirus:::disconnect()
+})
+
 #* Get John Hopkins Data
 #* @param type Type of cases to return; \code{confirmed}
 #* \code{recovered}, or \code{death}.
@@ -48,12 +54,6 @@ function(res, type, region){
   else
     country <- "country <> 'Mainland China'"
 
-  con <- coronavirus:::connect()
-
-  on.exit({
-    coronavirus:::disconnect()
-  })
-
   data <- DBI::dbGetQuery(
     con, 
     paste0("SELECT * FROM jhu WHERE type = '", type, "' AND ", country, ";")
@@ -71,11 +71,6 @@ function(res, type, region){
 #* @serializer unboxedJSON
 #* @get /weixin
 function(){
-  con <- coronavirus:::connect()
-
-  on.exit({
-    coronavirus:::disconnect()
-  })
 
   total <- DBI::dbReadTable(con, "weixin_total")
   total <- purrr::transpose(total)
@@ -95,11 +90,6 @@ function(){
 #* @serializer unboxedJSON
 #* @get /dxy
 function(){
-  con <- coronavirus:::connect()
-
-  on.exit({
-    coronavirus:::disconnect()
-  })
 
   data <- DBI::dbReadTable(con, "dxy")
   data <- purrr::transpose(data)
