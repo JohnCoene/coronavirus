@@ -7,6 +7,6 @@
 > An open-source nCov-2019 tracker.
 
 [Tracker](https://shiny.john-coene.com/coronavirus)
-[GitHub](https://github.com/JohnCoene/coronavirus)
+[API](/api)
 
 ![color](#000000)
