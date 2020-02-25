@@ -1,3 +1,7 @@
+# coronavirus 0.1.0
+
+- Initialise API, see `run_api`
+
 # coronavirus 0.0.6
 
 - Add total numbers as returned by Weixin. :warning: great discrepancy between those and the daily figures.
