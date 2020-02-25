@@ -3,3 +3,4 @@ googlesheets.rds
 .httr-oauth
 test.R
 app.R
+.DS_Store

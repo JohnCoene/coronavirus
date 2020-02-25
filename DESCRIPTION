@@ -28,6 +28,7 @@ Imports:
     readr,
     waiter,
     tibble,
+    plumber,
     countup,
     nCov2019 (>= 0.0.9),
     magrittr,

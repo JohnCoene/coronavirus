@@ -1,7 +1,25 @@
-con <- coronavirus:::connect()
+connect <- function(){
+  config <- yaml::read_yaml("_coronavirus.yml")
+
+  has_vars <- all(c("user", "password", "host") %in% names(config$database))
+
+  if(!has_vars)
+    stop("Missing variables in config file, see `create_config`", call. = FALSE)
+  
+  pool::dbPool(
+    RPostgres::Postgres(),
+    host = config$database$host,
+    user = config$database$user,
+    password = config$database$password,
+    dbname = config$database$name,
+    port = 5432
+  )
+}
+
+con <- connect()
 
 on.exit({
-  coronavirus:::disconnect()
+  pool::poolClose(con)
 })
 
 #* Get John Hopkins Data
@@ -47,6 +65,8 @@ function(res, type, region){
       )
     )
   }
+
+  type <- gsub("'", "", type)
 
   # define clause
   if(region == "china")
