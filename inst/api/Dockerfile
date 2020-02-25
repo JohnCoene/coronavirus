@@ -13,5 +13,5 @@ COPY _coronavirus.yml _coronavirus.yml
 COPY api.R plumber.R
 
 EXPOSE 8000
-ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(commandArgs()[4]); pr$run(host='0.0.0.0', port=8000, swagger = TRUE)"]
+ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(commandArgs()[4]); pr$registerHooks(list('exit' = function(){pool::poolClose(con)})); pr$run(host='0.0.0.0', port=8000, swagger = TRUE)"]
 CMD ["plumber.R"]

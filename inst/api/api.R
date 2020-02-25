@@ -16,6 +16,8 @@ connect <- function(){
   )
 }
 
+con <- connect()
+
 #* Get John Hopkins Data
 #* @param type Type of cases to return; \code{confirmed}
 #* \code{recovered}, or \code{death}.
@@ -60,12 +62,6 @@ function(res, type, region){
     )
   }
 
-  con <- connect()
-
-  on.exit({
-    pool::poolClose(con)
-  })
-
   type <- gsub("'", "", type)
 
   # define clause
@@ -92,12 +88,6 @@ function(res, type, region){
 #* @get /weixin
 function(){
 
-  con <- connect()
-
-  on.exit({
-    pool::poolClose(con)
-  })
-
   total <- DBI::dbReadTable(con, "weixin_total")
   total <- purrr::transpose(total)
 
@@ -116,12 +106,6 @@ function(){
 #* @serializer unboxedJSON
 #* @get /dxy
 function(){
-
-  con <- connect()
-
-  on.exit({
-    pool::poolClose(con)
-  })
 
   data <- DBI::dbReadTable(con, "dxy")
   data <- purrr::transpose(data)
