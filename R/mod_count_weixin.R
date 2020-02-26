@@ -35,7 +35,7 @@ mod_count_weixin_server <- function(input, output, session, df, column){
   ns <- session$ns
 
   output$cnt <- countup::renderCountup({
-    if("date" %in% names(df)) # weisin
+    if("date" %in% names(df)) # weixin
       df %>% 
         dplyr::pull(column) %>% 
         countup::countup()
