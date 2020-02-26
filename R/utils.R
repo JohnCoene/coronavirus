@@ -247,6 +247,6 @@ copy <- function(embed_url, data, params){
   tags$button(
     class = "button copy-button",
     "Copy Embed Code",
-    onClick = paste0("copy('", embed_url, "?data=", data, params, "')")
+    onClick = paste0("copy(\"<iframe src='", embed_url, "?data=", data, params, "'></iframe>\")")
   )
 }
