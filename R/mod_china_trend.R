@@ -35,7 +35,7 @@ mod_china_trend_server <- function(input, output, session, df, column = "confirm
   embed_url <- golem::get_golem_options("embed_url")
 
   output$copy_ui <- renderUI({
-    copy(embed_url, "weixin", paste0("&chart=trend&type=", column))
+    copy(embed_url, "weixin", paste0("&chart=trend&type=", column, "&log=", tolower(input$log)))
   })
 
   output$trend <- echarts4r::renderEcharts4r({
