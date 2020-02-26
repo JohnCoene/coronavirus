@@ -18,8 +18,11 @@ mod_jhu_death_rate_ui <- function(id){
   f7Card(
     id = ns("card"),
     title = "Death Rate",
-    echarts4r::echarts4rOutput(ns("trend"), height = 385),
-    footer = "deaths / (confirmed + recovered)"
+    echarts4r::echarts4rOutput(ns("trend"), height = 395),
+    footer = f7Row(
+      f7Col(uiOutput(ns("copy_ui"))),
+      f7Col("deaths / (confirmed + recovered)")
+    )
   )
 }
     
@@ -31,6 +34,12 @@ mod_jhu_death_rate_ui <- function(id){
     
 mod_jhu_death_rate_server <- function(input, output, session, df){
   ns <- session$ns
+
+  embed_url <- golem::get_golem_options("embed_url")
+
+  output$copy_ui <- renderUI({
+    copy(embed_url, "jhu", "&chart=death-rate")
+  })
 
   output$trend <- echarts4r::renderEcharts4r({
     mod_jhu_death_rate_echarts(df)

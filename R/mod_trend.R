@@ -19,7 +19,8 @@ mod_trend_ui <- function(id){
     f7Card(
       title = "Trend & Prediction",
       f7Toggle(ns("log"), "Logarithmic Scale"),
-      echarts4r::echarts4rOutput(ns("trend"), height = 400)
+      echarts4r::echarts4rOutput(ns("trend"), height = 400),
+      footer = uiOutput(ns("copy_ui"))
     )
   )
 }
@@ -30,6 +31,12 @@ mod_trend_ui <- function(id){
     
 mod_trend_server <- function(input, output, session, df = df, type_filter = "confirmed"){
   ns <- session$ns
+
+  embed_url <- golem::get_golem_options("embed_url")
+
+  output$copy_ui <- renderUI({
+    copy(embed_url, "jhu", paste0("&chart=trend&log=", tolower(input$log)))
+  })
 
   output$trend <- echarts4r::renderEcharts4r({
     mode_trend_echarts(df, type_filter, input$log)
@@ -80,10 +87,3 @@ mode_trend_echarts <- function(df = df, type_filter = "confirmed", log = FALSE){
     echarts4r::e_group("JHU") %>% 
     echarts4r::e_y_axis(type = type)
 }
-
-## To be copied in the UI
-# mod_trend_ui("trend_ui_1")
-    
-## To be copied in the server
-# callModule(mod_trend_server, "trend_ui_1")
- 

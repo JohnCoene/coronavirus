@@ -18,7 +18,8 @@ mod_world_ui <- function(id){
 
   f7Card(
     title = "Confirmed Cases - Worldwide",
-    echarts4r::echarts4rOutput(ns("world"), height = "70vh")
+    echarts4r::echarts4rOutput(ns("world"), height = "70vh"),
+    footer = uiOutput(ns("copy_ui"))
   )
 }
     
@@ -30,6 +31,12 @@ mod_world_ui <- function(id){
     
 mod_world_server <- function(input, output, session, df){
   ns <- session$ns
+
+  embed_url <- golem::get_golem_options("embed_url")
+
+  output$copy_ui <- renderUI({
+    copy(embed_url, "jhu", "&chart=world-map")
+  })
 
   output$world <- echarts4r::renderEcharts4r({
     mod_world_echarts(df)

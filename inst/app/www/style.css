@@ -52,3 +52,7 @@ a{
   --f7-toggle-handle-color: #298614;
   --f7-radio-active-color: #298614;
 }
+
+.copy-button{
+  color: #298614 !important;
+}

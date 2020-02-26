@@ -59,3 +59,5 @@ Note that it's always a good idea to recrawl the data with `crawl_coronavirus` a
 That is the dashboard set up and running, go to the [data](data.md) section to see how to create a cronjob to automatically update the data.
 
 Open an issue if you have problems deploying, I'm more than happy helping.
+
+Go to the next section on [embeds](/embeds) to host your own embedded charts.

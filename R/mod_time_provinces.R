@@ -19,7 +19,8 @@ mod_time_provinces_ui <- function(id){
   f7Card(
     title = "Confirmed Cases - China",
     f7Toggle(ns("log"), "Logarithmic Scale log(1 + x)", checked = TRUE),
-    echarts4r::echarts4rOutput(ns("map"), height = "70vh")
+    echarts4r::echarts4rOutput(ns("map"), height = "70vh"),
+    footer = uiOutput(ns("copy_ui"))
   )
 }
     
@@ -31,6 +32,12 @@ mod_time_provinces_ui <- function(id){
     
 mod_time_provinces_server <- function(input, output, session, df){
   ns <- session$ns
+
+  embed_url <- golem::get_golem_options("embed_url")
+
+  output$copy_ui <- renderUI({
+    copy(embed_url, "jhu", paste0("&chart=timeline-provinces&log=", tolower(input$log)))
+  })
 
   output$map <- echarts4r::renderEcharts4r({
     mod_time_provinces_echarts(df, input$log)

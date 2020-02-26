@@ -2,6 +2,7 @@
 * [Screenshots](tracker.md)
 * [Get Started](get-started.md)
 * [Application](prod.md)
+* [Embeds](embeds.md)
 * [API](api.md)
 * [Data](data.md)
 * [Changelog](news.md)

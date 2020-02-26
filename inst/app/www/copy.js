@@ -1,5 +1,8 @@
-function copy(id) {
-  var to_copy = document.getElementById(id);
-  to_copy.select();
-  document.execCommand("copy");
+function copy(str) {
+  var el = document.createElement('textarea');
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
 }

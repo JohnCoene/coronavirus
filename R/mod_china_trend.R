@@ -18,7 +18,8 @@ mod_china_trend_ui <- function(id, label){
   f7Card(
     title = label,
     f7Toggle(ns("log"), "Logarithmic Scale log(1 + x)"),
-    echarts4r::echarts4rOutput(ns("trend"))
+    echarts4r::echarts4rOutput(ns("trend")),
+    footer = uiOutput(ns("copy_ui"))
   )
 }
     
@@ -30,6 +31,12 @@ mod_china_trend_ui <- function(id, label){
     
 mod_china_trend_server <- function(input, output, session, df, column = "confirm", connect = FALSE){
   ns <- session$ns
+
+  embed_url <- golem::get_golem_options("embed_url")
+
+  output$copy_ui <- renderUI({
+    copy(embed_url, "weixin", paste0("&chart=trend&type=", column))
+  })
 
   output$trend <- echarts4r::renderEcharts4r({
     mod_china_trend_echarts(df, column = column, connect = connect, log = input$log)

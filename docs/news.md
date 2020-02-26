@@ -1,5 +1,9 @@
 # Changelog
 
+## coronavirus 0.1.1
+
+- Initialise embeds; ability to embed charts, optionally.
+
 ## coronavirus 0.1.0
 
 - Initialise API, see `run_api`
