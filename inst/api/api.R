@@ -98,7 +98,7 @@ function(){
   )
 }
 
-#* Get Weixin Data
+#* Get DingXianYing Data
 #* @serializer unboxedJSON
 #* @get /dxy
 function(){
