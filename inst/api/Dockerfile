@@ -1,7 +1,7 @@
 FROM rocker/r-base
 
 RUN apt-get update -qq && apt-get install -y \
-  git \
+  git-core \
   libpq-dev \
   libssl-dev \
   libxml2-dev \
