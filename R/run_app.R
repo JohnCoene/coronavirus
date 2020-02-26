@@ -12,7 +12,7 @@
 #' @importFrom utils packageVersion
 #' 
 #' @import shinyMobile
-run_app <- function(data = NULL, embed_url = "https://shiny.john-coene/coronavirus-embed") {
+run_app <- function(data = NULL, embed_url = "https://shiny.john-coene.com/coronavirus-embed") {
   with_golem_options(
     app = shinyApp(ui = app_ui, server = app_server), 
     golem_opts = list(data = data, embed_url = embed_url)

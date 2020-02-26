@@ -4,7 +4,10 @@
 \alias{run_app}
 \title{Run the Shiny Application}
 \usage{
-run_app(data = NULL, embed_url = "https://shiny.john-coene/coronavirus-embed")
+run_app(
+  data = NULL,
+  embed_url = "https://shiny.john-coene.com/coronavirus-embed"
+)
 }
 \arguments{
 \item{data}{list as returned by \code{\link{crawl_coronavirus}}, otherwise uses database.}
