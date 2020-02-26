@@ -7,10 +7,10 @@
 #' @section Functions:
 #' \itemize{
 #'  \item{\code{run_api} - Runs the API interactively.}
-#'  \item{\code{copy_api_files} - Copies required files for docker deployment in current directory.}
+#'  \item{\code{scaffold_api} - Copies required files for docker deployment in current directory.}
 #' }
 #' 
-#' @details The \code{copy_api_files} function copies the files necessary to deploy the 
+#' @details The \code{scaffold_api} function copies the files necessary to deploy the 
 #' the api using docker. Make sure you do so from the directory that contains your 
 #' configuration file (\¢ode{\link{create_config}}). Once copied run
 #' \code{docker build -t coronavirus .} to build the docker image with your config file.
@@ -37,7 +37,7 @@ run_api <- function(host = "0.0.0.0", port = 3000){
 
 #' @rdname api
 #' @export
-copy_api_files <- function(){
+scaffold_api <- function(){
   # check that file present
   has_config()
 

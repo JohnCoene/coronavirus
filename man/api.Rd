@@ -3,12 +3,12 @@
 \name{api}
 \alias{api}
 \alias{run_api}
-\alias{copy_api_files}
+\alias{scaffold_api}
 \title{API}
 \usage{
 run_api(host = "0.0.0.0", port = 3000)
 
-copy_api_files()
+scaffold_api()
 }
 \arguments{
 \item{host, port}{Host and port passed to \code{plumber}.}
@@ -17,7 +17,7 @@ copy_api_files()
 Return path to API file.
 }
 \details{
-The \code{copy_api_files} function copies the files necessary to deploy the 
+The \code{scaffold_api} function copies the files necessary to deploy the 
 the api using docker. Make sure you do so from the directory that contains your 
 configuration file (\¢ode{\link{create_config}}). Once copied run
 \code{docker build -t coronavirus .} to build the docker image with your config file.
@@ -28,7 +28,7 @@ to map to (of your machine).
 
 \itemize{
  \item{\code{run_api} - Runs the API interactively.}
- \item{\code{copy_api_files} - Copies required files for docker deployment in current directory.}
+ \item{\code{scaffold_api} - Copies required files for docker deployment in current directory.}
 }
 }
 

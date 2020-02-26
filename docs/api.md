@@ -35,10 +35,10 @@ Visit the URL on printed in the console to explore the api.
 
 ## Deploy
 
-You can deploy the application using docker. First copy the necessary files with the `copy_api_files` functions.
+You can deploy the application using docker. First copy the necessary files with the `scaffold_api` functions.
 
 ```r
-copy_api_files()
+scaffold_api()
 ```
 
 This creates two files `api.R` and `Dockerfile`, you can then build the image with.

@@ -7,7 +7,7 @@ RUN apt-get update -qq && apt-get install -y \
   libxml2-dev \
   libcurl4-gnutls-dev
 
-RUN install2.r plumber DBI pool purrr yaml RPostgres
+RUN install2.r plumber DBI pool yaml RPostgres
 
 COPY _coronavirus.yml _coronavirus.yml
 COPY api.R plumber.R

@@ -19,9 +19,8 @@ connect <- function(){
 con <- connect()
 
 #* Get John Hopkins Data
-#* @param type Type of cases to return; \code{confirmed}
-#* \code{recovered}, or \code{death}.
-#* @param region Region to return either \code{china}, or \code{other}.
+#* @param type Type of cases to return; confirmed, recovered, or death.
+#* @param region Region to return either china, or other.
 #* @serializer unboxedJSON
 #* @get /jhu
 function(res, type, region){
@@ -73,8 +72,7 @@ function(res, type, region){
   data <- DBI::dbGetQuery(
     con, 
     paste0("SELECT * FROM jhu WHERE type = '", type, "' AND ", country, ";")
-  ) 
-  data <- purrr::transpose(data)
+  )
 
   list(
     source = "John Hopkins CSSE",
@@ -89,10 +87,8 @@ function(res, type, region){
 function(){
 
   total <- DBI::dbReadTable(con, "weixin_total")
-  total <- purrr::transpose(total)
 
-  details <- DBI::dbReadTable(con, "weixin") 
-  details <- purrr::transpose(details)
+  details <- DBI::dbReadTable(con, "weixin")
 
   list(
     source = "Tencent QQ",
@@ -108,7 +104,6 @@ function(){
 function(){
 
   data <- DBI::dbReadTable(con, "dxy")
-  data <- purrr::transpose(data)
 
   list(
     source = "DingXiangYing",
