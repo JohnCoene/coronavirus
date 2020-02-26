@@ -2,8 +2,6 @@ embeds_ui <- function(){
   fluidPage(
     title = "coronavirus",
     tags$head(
-      tags$link(rel="stylesheet", type="text/css", href="www/style.css"),
-      tags$link(rel="stylesheet", type="text/css", href="www/embeds.css"),
       sever::use_sever(),
       waiter::use_waiter(include_js = FALSE),
       HTML(
@@ -21,5 +19,19 @@ embeds_ui <- function(){
     echarts4r::echarts4rOutput("chart", height = "100vh"),
     waiter::waiter_show_on_load(loader, color = "#000"),
     waiter::waiter_hide_on_render("chart")
+  )
+}
+
+golem_add_external_resources <- function(){
+  
+  addResourcePath(
+    'www', system.file('app/www', package = 'coronavirus')
+  )
+
+  tags$head(
+    golem::activate_js(),
+    golem::favicon(),
+    tags$link(rel="stylesheet", type="text/css", href="www/style.css"),
+    tags$link(rel="stylesheet", type="text/css", href="www/embeds.css")
   )
 }

@@ -6,7 +6,7 @@
 #' @param embed_url Base URL of \code{\link{run_embeds}} app.
 #'
 #' @export
-#' @importFrom shiny shinyApp
+#' @import shiny
 #' @importFrom golem with_golem_options
 #' @importFrom stats coef nls
 #' @importFrom utils packageVersion
