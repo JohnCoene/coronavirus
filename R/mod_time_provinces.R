@@ -33,61 +33,64 @@ mod_time_provinces_server <- function(input, output, session, df){
   ns <- session$ns
 
   output$map <- echarts4r::renderEcharts4r({
-
-    dat <- df %>% 
-      dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
-      dplyr::left_join(chinese_provinces, by = "state") %>% 
-      dplyr::arrange(desc(date)) %>% 
-      dplyr::select(chinese, type, date, cases) %>% 
-      dplyr::mutate(
-        cases = dplyr::case_when(
-          input$log ~ log1p(cases),
-          TRUE ~ cases
-        )
-      )
-
-    index <- length(unique(dat$date)) -1 
-    titles <- unique(dat$date) %>% 
-      rev() %>% 
-      purrr::map(function(x){
-        list(text = format(x, "%d %B %H:00"))
-      })
-
-    mx <- max(dat$cases)
-    mn <- min(dat$cases)
-
-    dat %>% 
-      dplyr::group_by(date) %>% 
-      echarts4r::e_charts(chinese, timeline = TRUE) %>% 
-      echarts4r.maps::em_map("China") %>% 
-      echarts4r::e_map(cases, map = "China", name = "confirmed") %>% 
-      echarts4r::e_visual_map(
-        max = mx,
-        min = mn,
-        orient = "horizontal",
-        right = "center",
-        top = 25,
-        textStyle = list(color = "#fff")
-      ) %>% 
-      echarts4r::e_theme(theme) %>% 
-      echarts4r::e_tooltip() %>% 
-      echarts4r::e_timeline_opts(currentIndex = index) %>% 
-      echarts4r::e_timeline_serie(
-        title = titles
-      ) %>% 
-      echarts4r::e_timeline_opts(
-        playInterval = 600, 
-        symbolSize = 4, 
-        axis_type = "time",
-        label = list(
-          show = FALSE
-        ),
-        checkpointStyle = list(
-          symbol = "pin",
-          symbolSize = 20
-        )
-      )
+    mod_time_provinces_echarts(df, input$log)
   })
+}
+
+mod_time_provinces_echarts <- function(df, log){
+  dat <- df %>% 
+    dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
+    dplyr::left_join(chinese_provinces, by = "state") %>% 
+    dplyr::arrange(desc(date)) %>% 
+    dplyr::select(chinese, type, date, cases) %>% 
+    dplyr::mutate(
+      cases = dplyr::case_when(
+        log ~ log1p(cases),
+        TRUE ~ cases
+      )
+    )
+
+  index <- length(unique(dat$date)) -1 
+  titles <- unique(dat$date) %>% 
+    rev() %>% 
+    purrr::map(function(x){
+      list(text = format(x, "%d %B %H:00"))
+    })
+
+  mx <- max(dat$cases)
+  mn <- min(dat$cases)
+
+  dat %>% 
+    dplyr::group_by(date) %>% 
+    echarts4r::e_charts(chinese, timeline = TRUE) %>% 
+    echarts4r.maps::em_map("China") %>% 
+    echarts4r::e_map(cases, map = "China", name = "confirmed") %>% 
+    echarts4r::e_visual_map(
+      max = mx,
+      min = mn,
+      orient = "horizontal",
+      right = "center",
+      top = 25,
+      textStyle = list(color = "#fff")
+    ) %>% 
+    echarts4r::e_theme(theme) %>% 
+    echarts4r::e_tooltip() %>% 
+    echarts4r::e_timeline_opts(currentIndex = index) %>% 
+    echarts4r::e_timeline_serie(
+      title = titles
+    ) %>% 
+    echarts4r::e_timeline_opts(
+      playInterval = 600, 
+      symbolSize = 4, 
+      axis_type = "time",
+      label = list(
+        show = FALSE
+      ),
+      checkpointStyle = list(
+        symbol = "pin",
+        symbolSize = 20
+      )
+    )
 }
     
 ## To be copied in the UI

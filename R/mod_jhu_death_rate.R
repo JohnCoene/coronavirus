@@ -33,55 +33,58 @@ mod_jhu_death_rate_server <- function(input, output, session, df){
   ns <- session$ns
 
   output$trend <- echarts4r::renderEcharts4r({
-
-    form <- htmlwidgets::JS("function(value){
-      return(value + '%')
-    }")
-
-    df %>% 
-      dplyr::filter(country_iso2c == "CN") %>% 
-      dplyr::group_by(date, type) %>% 
-      dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
-      dplyr::ungroup() %>%
-      tidyr::pivot_wider(
-        id_cols = date,
-        names_from = type,
-        values_from = cases,
-        values_fill = list(
-          cases = 0
-        )
-      ) %>%
-      dplyr::mutate(
-        rate = death / (confirmed + recovered),
-        rate = round(rate * 100, 3)
-      ) %>% 
-      echarts4r::e_charts(date) %>% 
-      echarts4r::e_area(rate, name = "Death rate") %>% 
-      echarts4r::e_tooltip(trigger = "axis") %>% 
-      echarts4r::e_legend(FALSE) %>% 
-      echarts4r::e_y_axis(formatter = form) %>% 
-      echarts4r::e_visual_map(
-        rate,
-        show = FALSE,
-        inRange = list(
-          color = deaths_pal
-        )
-      ) %>% 
-      echarts4r::e_mark_point(
-        data = list(type = "max"), 
-        itemStyle = list(color = "white"),
-        label = list(color = "#000"),
-        title = "Max"
-      ) %>% 
-      echarts4r::e_mark_line(
-        data = list(type = "average"),
-        itemStyle = list(color = "white"),
-        title = "Average"
-      ) %>% 
-      echarts4r::e_theme(theme) %>% 
-      echarts4r::e_group("JHU") %>% 
-      echarts4r::e_connect_group("JHU")
+    mod_jhu_death_rate_echarts(df)
   })
+}
+
+mod_jhu_death_rate_echarts <- function(df){
+  form <- htmlwidgets::JS("function(value){
+    return(value + '%')
+  }")
+
+  df %>% 
+    dplyr::filter(country_iso2c == "CN") %>% 
+    dplyr::group_by(date, type) %>% 
+    dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
+    dplyr::ungroup() %>%
+    tidyr::pivot_wider(
+      id_cols = date,
+      names_from = type,
+      values_from = cases,
+      values_fill = list(
+        cases = 0
+      )
+    ) %>%
+    dplyr::mutate(
+      rate = death / (confirmed + recovered),
+      rate = round(rate * 100, 3)
+    ) %>% 
+    echarts4r::e_charts(date) %>% 
+    echarts4r::e_area(rate, name = "Death rate") %>% 
+    echarts4r::e_tooltip(trigger = "axis") %>% 
+    echarts4r::e_legend(FALSE) %>% 
+    echarts4r::e_y_axis(formatter = form) %>% 
+    echarts4r::e_visual_map(
+      rate,
+      show = FALSE,
+      inRange = list(
+        color = deaths_pal
+      )
+    ) %>% 
+    echarts4r::e_mark_point(
+      data = list(type = "max"), 
+      itemStyle = list(color = "white"),
+      label = list(color = "#000"),
+      title = "Max"
+    ) %>% 
+    echarts4r::e_mark_line(
+      data = list(type = "average"),
+      itemStyle = list(color = "white"),
+      title = "Average"
+    ) %>% 
+    echarts4r::e_theme(theme) %>% 
+    echarts4r::e_group("JHU") %>% 
+    echarts4r::e_connect_group("JHU")
 }
     
 ## To be copied in the UI

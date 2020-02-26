@@ -32,31 +32,7 @@ mod_china_trend_server <- function(input, output, session, df, column = "confirm
   ns <- session$ns
 
   output$trend <- echarts4r::renderEcharts4r({
-
-    palette <- column_to_palette(column)
-
-    if(input$log)
-      df[[column]] <- log1p(df[[column]])
-
-    e <- df %>% 
-      echarts4r::e_charts(date) %>% 
-      echarts4r::e_area_(column) %>% 
-      echarts4r::e_visual_map_(
-        column, 
-        show = FALSE,
-        inRange = list(
-          color = palette
-        )
-      ) %>% 
-      echarts4r::e_theme(theme) %>% 
-      echarts4r::e_legend(FALSE) %>% 
-      echarts4r::e_tooltip(trigger = "axis") %>% 
-      echarts4r::e_group("weixinTrend")
-
-    if(connect)
-      e <- echarts4r::e_connect_group(e, "weixinTrend")
-
-    return(e)
+    mod_china_trend_echarts(df, column = column, connect = connect, log = input$log)
   })
 }
     
@@ -69,4 +45,31 @@ column_to_palette <- function(x){
     "suspect" = suspected_pal
   )
 }
- 
+
+mod_china_trend_echarts <- function(df, column = "confirm", connect = FALSE, log = FALSE){
+
+  palette <- column_to_palette(column)
+
+  if(log)
+    df[[column]] <- log1p(df[[column]])
+
+  e <- df %>% 
+    echarts4r::e_charts(date) %>% 
+    echarts4r::e_area_(column) %>% 
+    echarts4r::e_visual_map_(
+      column, 
+      show = FALSE,
+      inRange = list(
+        color = palette
+      )
+    ) %>% 
+    echarts4r::e_theme(theme) %>% 
+    echarts4r::e_legend(FALSE) %>% 
+    echarts4r::e_tooltip(trigger = "axis") %>% 
+    echarts4r::e_group("weixinTrend")
+
+  if(connect)
+    e <- echarts4r::e_connect_group(e, "weixinTrend")
+
+  return(e)
+}

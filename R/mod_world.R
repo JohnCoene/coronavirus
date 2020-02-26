@@ -32,35 +32,39 @@ mod_world_server <- function(input, output, session, df){
   ns <- session$ns
 
   output$world <- echarts4r::renderEcharts4r({
-    df %>% 
-      dplyr::filter(date == max(date)) %>%
-      echarts4r::e_country_names(country_iso2c, country) %>% 
-      dplyr::group_by(country) %>% 
-      dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
-      dplyr::ungroup() %>% 
-      echarts4r::e_charts(country) %>% 
-      echarts4r::e_map(
-        cases, 
-        itemStyle = list(
-          areaColor = "#242323"
-        ),
-        label = list(
-          emphasis = list(
-            color = "#ffffff",
-            fontSite = 15
-          )
-        )
-      ) %>% 
-      echarts4r::e_visual_map(
-        cases, 
-        textStyle = list(color = "#fff"),
-        orient = "horizontal",
-        right = "center"
-      ) %>% 
-      echarts4r::e_theme(theme)
+    mod_world_echarts(df)
   })
 }
-    
+
+mod_world_echarts <- function(df){
+  df %>% 
+    dplyr::filter(date == max(date)) %>%
+    echarts4r::e_country_names(country_iso2c, country) %>% 
+    dplyr::group_by(country) %>% 
+    dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
+    dplyr::ungroup() %>% 
+    echarts4r::e_charts(country) %>% 
+    echarts4r::e_map(
+      cases, 
+      itemStyle = list(
+        areaColor = "#242323"
+      ),
+      label = list(
+        emphasis = list(
+          color = "#ffffff",
+          fontSite = 15
+        )
+      )
+    ) %>% 
+    echarts4r::e_visual_map(
+      cases, 
+      textStyle = list(color = "#fff"),
+      orient = "horizontal",
+      right = "center"
+    ) %>% 
+    echarts4r::e_theme(theme)
+}
+
 ## To be copied in the UI
 # mod_world_ui("world_ui_1")
     
