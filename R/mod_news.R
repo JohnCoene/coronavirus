@@ -54,6 +54,7 @@ mod_news_server <- function(input, output, session, df){
           title = article$title,
           subtitle = tagList(
             article$description,
+            br(),
             tags$a(
               class = "link external article-link",
               article$source,
