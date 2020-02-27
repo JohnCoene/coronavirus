@@ -9,3 +9,8 @@ create_config()
 \description{
 Creates a configuration file.
 }
+\section{newsapi}{
+
+The latest version requires a newsapi token from \url{https://newsapi.org/}.
+}
+

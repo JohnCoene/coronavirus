@@ -28,7 +28,8 @@ app_server <- function(input, output,session) {
     df <- DBI::dbReadTable(con, "jhu")
     china_daily <- DBI::dbReadTable(con, "weixin")
     china_total <- DBI::dbReadTable(con, "weixin_total")
-    dxy <- DBI::dbReadTable(con, "dxy") 
+    dxy <- DBI::dbReadTable(con, "dxy")
+    news <- DBI::dbReadTable(con, "news") 
 
     if("log" %in% DBI::dbListTables(con)){
       log <- DBI::dbGetQuery(con, "SELECT MAX(last_updated) FROM log;")
@@ -54,6 +55,7 @@ app_server <- function(input, output,session) {
     china_daily <- data$weixin
     dxy <- data$dxy
     china_total <- data$weixin_total
+    news <- data$news
   }
 
   # counts jhu
@@ -197,5 +199,7 @@ app_server <- function(input, output,session) {
       w$hide()
     }
   })
+
+  callModule(mod_news_server, "news", df = news)
 
 }

@@ -1,6 +1,6 @@
 Package: coronavirus
 Title: Tracking the Coronavirus
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
   c(
     person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
@@ -28,6 +28,7 @@ Imports:
     readr,
     waiter,
     tibble,
+    newsapi,
     plumber,
     countup,
     nCov2019 (>= 0.0.9),
@@ -45,10 +46,11 @@ RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
 Remotes:
+  news-r/newsapi,
+  JohnCoene/sever,
   JohnCoene/countup,
   JohnCoene/echarts4r,
   JohnCoene/echarts4r.maps,
   GuangchuangYu/nCov2019,
-  JohnCoene/sever,
   JohnCoene/shinyscroll,
   RinteRface/shinyMobile

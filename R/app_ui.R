@@ -160,6 +160,13 @@ app_ui <- function() {
             ),
             mod_city_map_ui("city_map_1"),
             mod_dxy_table_ui("dxy_table_ui_1")
+          ),
+          f7Tab(
+            tabName = "News",
+            icon = f7Icon("quote_bubble", old = FALSE),
+            swipeable = TRUE,
+            active = FALSE,
+            mod_news_ui("news")
           )
         )
       )

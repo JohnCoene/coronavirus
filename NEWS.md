@@ -1,3 +1,7 @@
+# coronavirus 0.1.2
+
+- Added news
+
 # coronavirus 0.1.1
 
 - Initialise embeds; ability to embed charts, optionally.

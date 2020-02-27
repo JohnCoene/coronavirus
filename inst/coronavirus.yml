@@ -3,3 +3,5 @@ database:
   host: localhost
   user: me
   password: password
+newsapi:
+  key: https://newsapi.org/

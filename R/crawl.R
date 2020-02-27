@@ -96,6 +96,14 @@ crawl_coronavirus <- function(){
 
   log <- tibble::tibble(last_updated = Sys.time())
 
+  # crawl news
+  news <- NULL
+  if(file.exists(config_file)){
+    cli::cli_alert_info("Crawling news")
+    set_news_api_token()
+    news <- newsapi::every_news("coronavirus OR covid", results = 100, language = "en", sort = "popularity")
+  }
+
   # save
   if(file.exists(config_file)){
     cli::cli_alert_success("Writing to database")
@@ -104,13 +112,15 @@ crawl_coronavirus <- function(){
     DBI::dbWriteTable(con, "weixin", china_daily, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "dxy", dxy, overwrite = TRUE, append = FALSE)
     DBI::dbWriteTable(con, "log", log, append = TRUE)
+    DBI::dbWriteTable(con, "news", news, overwrite = TRUE)
   }
 
   dat <- list(
     jhu = df,
     weixin = china_daily,
     weixin_total = china_total,
-    dxy = dxy
+    dxy = dxy,
+    news = news
   )
 
   invisible(dat)

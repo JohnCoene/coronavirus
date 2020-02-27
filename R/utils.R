@@ -41,6 +41,18 @@ get_config <- function(){
 check_config <- function(config){
   if(config$database$user == "me" && config$database$password == "password" && config$database$name == "name")
     stop("Complete the config file: _coronavirus.yml")
+
+  if(!length(config$newsapi))
+    warning("No newsapi key found in config not crawling news.")
+  
+  invisible()
+}
+
+set_news_api_token <- function(){
+  config <- yaml::read_yaml(config_file)
+  check_config(config)
+
+  newsapi::newsapi_key(config$newsapi$key)
   invisible()
 }
 

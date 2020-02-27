@@ -20,6 +20,7 @@ golem::add_module( name = "dxy_table" ) # Name of the module
 golem::add_module( name = "geo_lines" ) # Name of the module
 golem::add_module( name = "time_provinces" ) # Name of the module
 golem::add_module( name = "jhu_death_rate" ) # Name of the module
+golem::add_module( name = "news" ) # Name of the module
 
 ## 2.2 Add dependencies
 
