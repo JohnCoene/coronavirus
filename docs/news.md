@@ -3,6 +3,9 @@
 ## coronavirus 0.1.1
 
 - Initialise embeds; ability to embed charts, optionally.
+- Corrected JHU maps.
+- Changed JHU China map to piecewise visual map
+- Changed DXY maps to piecewise
 
 ## coronavirus 0.1.0
 

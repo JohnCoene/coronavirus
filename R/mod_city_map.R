@@ -22,7 +22,6 @@ mod_city_map_ui <- function(id){
       choices = c("Confirmed", "Deaths", "Recovered"),
       selected = "Confirmed"
     ),
-    f7Toggle(ns("log"), "Logarithmic Scale"),
     f7Card(
       title = "Provinces",
       echarts4r::echarts4rOutput(ns("map"), height = "50vh"),
@@ -56,7 +55,7 @@ mod_city_map_server <- function(input, output, session, df){
       embed_url, 
       "dxy", 
       paste0(
-        "&chart=china&log=", tolower(input$log), 
+        "&chart=china", 
         "&variable=", input$variable
       )
     )
@@ -73,7 +72,7 @@ mod_city_map_server <- function(input, output, session, df){
       embed_url, 
       "dxy", 
       paste0(
-        "&chart=province&log=", tolower(input$log), 
+        "&chart=province", 
         "&province=", selected,
         "&variable=", input$variable
       )
@@ -81,7 +80,7 @@ mod_city_map_server <- function(input, output, session, df){
   })
 
   output$map <- echarts4r::renderEcharts4r({
-    mod_city_map_china_echarts(df, input$variable, input$log)
+    mod_city_map_china_echarts(df, input$variable)
   })
 
   output$region <- echarts4r::renderEcharts4r({
@@ -91,7 +90,7 @@ mod_city_map_server <- function(input, output, session, df){
       selected <- input$map_clicked_data$name
       shinyscroll::scroll(ns("cities"), "start")
     }
-    mod_city_map_region_echarts(df, input$variable, selected, input$log)
+    mod_city_map_region_echarts(df, input$variable, selected)
   })
 }
 
@@ -138,30 +137,38 @@ input_to_palette <- function(x){
   )
 }
 
-mod_city_map_china_echarts <- function(df, variable, log){
+mod_city_map_china_echarts <- function(df, variable, log = FALSE){
   selected <- input_to_case(variable)
 
   palette <- input_to_palette(variable)
 
-  formatter <- NULL
-  if(!log)
-    formatter <- htmlwidgets::JS(
-        "function(min, max){
-          return(Math.floor(min / 100) * 100 + ' - ' + Math.floor(max / 100) * 100)
-        }")
-
-  df %>% 
+  subset <- df %>% 
     dplyr::select(province, province_pinyin, variable = selected) %>% 
     dplyr::group_by(province, province_pinyin) %>% 
     dplyr::summarise(cases = sum(variable, ny.rm = TRUE)) %>% 
     dplyr::ungroup() %>% 
-    dplyr::mutate(
-      cases = as.numeric(cases),
-      cases = dplyr::case_when(
-        log ~ log1p(cases),
-        TRUE ~ cases
+    dplyr::mutate(cases = as.numeric(cases)) 
+    
+  x <- dplyr::arrange(subset, cases) %>% dplyr::pull(cases) %>% unique()
+  n <- 5
+
+  pieces <- split(x, sort(x%%n)) %>% 
+    unname() %>% 
+    purrr::map(range) %>% 
+    purrr::map(function(x){
+      list(
+        gt = round_up(x[1]),
+        lte = round_up(x[2])
       )
-    ) %>% 
+    })
+
+  for(i in 1:(length(pieces) - 1)){
+    pieces[[i]]$lte <- pieces[[i + 1]]$gt
+  }
+
+  pieces[[1]]$gt <- 0
+
+  subset %>% 
     echarts4r::e_chart(province) %>% 
     echarts4r.maps::em_map("China") %>% 
     echarts4r::e_map(
@@ -182,21 +189,20 @@ mod_city_map_china_echarts <- function(df, variable, log){
       )
     ) %>% 
     echarts4r::e_visual_map(
-      cases, 
-      precision = 1,
       type = "piecewise",
-      formatter = formatter,
+      pieces = pieces,
+      outOfRange = list(
+        color = "#000"
+      ),
       right = "center",
       top = "top",
       orient = "horizontal",
-      textStyle = list(color = "#fff"),
-      inRange = list(
-        color = palette
-      )
-    )
+      textStyle = list(color = "#fff")
+    ) %>% 
+    echarts4r::e_tooltip()
 }
 
-mod_city_map_region_echarts <- function(df, variable, selected, log){
+mod_city_map_region_echarts <- function(df, variable, selected){
 
   palette <- input_to_palette(variable)
   selected_variable <- input_to_case(variable)
@@ -205,13 +211,7 @@ mod_city_map_region_echarts <- function(df, variable, selected, log){
     dplyr::select(cityName, province, province_pinyin, variable = selected_variable) %>% 
     dplyr::filter(province == selected) %>% 
     dplyr::mutate(cityName = substr(cityName, 1, 2)) %>% 
-    dplyr::mutate(
-      variable = as.numeric(variable),
-      variable = dplyr::case_when(
-        log ~ log1p(variable),
-        TRUE ~ variable
-      )
-    )
+    dplyr::mutate(variable = as.numeric(variable))
 
   pinyin <- unique(subset$province_pinyin)
   geojson <- url_to_geojson(pinyin) %>% 
@@ -222,6 +222,25 @@ mod_city_map_region_echarts <- function(df, variable, selected, log){
       x$properties$name <- substr(x$properties$name, 1, 2)
       return(x)
     })
+
+  x <- dplyr::arrange(subset, variable) %>% dplyr::pull(variable) %>% unique()
+  n <- 5
+
+  pieces <- split(x, sort(x%%n)) %>% 
+    unname() %>% 
+    purrr::map(range) %>% 
+    purrr::map(function(x){
+      list(
+        gt = round_up(x[1]),
+        lte = round_up(x[2])
+      )
+    })
+
+  for(i in 1:(length(pieces) - 1)){
+    pieces[[i]]$lte <- pieces[[i + 1]]$gt
+  }
+
+  pieces[[1]]$gt <- 0
 
   echarts4r::e_charts(subset, cityName) %>% 
     echarts4r::e_map_register(pinyin, geojson) %>% 
@@ -243,11 +262,9 @@ mod_city_map_region_echarts <- function(df, variable, selected, log){
       )
     ) %>% 
     echarts4r::e_visual_map(
-      variable, 
+      type = "piecewise",
+      pieces = pieces,
       textStyle = list(color = "#fff"),
-      inRange = list(
-        color = palette
-      ),
       orient = "horizontal",
       top = "bottom",
       right = "center"

@@ -47,6 +47,7 @@ mod_world_echarts <- function(df){
   df %>% 
     dplyr::filter(date == max(date)) %>%
     echarts4r::e_country_names(country_iso2c, country) %>% 
+    dplyr::filter(type == "confirmed") %>% 
     dplyr::group_by(country) %>% 
     dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
     dplyr::ungroup() %>% 

@@ -13,6 +13,8 @@
 #' 
 #' @import shinyMobile
 run_app <- function(data = NULL, embed_url = "https://shiny.john-coene.com/coronavirus-embed") {
+  options(scipen = 99999)
+
   with_golem_options(
     app = shinyApp(ui = app_ui, server = app_server), 
     golem_opts = list(data = data, embed_url = embed_url)

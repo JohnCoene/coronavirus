@@ -49,12 +49,16 @@ Though every version should be backward compatible, it's good practice to re-run
 
 :warning: Corrected inaccuracies
 
-In `v0.0.3`:
+`v0.1.1`
+
+- There was an issue were the number of cases counted in the John Hopkins map of china and world map was wrongly filtered and gave numbers higher than actually are.
+
+`v0.0.6`
+
+- Corrected death rate from `deaths/confirmed` to `deaths/(confirmed + recovered)` 
+
+`v0.0.3`:
 
 - Deaths and recovered numbers for DingXiangYing data was previously [swapped](https://github.com/JohnCoene/coronavirus/issues/2), now fixed.
 - Number of suspected by city given by DingXiangYing is wildly inaccurate, has been removed.
 - Replaced Map on JHU tab as color scaling was inaccurate due to timeline.
-
-In `v0.0.6`
-
-- Corrected death rate from `deaths/confirmed` to `deaths/(confirmed + recovered)` 

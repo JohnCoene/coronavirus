@@ -71,7 +71,7 @@ embeds_server <- function(input, output, session){
         e <- mod_map_echarts(df, rv$log)
 
       if(rv$chart == "timeline-provinces")
-        e <- mod_time_provinces_echarts(df, rv$log)
+        e <- mod_time_provinces_echarts(df)
 
       if(rv$chart == "world-map")
         e <- mod_world_echarts(df)
@@ -91,10 +91,10 @@ embeds_server <- function(input, output, session){
       df <- DBI::dbReadTable(con, "dxy")
 
       if(rv$chart == "china")
-        e <- mod_city_map_china_echarts(df, rv$variable, rv$log)
+        e <- mod_city_map_china_echarts(df, rv$variable)
 
       if(rv$chart == "province")
-        e <- mod_city_map_region_echarts(df, rv$variable, rv$province, rv$log)
+        e <- mod_city_map_region_echarts(df, rv$variable, rv$province)
 
     }
 

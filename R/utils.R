@@ -250,3 +250,8 @@ copy <- function(embed_url, data, params){
     onClick = paste0("copy(\"<iframe src='", embed_url, "?data=", data, params, "'></iframe>\")")
   )
 }
+
+round_up <- function(x, nice=1:10) {
+    if(length(x) != 1) stop("'x' must be of length 1")
+    10^floor(log10(x)) * nice[[which(x <= 10^floor(log10(x)) * nice)[[1]]]]
+}
