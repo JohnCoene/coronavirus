@@ -21,7 +21,14 @@ embeds_server <- function(input, output, session){
     bg_color = "#000"
   )
 
-  rv <- reactiveValues(data = "", chart = "", log = "", col = "")
+  rv <- reactiveValues(
+    data = "", 
+    chart = "", 
+    log = "", 
+    col = "", 
+    variable = "",
+    province = ""
+  )
 
   observe({
     # parse parameter
@@ -30,6 +37,8 @@ embeds_server <- function(input, output, session){
     rv$chart <- get_query(query, "chart")
     rv$type <- get_query(query, "type")
     rv$log <- get_query(query, "log")
+    rv$variable <- get_query(query, "variable")
+    rv$province <- get_query(query, "province")
   })
 
   # connect
@@ -74,6 +83,18 @@ embeds_server <- function(input, output, session){
       china_daily <- DBI::dbReadTable(con, "weixin")
 
       e <- mod_china_trend_echarts(china_daily, column = rv$type, log = rv$log)
+
+    } else if(rv$data == "dxy"){
+
+      cat("plotting dxy -", rv$chart, "\n")
+
+      df <- DBI::dbReadTable(con, "dxy")
+
+      if(rv$chart == "china")
+        e <- mod_city_map_china_echarts(df, rv$variable, rv$log)
+
+      if(rv$chart == "province")
+        e <- mod_city_map_region_echarts(df, rv$variable, rv$province, rv$log)
 
     }
 
