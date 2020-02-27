@@ -35,6 +35,8 @@ mod_news_server <- function(input, output, session, df){
   ns <- session$ns
 
   output$articles <- renderUI({
+    if(is.null(df))
+      return(span("No newsapi token"))
 
     nws <- data.frame()
     for(i in 1:nrow(df)){
