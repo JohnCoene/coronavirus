@@ -194,6 +194,9 @@ mod_city_map_china_echarts <- function(df, variable, log = FALSE){
       outOfRange = list(
         color = "#000"
       ),
+      inRange = list(
+        color = palette
+      ),
       right = "center",
       top = "top",
       orient = "horizontal",
@@ -267,7 +270,10 @@ mod_city_map_region_echarts <- function(df, variable, selected){
       textStyle = list(color = "#fff"),
       orient = "horizontal",
       top = "bottom",
-      right = "center"
+      right = "center",
+      inRange = list(
+        color = palette
+      )
     ) %>% 
     echarts4r::e_title(selected, top = 10, left = 10) %>% 
     echarts4r::e_show_loading(color = "#ffffff", mask_color = '#000')
