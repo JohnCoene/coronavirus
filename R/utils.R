@@ -78,9 +78,11 @@ has_config <- function(){
 #' @keywords internal
 has_newsapi <- function(){
   config <- yaml::read_yaml(config_file)
-  if(length(config$newsapi) > 0)
-    if(config$newsapi$key == "https://newsapi.org/")
+  if(length(config$newsapi) > 0){
+    if(config$newsapi$key == "https://newsapi.org/" || config$newsapi$key == "https://newsapi.org" )
       return(FALSE)
+    return(TRUE)
+  }
   else 
     return(FALSE)
   return(TRUE)
