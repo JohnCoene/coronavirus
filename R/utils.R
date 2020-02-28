@@ -71,6 +71,16 @@ has_config <- function(){
   invisible()
 }
 
+#' Has newsapi config
+#' 
+#' Check if newsapi config present.
+#' 
+#' @keywords internal
+has_newsapi <- function(){
+  config <- yaml::read_yaml(config_file)
+  length(config$newsapi) > 0
+}
+
 #' Connect
 #' 
 #' Connect to database.
@@ -254,6 +264,10 @@ locate <- function(search, key){
 
 #' Copy URL
 #' 
+#' @param embed_url Base embed url.
+#' @param data Data to use.
+#' @param params Parameters.
+#' 
 #' @keywords internal
 copy <- function(embed_url, data, params){
   tags$button(
@@ -263,6 +277,14 @@ copy <- function(embed_url, data, params){
   )
 }
 
+#' Round up
+#' 
+#' Nicely round up numbers for pieces in maps.
+#' 
+#' @param x Number.
+#' @param nice Vector of ending.
+#' 
+#' @keywords internal
 round_up <- function(x, nice=1:10) {
     if(length(x) != 1) stop("'x' must be of length 1")
     10^floor(log10(x)) * nice[[which(x <= 10^floor(log10(x)) * nice)[[1]]]]

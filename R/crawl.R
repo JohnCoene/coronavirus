@@ -99,9 +99,11 @@ crawl_coronavirus <- function(){
   # crawl news
   news <- NULL
   if(file.exists(config_file)){
-    cli::cli_alert_info("Crawling news")
-    set_news_api_token()
-    news <- newsapi::every_news("coronavirus OR covid", results = 100, language = "en", sort = "popularity")
+    if(has_newsapi){
+      cli::cli_alert_info("Crawling news")
+      set_news_api_token()
+      news <- newsapi::every_news("coronavirus OR covid", results = 100, language = "en", sort = "popularity")
+    }
   }
 
   # save

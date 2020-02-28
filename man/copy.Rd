@@ -6,6 +6,13 @@
 \usage{
 copy(embed_url, data, params)
 }
+\arguments{
+\item{embed_url}{Base embed url.}
+
+\item{data}{Data to use.}
+
+\item{params}{Parameters.}
+}
 \description{
 Copy URL
 }
