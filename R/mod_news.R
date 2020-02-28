@@ -52,19 +52,18 @@ mod_news_server <- function(input, output, session, df){
       purrr::map(function(article){
         f7ListItem(
           title = article$title,
-          subtitle = tagList(
+          subtitle = substr(article$author, 1, 25),
+          tagList(
             article$description,
-            br(),
-            tags$a(
-              class = "link external article-link",
-              article$source,
-              href = article$url
-            )
           ),
           media = tags$img(
             src = article$urlToImage
           ),
-          right = substr(article$author, 1, 25)
+          footer = tags$a(
+            class = "link external article-link",
+            article$source,
+            href = article$url
+          )
         )
       })
     
