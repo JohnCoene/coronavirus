@@ -13,7 +13,19 @@ library(coronavirus)
 create_config()
 ```
 
-Fill in the config file created with the credentials to a Postgres database, then run the crawler. Every time you want to update the data, re-run `crawl_coronavirus`, it collects fresh data and overwrites everything.
+Fill in the config file created with the credentials to a Postgres database and optionally a free [newsapi.org](https://newsapi.org) token, then run the crawler. The config file should look like.
+
+```yaml
+database:
+  name: database-name
+  host: 123.123.123.12
+  user: me
+  password: my-password
+newsapi:
+  key: xxXx6X43X12YXx4Xx0XxXx7y # from newsapi.org
+```
+
+Every time you want to update the data, re-run `crawl_coronavirus`, it collects fresh data and overwrites everything.
 
 ```r
 # crawl data
@@ -61,17 +73,3 @@ That is the dashboard set up and running, go to the [data](data.md) section to s
 Open an issue if you have problems deploying, I'm more than happy helping.
 
 Go to the next section on [embeds](/embeds) to host your own embedded charts.
-
-## News
-
-To have the news section (latest version), create an account on [newsapi.org](https://newsapi.org/) to get a key an add it to your config file.
-
-```yaml
-database:
-  name: name
-  host: localhost
-  user: me
-  password: password
-newsapi:
-  key: xxXx6X43X12YXx4Xx0XxXx7y
-```
