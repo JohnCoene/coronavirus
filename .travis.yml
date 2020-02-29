@@ -2,5 +2,9 @@
 
 language: R
 cache: packages
+addons:
+    apt:
+      packages:
+        - libudunits2-dev
 
 warnings_are_errors: true
