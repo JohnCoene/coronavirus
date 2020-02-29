@@ -34,14 +34,15 @@ Imports:
     nCov2019 (>= 0.0.9),
     magrittr,
     jsonlite,
-    echarts4r (>= 0.3.0),
     RPostgres,
     tidyselect,
     shinyscroll (>= 0.0.2),
     htmlwidgets,
     shinyMobile (>= 0.5.0),
-    countrycode,
-    echarts4r.maps
+    countrycode
+Suggests:
+  echarts4r (>= 0.3.0),
+  echarts4r.maps
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
