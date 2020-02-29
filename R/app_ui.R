@@ -47,7 +47,8 @@ app_ui <- function() {
             active = TRUE,
             swipeable = TRUE,
             waiter::waiter_show_on_load(loader, color = "#000"),
-            h1("John Hopkins Data", class = "center"),
+            h2("John Hopkins Data", class = "center"),
+            p(tags$small("Data on China and the rest of the World."), class = "center"),
             f7Row(
               f7Col(
                 mod_count_ui("count_ui_1", "Confirmed"),
@@ -59,7 +60,8 @@ app_ui <- function() {
                 mod_count_ui("count_ui_3", "Recovered")
               )
             ),
-            h1("Weixin Data", class = "center"),
+            h2("Weixin Data", class = "center"),
+            p(tags$small("Data on China."), class = "center"),
             f7Row(
               f7Col(
                 mod_count_weixin_ui("count_weixin_ui_1", "Confirmed")
@@ -74,7 +76,8 @@ app_ui <- function() {
                 mod_count_weixin_ui("count_weixin_ui_3", "Recovered")
               )
             ),
-            h1("DXY Data", class = "center"),
+            h2("DXY Data", class = "center"),
+            p(tags$small("Data on China."), class = "center"),
             f7Row(
               f7Col(mod_count_weixin_ui("count_dxy_ui_1", "Confirmed")),
               f7Col(mod_count_weixin_ui("count_dxy_ui_3", "Deaths")),
@@ -86,7 +89,8 @@ app_ui <- function() {
             icon = f7Icon("waveform_path", old = FALSE),
             active = FALSE,
             swipeable = TRUE,
-            h1("John Hopkins Data", class = "center"),
+            h2("John Hopkins Data", class = "center"),
+            p(tags$small("Data on China and the rest of the World."), class = "center"),
             f7Row(
               f7Col(
                 mod_count_ui("count_ui_1_jhu", "Confirmed"),
@@ -115,7 +119,8 @@ app_ui <- function() {
             icon = f7Icon("waveform", old = FALSE),
             swipeable = TRUE,
             active = FALSE,
-            h1("Weixin Data", class = "center"),
+            h2("Weixin Data", class = "center"),
+            p(tags$small("Data on China."), class = "center"),
             f7Row(
               f7Col(
                 mod_count_weixin_ui("count_weixin_ui_1_wx", "Confirmed")
@@ -151,7 +156,8 @@ app_ui <- function() {
             icon = f7Icon("graph_circle", old = FALSE),
             swipeable = TRUE,
             active = FALSE,
-            h1("DXY Data", class = "center"),
+            h2("DXY Data", class = "center"),
+            p(tags$small("Data on China."), class = "center"),
             waiter::waiter_hide_on_render("count_ui_1-cnt"),
             f7Row(
               f7Col(mod_count_weixin_ui("count_dxy_ui_1_dxy", "Confirmed")),

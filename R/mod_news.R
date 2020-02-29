@@ -17,8 +17,8 @@ mod_news_ui <- function(id){
   ns <- NS(id)
   tagList(
     f7Block(
-      h1("News"),
-      p("Latest articles on the coronavirus"),
+      h2("News", class = "center"),
+      p(tags$small("Latest articles on the coronavirus."), class = "center"),
       inset = TRUE
     ),
     f7Block(uiOutput(ns("articles")))
