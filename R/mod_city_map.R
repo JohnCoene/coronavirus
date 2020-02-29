@@ -273,6 +273,9 @@ mod_city_map_region_echarts <- function(df, variable, selected){
       right = "center",
       inRange = list(
         color = palette
+      ),
+      outOfRange = list(
+        color = "#000"
       )
     ) %>% 
     echarts4r::e_title(selected, top = 10, left = 10) %>% 
