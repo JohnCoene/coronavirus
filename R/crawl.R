@@ -60,7 +60,7 @@ crawl_coronavirus <- function(){
 
   cli::cli_alert_info("Crawling data from Weixin")
 
-  china <- nCov2019::get_nCov2019()
+  china <- nCov2019::get_nCov2019(lang = "zh")
   china_daily <- china$chinaDayList %>% 
     dplyr::mutate(
       date = paste0("2020.", date),
