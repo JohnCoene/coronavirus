@@ -65,6 +65,12 @@ mode_new_cases_echarts <- function(df){
         type = "shadow"
       )
     ) %>% 
+    echarts4r::e_legend(
+      selectedMode = "single",
+      selected = list(
+        "confirmed" = TRUE
+      )
+    ) %>% 
     echarts4r::e_hide_grid_lines("x") %>% 
     echarts4r::e_group("JHU") %>%
     echarts4r::e_theme(theme)
