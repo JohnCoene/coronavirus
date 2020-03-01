@@ -106,7 +106,7 @@ function(){
   data <- DBI::dbReadTable(con, "dxy")
 
   list(
-    source = "DingXiangYing",
+    source = "DingXiangYuan",
     url = "https://ncov.dxy.cn/ncovh5/view/pneumonia",
     data = data
   )
