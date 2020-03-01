@@ -83,6 +83,7 @@ mode_trend_echarts <- function(df = df, type_filter = "confirmed", log = FALSE){
     echarts4r::e_line(cases, name = "Confirmed Cases", lineStyle = ls) %>% 
     echarts4r::e_line(model, name = "Fit", lineStyle = ls) %>% 
     echarts4r::e_tooltip(trigger = "axis") %>% 
+    echarts4r::e_hide_grid_lines("x") %>% 
     echarts4r::e_theme(theme) %>%
     echarts4r::e_group("JHU") %>% 
     echarts4r::e_y_axis(type = type)

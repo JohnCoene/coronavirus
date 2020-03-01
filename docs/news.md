@@ -3,6 +3,8 @@
 ## coronavirus 0.1.2
 
 - Added news
+- Added daily cases to JHU tab
+- Added line graph of cases outside China
 
 ## coronavirus 0.1.1
 

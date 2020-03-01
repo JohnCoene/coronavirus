@@ -73,7 +73,8 @@ mod_china_trend_echarts <- function(df, column = "confirm", connect = FALSE, log
     echarts4r::e_theme(theme) %>% 
     echarts4r::e_legend(FALSE) %>% 
     echarts4r::e_tooltip(trigger = "axis") %>% 
-    echarts4r::e_group("weixinTrend")
+    echarts4r::e_group("weixinTrend") %>% 
+    echarts4r::e_hide_grid_lines("x")
 
   if(connect)
     e <- echarts4r::e_connect_group(e, "weixinTrend")

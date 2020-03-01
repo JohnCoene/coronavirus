@@ -91,6 +91,7 @@ mod_jhu_death_rate_echarts <- function(df){
       itemStyle = list(color = "white"),
       title = "Average"
     ) %>% 
+    echarts4r::e_hide_grid_lines() %>% 
     echarts4r::e_theme(theme) %>% 
     echarts4r::e_group("JHU") %>% 
     echarts4r::e_connect_group("JHU")

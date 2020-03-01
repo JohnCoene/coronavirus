@@ -22,7 +22,7 @@ globalVariables(
     "china_cities_location", "cities", "lat", "lon", "value",
     "confirmedCount", "curedCount", "deadCount", "suspectedCount",
     "province", "province_pinyin", "variable", "chinese_provinces",
-    "date2", "rate"
+    "date2", "rate", "cases_lag"
   )
 )
 

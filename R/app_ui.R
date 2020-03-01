@@ -102,12 +102,14 @@ app_ui <- function() {
                 mod_count_ui("count_ui_3_jhu", "Recovered")
               )
             ),
+            mod_new_cases_ui("new_cases"),
             f7Row(
               f7Col(mod_trend_ui("trend_ui_1")),
               f7Col(mod_jhu_death_rate_ui("jhu_death_rate_ui_1"))
             ),
             mod_map_ui("map_ui_1"),
             mod_time_provinces_ui("time_provinces_1"),
+            mod_china_others_ui("china_others"),
             mod_world_ui("world_ui_1"),
             f7Row(
               mod_china_ui("table_china", "China"),

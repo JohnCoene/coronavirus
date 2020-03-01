@@ -18,7 +18,7 @@ mod_world_ui <- function(id){
 
   f7Card(
     title = "Confirmed Cases - Worldwide",
-    echarts4r::echarts4rOutput(ns("world"), height = "70vh"),
+    echarts4r::echarts4rOutput(ns("world"), height = "60vh"),
     footer = uiOutput(ns("copy_ui"))
   )
 }

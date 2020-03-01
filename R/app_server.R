@@ -41,7 +41,7 @@ app_server <- function(input, output,session) {
          text = paste("Last updated", diff, "minutes ago"),
          position = "bottom",
          closeTimeout = 5000,
-         closeButton = FALSE
+         closeButton = TRUE
        )
 
     }
@@ -138,6 +138,12 @@ app_server <- function(input, output,session) {
       jhu_init <- FALSE
 
       w$show()
+
+      # cases added daily
+      callModule(mod_new_cases_server, "new_cases", df = df)
+
+      # china vs world
+      callModule(mod_china_others_server, "china_others", df = df)
 
       # jhu tab
       callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
