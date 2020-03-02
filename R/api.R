@@ -12,13 +12,12 @@
 #' 
 #' @details The \code{scaffold_api} function copies the files necessary to deploy the 
 #' the api using docker. Make sure you do so from the directory that contains your 
-#' configuration file (\¢ode{\link{create_config}}). Once copied run
+#' configuration file (\code{\link{create_config}}). Once copied run
 #' \code{docker build -t coronavirus .} to build the docker image with your config file.
-#' Then run \code{ocker run -p 80:8000 -d coronavirus} where \code{80} is the port you want
+#' Then run \code{docker run -p 80:8000 -d coronavirus} where \code{80} is the port you want
 #' to map to (of your machine).
 #' 
-#' @examples 
-#' \dontrun{run_api()}
+#' @examples \dontrun{run_api()}
 #' 
 #' @name api
 #' @export
