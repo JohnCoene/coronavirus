@@ -16,15 +16,6 @@ Dashboard to track the spread of the coronavirus, based on three data sources, b
 
 </div>
 
-## Get it
-
-You can view the [dashboard](https://shiny.john-coene.com/coronavirus) online or download the package to run it locally or deploy it.
-
-``` r
-# install.packages("remotes")
-remotes::install_github("JohnCoene/coronavirus")
-```
-
 ## Test
 
 You can test the app before preparing any kind of deployment (e.g.: set up a database), visit the [docs](https://coronavirus.john-coene.com) if you want to deploy it.
@@ -34,6 +25,17 @@ library(coronavirus)
 
 virus <- crawl_coronavirus()
 run_app(virus)
+```
+
+![](https://coronavirus.john-coene.com/_media/banner.png)
+
+## Get it
+
+You can view the [dashboard](https://shiny.john-coene.com/coronavirus) online or download the package to run it locally or deploy it.
+
+``` r
+# install.packages("remotes")
+remotes::install_github("JohnCoene/coronavirus")
 ```
 
 ## Contribute
