@@ -103,6 +103,8 @@ crawl_coronavirus <- function(){
       cli::cli_alert_info("Crawling news from newsapi.org")
       set_news_api_token()
       news <- newsapi::every_news("coronavirus OR covid", results = 100, language = "en", sort = "popularity")
+    } else {
+      cli::cli_alert_danger("Not `newsapi` entry in config file, not crawling news.")
     }
   }
 
