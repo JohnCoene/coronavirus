@@ -38,6 +38,11 @@ get_config <- function(){
   return(config)
 }
 
+#' Check config
+#' 
+#' Checks that config is valid.
+#' 
+#' @keywords internal
 check_config <- function(config){
   if(config$database$user == "me" && config$database$password == "password" && config$database$name == "name")
     stop("Complete the config file: _coronavirus.yml")
@@ -48,6 +53,8 @@ check_config <- function(config){
   invisible()
 }
 
+#' Set the newsapi token
+#' @keywords internal
 set_news_api_token <- function(){
   config <- yaml::read_yaml(config_file)
   check_config(config)
