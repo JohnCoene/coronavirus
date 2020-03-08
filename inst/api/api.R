@@ -1,5 +1,4 @@
 connect <- function(){
-  config <- yaml::read_yaml("_coronavirus.yml")
 
   has_vars <- all(c("user", "password", "host") %in% names(config$database))
 

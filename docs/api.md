@@ -35,22 +35,19 @@ Visit the URL on printed in the console to explore the api.
 
 ## Deploy
 
-You can deploy the application using docker. First copy the necessary files with the `scaffold_api` functions.
+It's easy to deploy using docker.
 
-```r
-scaffold_api()
+1) Pull the container.
+
+```bash
+docker pull jcoenep/coronapi
 ```
 
-This creates two files `api.R` and `Dockerfile`, you can then build the image with.
+2) Then run it by first mounting your config file.
 
-```r
-docker build -t coronavirus .
+```bash
+sudo docker run -v "$(pwd)"/_coronavirus.yml:/_coronavirus.yml -p 3000:8000 jcoenep/coronapi
 ```
 
-Once built you can launch the API with:
+3) Finally, visit `localhost:3000/__swagger__/`
 
-```r
-docker run -p 80:8000 -d coronavirus
-```
-
-Where `80` is the port of your machine.

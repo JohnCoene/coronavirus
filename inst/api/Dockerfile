@@ -9,9 +9,7 @@ RUN apt-get update -qq && apt-get install -y \
 
 RUN install2.r plumber DBI pool yaml RPostgres
 
-COPY _coronavirus.yml _coronavirus.yml
 COPY api.R plumber.R
 
 EXPOSE 8000
-ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('plumber.R'); pr$registerHooks(list('exit' = function(){pool::poolClose(con)})); pr$run(host='0.0.0.0', port=8000, swagger = TRUE)"]
-CMD ["plumber.R"]
+CMD ["R", "-e", "config <- yaml::read_yaml('_coronavirus.yml');pr <- plumber::plumb('plumber.R'); pr$registerHooks(list('exit' = function(){pool::poolClose(con)})); pr$run(host='0.0.0.0', port=8000, swagger = TRUE)"]
