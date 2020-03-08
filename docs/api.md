@@ -46,7 +46,7 @@ docker pull jcoenep/coronapi
 2) Then run it by first mounting your config file.
 
 ```bash
-sudo docker run -v "$(pwd)"/_coronavirus.yml:/_coronavirus.yml -p 3000:8000 jcoenep/coronapi
+docker run -v "$(pwd)"/_coronavirus.yml:/_coronavirus.yml -p 3000:8000 jcoenep/coronapi
 ```
 
 3) Finally, visit `localhost:3000/__swagger__/`

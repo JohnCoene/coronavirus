@@ -19,3 +19,4 @@ googlesheets.rds
 ^FUNDING\.yml$
 ^appveyor\.yml$
 ^app\.R$
+^Dockerfile$
