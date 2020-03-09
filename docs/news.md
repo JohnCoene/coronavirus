@@ -2,9 +2,11 @@
 
 ## coronavirus 0.1.2
 
-- Added news
+- Added news tab
 - Added daily cases to JHU tab
 - Added line graph of cases outside China
+- Added cumulative view on new cases in JHU tab
+- Improve chart transition
 
 ## coronavirus 0.1.1
 

@@ -77,7 +77,7 @@ embeds_server <- function(input, output, session){
         e <- mod_world_echarts(df)
 
       if(rv$chart == "cases-added")
-        e <- mode_new_cases_echarts(df)
+        e <- mode_new_cases_echarts(df, rv$cumul)
 
       if(rv$chart == "world-timeline")
         e <- mod_china_others_echarts(df)

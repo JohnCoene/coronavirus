@@ -18,6 +18,7 @@ mod_new_cases_ui <- function(id){
 
   f7Card(
     title = "Daily new cases",
+    f7Toggle(ns("cm"), "Cumulative"),
     echarts4r::echarts4rOutput(ns("plot"), height = 250),
     footer = uiOutput(ns("copy"))
   )
@@ -35,15 +36,15 @@ mod_new_cases_server <- function(input, output, session, df){
   embed_url <- golem::get_golem_options("embed_url")
 
   output$copy <- renderUI({
-    copy(embed_url, "jhu", "&chart=cases-added")
+    copy(embed_url, "jhu", paste0("&chart=cases-added&cumulative=", tolower(input$cm)))
   })
 
   output$plot <- echarts4r::renderEcharts4r({
-    mode_new_cases_echarts(df)
+    mode_new_cases_echarts(df, input$cm)
   })
 }
 
-mode_new_cases_echarts <- function(df){
+mode_new_cases_echarts <- function(df, cumul){
   df %>% 
     dplyr::group_by(date, type) %>%
     dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>%  
@@ -54,7 +55,17 @@ mode_new_cases_echarts <- function(df){
       diff = cases - cases_lag
     ) %>% 
     dplyr::group_by(type) %>% 
-    echarts4r::e_charts(date) %>% 
+    dplyr::mutate(
+      diff = dplyr::case_when(
+        is.na(diff) ~ 0,
+        TRUE ~ diff
+      ),
+      diff = dplyr::case_when(
+        cumul ~ cumsum(diff),
+        TRUE ~ diff
+      )
+    ) %>% 
+    echarts4r::e_charts(date, dispose = FALSE) %>% 
     echarts4r::e_bar(diff) %>% 
     echarts4r::e_color(
       c(confirmed_pal[3], deaths_pal[4], recovered_pal[4])

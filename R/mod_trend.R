@@ -79,7 +79,7 @@ mode_trend_echarts <- function(df = df, type_filter = "confirmed", log = FALSE){
   )
 
   df %>% 
-    echarts4r::e_charts(date) %>% 
+    echarts4r::e_charts(date, dispose = FALSE) %>% 
     echarts4r::e_line(cases, name = "Confirmed Cases", lineStyle = ls) %>% 
     echarts4r::e_line(model, name = "Fit", lineStyle = ls) %>% 
     echarts4r::e_tooltip(trigger = "axis") %>% 

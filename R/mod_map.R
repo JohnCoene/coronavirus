@@ -79,7 +79,7 @@ mod_map_echarts <- function(df, log){
     ) %>% 
     dplyr::arrange(desc(date), desc(confirmed)) %>% 
     dplyr::group_by(date) %>% 
-    echarts4r::e_charts(state, timeline = TRUE) %>% 
+    echarts4r::e_charts(state, timeline = TRUE, dispose = FALSE) %>% 
     echarts4r::e_bar(confirmed, name = "Confirmed", itemStyle = bs) %>% 
     echarts4r::e_bar(recovered, name = "Recovered", itemStyle = bs) %>% 
     echarts4r::e_bar(death, name = "Deaths") %>%  

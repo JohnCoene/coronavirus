@@ -61,7 +61,7 @@ mod_china_trend_echarts <- function(df, column = "confirm", connect = FALSE, log
     df[[column]] <- log1p(df[[column]])
 
   e <- df %>% 
-    echarts4r::e_charts(date) %>% 
+    echarts4r::e_charts(date, dispose = FALSE) %>% 
     echarts4r::e_area_(column) %>% 
     echarts4r::e_visual_map_(
       column, 
