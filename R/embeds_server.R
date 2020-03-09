@@ -39,6 +39,7 @@ embeds_server <- function(input, output, session){
     rv$log <- get_query(query, "log")
     rv$variable <- get_query(query, "variable")
     rv$province <- get_query(query, "province")
+    rv$cumulative <- get_query(query, "cumulative")
   })
 
   # connect
@@ -77,7 +78,7 @@ embeds_server <- function(input, output, session){
         e <- mod_world_echarts(df)
 
       if(rv$chart == "cases-added")
-        e <- mode_new_cases_echarts(df, rv$cumul)
+        e <- mode_new_cases_echarts(df, rv$cumulative)
 
       if(rv$chart == "world-timeline")
         e <- mod_china_others_echarts(df)
