@@ -44,7 +44,7 @@ mod_new_cases_server <- function(input, output, session, df){
   })
 }
 
-mode_new_cases_echarts <- function(df, cumul){
+mode_new_cases_echarts <- function(df, cumul = FALSE){
   df %>% 
     dplyr::group_by(date, type) %>%
     dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>%  
