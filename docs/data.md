@@ -1,5 +1,9 @@
 # Data
 
+Minor checks of the crawler.
+
+[![Coveralls test coverage](https://coveralls.io/repos/github/JohnCoene/coronavirus/badge.svg)](https://coveralls.io/r/JohnCoene/coronavirus?branch=master) [![Codecov test coverage](https://codecov.io/gh/JohnCoene/coronavirus/branch/master/graph/badge.svg)](https://codecov.io/gh/JohnCoene/coronavirus?branch=master)
+
 ## Sources
 
 - Data from [John Hopkins GIS dashboard](https://github.com/CSSEGISandData/2019-nCoV) accessed via readr (used to be from Google sheet).
