@@ -4,3 +4,4 @@ googlesheets.rds
 test.R
 app.R
 .DS_Store
+.vscode
