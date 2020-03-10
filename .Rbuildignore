@@ -21,3 +21,4 @@ googlesheets.rds
 ^app\.R$
 ^Dockerfile$
 ^codecov\.yml$
+.vscode

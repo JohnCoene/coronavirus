@@ -10,5 +10,5 @@ test_that("crawler works", {
   expect_is(v[[2]], "data.frame")
   expect_is(v[[3]], "data.frame")
   expect_is(v[[4]], "data.frame")
-  expect_is(v[[5]], "data.frame")
+  expect_null(v[[5]])
 })
