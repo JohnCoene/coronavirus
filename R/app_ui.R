@@ -90,7 +90,7 @@ app_ui <- function() {
             active = FALSE,
             swipeable = TRUE,
             h2("John Hopkins Data", class = "center"),
-            p(tags$small("Data on China and the rest of the World."), class = "center"),
+            p(tags$small("Data on China and the rest of the world."), class = "center"),
             f7Row(
               f7Col(
                 mod_count_ui("count_ui_1_jhu", "Confirmed"),
