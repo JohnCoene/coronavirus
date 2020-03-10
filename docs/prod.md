@@ -41,9 +41,9 @@ run_app()
 
 ## Deploy
 
-You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal. Note that This also works on [shinyapps.io](https://www.shinyapps.io/).
+You can deploy on whatever server you like, install R and the [Shiny Community server](https://rstudio.com/products/shiny/download-server/), then install the package from the terminal. Note that This also works on [shinyapps.io](https://www.shinyapps.io/) though you will need to host the database elsewhere. However, docker might be the easiest.
 
-## Docker
+### Docker
 
 The easiest was is to use docker, pull the container.
 
@@ -60,6 +60,8 @@ docker run -v "$(pwd)"/_coronavirus.yml:/_coronavirus.yml -p 3000:80 jcoenep/cor
 Then visit `localhost:3000`.
 
 ### With R
+
+Deploy on a [Shiny Community server](https://rstudio.com/products/shiny/download-server/).
 
 ```bash
 sudo su - -c "R -e \"install.packages('remotes')\""
