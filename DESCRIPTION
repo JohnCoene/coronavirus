@@ -41,8 +41,9 @@ Imports:
     shinyMobile (>= 0.5.0),
     countrycode
 Suggests:
-  echarts4r (>= 0.3.0),
-  echarts4r.maps
+    echarts4r (>= 0.3.0),
+    echarts4r.maps,
+    testthat (>= 2.1.0)
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues
