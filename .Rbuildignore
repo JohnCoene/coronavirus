@@ -20,3 +20,4 @@ googlesheets.rds
 ^appveyor\.yml$
 ^app\.R$
 ^Dockerfile$
+^codecov\.yml$

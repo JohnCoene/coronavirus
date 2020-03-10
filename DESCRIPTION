@@ -43,7 +43,8 @@ Imports:
 Suggests:
     echarts4r (>= 0.3.0),
     echarts4r.maps,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    covr
 RoxygenNote: 7.0.2
 URL: https://github/JohnCoene/coronavirus
 BugReports: https://github/JohnCoene/coronavirus/issues

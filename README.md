@@ -8,6 +8,8 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/coronavirus?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/coronavirus)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 ![](https://img.shields.io/badge/license-MIT-blue)
+[![Coveralls test coverage](https://coveralls.io/repos/github/JohnCoene/coronavirus/badge.svg)](https://coveralls.io/r/JohnCoene/coronavirus?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/JohnCoene/coronavirus/branch/master/graph/badge.svg)](https://codecov.io/gh/JohnCoene/coronavirus?branch=master)
 <!-- badges: end -->
 
 Dashboard to track the spread of the coronavirus, based on three data sources, built with [shinyMobile](https://rinterface.github.io/shinyMobile/) and [echarts4r](https://echarts4r.john-coene.com/).
