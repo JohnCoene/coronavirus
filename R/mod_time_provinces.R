@@ -45,7 +45,7 @@ mod_time_provinces_server <- function(input, output, session, df){
 
 mod_time_provinces_echarts <- function(df, log = FALSE){
   dat <- df %>% 
-    dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
+    dplyr::filter(country %in% c("China", "Hong Kong", "Taiwan")) %>% 
     dplyr::left_join(chinese_provinces, by = "state") %>% 
     dplyr::arrange(desc(date)) %>% 
     dplyr::select(chinese, type, date, cases) %>% 

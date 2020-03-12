@@ -1,3 +1,7 @@
+# coronavirus 0.1.3
+
+- Meet new country naming convention of John Hopkins data.
+
 # coronavirus 0.1.2
 
 - Added news tab

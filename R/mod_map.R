@@ -44,10 +44,10 @@ mod_map_server <- function(input, output, session, df){
   })
 }
 
-mod_map_echarts <- function(df, log){
+mod_map_echarts <- function(df, log = FALSE){
   
   dat <- df %>% 
-    dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
+    dplyr::filter(country %in% c("China", "Hong Kong", "Taiwan")) %>% 
     dplyr::left_join(chinese_provinces, by = "state") %>% 
     dplyr::arrange(desc(date)) %>% 
     dplyr::select(state, type, date, cases) %>% 

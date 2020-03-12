@@ -52,7 +52,7 @@ mod_china_others_echarts <- function(df){
   )
 
   df %>% 
-    dplyr::filter(country != "Mainland China") %>% 
+    dplyr::filter(country != "China") %>% 
     dplyr::filter(type == "confirmed") %>% 
     dplyr::group_by(date) %>% 
     dplyr::summarise(cases = sum(cases, na.rm = TRUE)) %>% 
