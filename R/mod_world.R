@@ -45,7 +45,7 @@ mod_world_server <- function(input, output, session, df){
   embed_url <- golem::get_golem_options("embed_url")
 
   output$copy <- renderUI({
-    country <- "none"
+    country <- "any"
     if(!is.null(input$world_clicked_data))
       country <- input$world_clicked_data$name
     copy(embed_url, "jhu", paste0("&chart=world-timeline&country=", country))
@@ -108,7 +108,7 @@ mod_china_others_echarts <- function(df, pattern = NULL){
     shadowOffsetY = 3
   )
 
-  if(is.null(pattern))
+  if(is.null(pattern) || pattern == "any")
     dat <- dplyr::filter(df, !grepl("China", country))
   else
     dat <- dplyr::filter(df, grepl(pattern, country))
