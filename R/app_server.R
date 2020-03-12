@@ -142,9 +142,6 @@ app_server <- function(input, output,session) {
       # cases added daily
       callModule(mod_new_cases_server, "new_cases", df = df)
 
-      # china vs world
-      callModule(mod_china_others_server, "china_others", df = df)
-
       # jhu tab
       callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
       callModule(mod_count_server, "count_ui_2_jhu", df = df, type_filter = "death")

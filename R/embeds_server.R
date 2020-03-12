@@ -40,6 +40,7 @@ embeds_server <- function(input, output, session){
     rv$variable <- get_query(query, "variable")
     rv$province <- get_query(query, "province")
     rv$cumulative <- get_query(query, "cumulative")
+    rv$country <- get_query(query, "country")
   })
 
   # connect
@@ -81,7 +82,7 @@ embeds_server <- function(input, output, session){
         e <- mode_new_cases_echarts(df, rv$cumulative)
 
       if(rv$chart == "world-timeline")
-        e <- mod_china_others_echarts(df)
+        e <- mod_china_others_echarts(df, rv$country)
       
     } else if(rv$data == "weixin"){
       

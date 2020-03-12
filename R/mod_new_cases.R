@@ -17,7 +17,7 @@ mod_new_cases_ui <- function(id){
   ns <- NS(id)
 
   f7Card(
-    title = "Daily new cases",
+    title = "Total daily new cases",
     f7Toggle(ns("cm"), "Cumulative"),
     echarts4r::echarts4rOutput(ns("plot"), height = 250),
     footer = uiOutput(ns("copy"))

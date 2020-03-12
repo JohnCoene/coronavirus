@@ -38,7 +38,7 @@ mod_china_server <- function(input, output, session, df){
   output$table <- renderUI({
     df %>% 
       dplyr::filter(date == max(date)) %>%
-      dplyr::filter(country == "Mainland China") %>% 
+      dplyr::filter(country == "China") %>% 
       dplyr::select(state, type, cases) %>% 
       tidyr::pivot_wider(state, names_from = type, values_from = cases) %>% 
       dplyr::arrange(-confirmed) %>% 
