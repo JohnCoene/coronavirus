@@ -55,7 +55,7 @@ mod_world_server <- function(input, output, session, df){
     if(is.null(input$world_clicked_data))
       return(span("Cases outside China"))
     else
-      return(span(input$world_clicked_data$name))
+      return(span("Cases in", input$world_clicked_data$name))
   })
 
   output$plot <- echarts4r::renderEcharts4r({
