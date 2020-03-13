@@ -130,3 +130,72 @@ get_query <- function(query, param){
 
   return(p)
 }
+
+# legacy, depreacted keep for embeds
+mod_map_echarts <- function(df, log){
+  
+  dat <- df %>% 
+    dplyr::filter(country %in% c("Mainland China", "Hong Kong", "Taiwan")) %>% 
+    dplyr::left_join(chinese_provinces, by = "state") %>% 
+    dplyr::arrange(desc(date)) %>% 
+    dplyr::select(state, type, date, cases) %>% 
+    dplyr::mutate(
+      cases = dplyr::case_when(
+        log ~ log1p(cases),
+        TRUE ~ cases
+      )
+    )
+
+  index <- length(unique(dat$date)) -1 
+  titles <- unique(dat$date) %>% 
+    rev() %>% 
+    purrr::map(function(x){
+      list(text = format(x, "%d %B %H:00"))
+    })
+
+  bs <- list(
+    shadowColor = "rgba(0, 0, 0, 0.8)",
+    shadowBlur = 5,
+    shadowOffsetX = 3
+  )
+
+  dat %>% 
+    tidyr::pivot_wider(
+      c(state, date),
+      names_from = type,
+      values_from = cases
+    ) %>% 
+    dplyr::arrange(desc(date), desc(confirmed)) %>% 
+    dplyr::group_by(date) %>% 
+    echarts4r::e_charts(state, timeline = TRUE, dispose = FALSE) %>% 
+    echarts4r::e_bar(confirmed, name = "Confirmed", itemStyle = bs) %>% 
+    echarts4r::e_bar(recovered, name = "Recovered", itemStyle = bs) %>% 
+    echarts4r::e_bar(death, name = "Deaths") %>%  
+    echarts4r::e_legend(
+      orient = "vertical",
+      right = 25,
+      top = 50
+    ) %>% 
+    echarts4r::e_tooltip(
+      trigger = "axis",
+      axisPointer = list(
+        type = "shadow"
+      )
+    ) %>% 
+    echarts4r::e_timeline_serie(
+      title = titles
+    ) %>% 
+    echarts4r::e_timeline_opts(
+      currentIndex = index,
+      playInterval = 600, 
+      symbolSize = 4, 
+      axis_type = "time",
+      label = list(
+        show = FALSE
+      ),
+      checkpointStyle = list(
+        symbol = "diamond",
+        symbolSize = 20
+      )
+    )
+}
