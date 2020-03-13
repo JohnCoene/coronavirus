@@ -55,7 +55,7 @@ crawl_coronavirus <- function(){
         country == "US" ~ "United States of America",
         TRUE ~ country
       ),
-      country_iso2c = countrycode::countrycode(country, "country.name", "iso2c")
+      country_iso2c = suppressWarnings(countrycode::countrycode(country, "country.name", "iso2c"))
     )
 
   cli::cli_alert_info("Crawling data from Weixin")
