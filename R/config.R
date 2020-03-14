@@ -9,6 +9,9 @@
 #' @export
 create_config <- function(){
   file <- system.file("coronavirus.yml", package = "coronavirus")
+  directory <- normalizePath(".")
+  destination <- paste0(directory, "/", config_file)
+
   created <- file.copy(file, to = config_file)
   if(created)
     cli::cli_alert_success("_coronavirus.yml file copied: fill it in")
