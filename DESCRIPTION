@@ -41,7 +41,7 @@ Imports:
     shinyMobile (>= 0.5.0),
     countrycode
 Suggests:
-    echarts4r (>= 0.3.0.9000),
+    echarts4r (>= 0.3.1),
     echarts4r.maps,
     testthat (>= 2.1.0),
     covr
