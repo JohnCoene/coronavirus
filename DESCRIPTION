@@ -1,11 +1,7 @@
 Package: coronavirus
 Title: Tracking the Coronavirus
 Version: 0.1.3
-Authors@R: 
-  c(
-    person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut')),
-    person(family = 'John Hopkins', role = 'ctb')
-  )
+Authors@R: person('John', 'Coene', email = 'jcoenep@gmail.com', role = c('cre', 'aut'))
 Description: Tracking the Coronavirus.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -34,15 +30,15 @@ Imports:
     nCov2019 (>= 0.0.9),
     magrittr,
     jsonlite,
+    echarts4r (>= 0.3.1),
     RPostgres,
     tidyselect,
     shinyscroll (>= 0.0.2),
     htmlwidgets,
     shinyMobile (>= 0.5.0),
-    countrycode
+    countrycode,
+    echarts4r.maps
 Suggests:
-    echarts4r (>= 0.3.1),
-    echarts4r.maps,
     testthat (>= 2.1.0),
     covr
 RoxygenNote: 7.1.0
