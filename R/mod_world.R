@@ -82,6 +82,7 @@ mod_world_echarts <- function(df){
     echarts4r::e_charts(country) %>% 
     echarts4r::e_map(
       cases, 
+      roam = TRUE,
       itemStyle = list(
         areaColor = "#242323"
       ),
