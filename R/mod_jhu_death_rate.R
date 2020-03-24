@@ -21,7 +21,7 @@ mod_jhu_death_rate_ui <- function(id){
     echarts4r::echarts4rOutput(ns("trend"), height = 395),
     footer = f7Row(
       f7Col(uiOutput(ns("copy_ui"))),
-      f7Col("deaths / (confirmed + recovered)")
+      f7Col("deaths / confirmed")
     )
   )
 }
@@ -65,7 +65,7 @@ mod_jhu_death_rate_echarts <- function(df){
       )
     ) %>%
     dplyr::mutate(
-      rate = death / (confirmed + recovered),
+      rate = death / (confirmed),
       rate = round(rate * 100, 3)
     ) %>% 
     echarts4r::e_charts(date) %>% 

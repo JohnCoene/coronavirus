@@ -61,7 +61,6 @@ app_server <- function(input, output,session) {
   # counts jhu
   callModule(mod_count_server, "count_ui_1", df = df, type_filter = "confirmed")
   callModule(mod_count_server, "count_ui_2", df = df, type_filter = "death")
-  callModule(mod_count_server, "count_ui_3", df = df, type_filter = "recovered")
 
   # counts weixin
   callModule(
@@ -145,7 +144,6 @@ app_server <- function(input, output,session) {
       # jhu tab
       callModule(mod_count_server, "count_ui_1_jhu", df = df, type_filter = "confirmed")
       callModule(mod_count_server, "count_ui_2_jhu", df = df, type_filter = "death")
-      callModule(mod_count_server, "count_ui_3_jhu", df = df, type_filter = "recovered")
 
       # trend
       callModule(mod_trend_server, "trend_ui_1", df = df)

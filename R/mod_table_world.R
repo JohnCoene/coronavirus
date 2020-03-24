@@ -47,13 +47,11 @@ mod_table_world_server <- function(input, output, session, df){
       dplyr::arrange(-confirmed) %>% 
       dplyr::mutate(
         confirmed = as.integer(confirmed),
-        recovered = as.integer(recovered),
         death = as.integer(death)
       ) %>% 
       dplyr::select(
         Country = country,
         Confirmed = confirmed, 
-        Recovered = recovered,
         Deaths = death
       ) %>% 
       as_f7_table(card = TRUE)

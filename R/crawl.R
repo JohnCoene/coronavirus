@@ -23,26 +23,26 @@ crawl_coronavirus <- function(){
   # read data
   suppressMessages({
     confirmed <- readr::read_csv(confirmed_sheet, col_types = readr::cols())
-    recovered <- readr::read_csv(recovered_sheet, col_types = readr::cols())
+    #recovered <- readr::read_csv(recovered_sheet, col_types = readr::cols())
     deaths <- readr::read_csv(deaths_sheet, col_types = readr::cols())
   })
 
   # add col
   confirmed$type <- "confirmed"
-  recovered$type <- "recovered"
+  #recovered$type <- "recovered"
   deaths$type <- "death"
 
   # rename
   confirmed <- rename_sheets(confirmed)
-  recovered <- rename_sheets(recovered)
+  #recovered <- rename_sheets(recovered)
   deaths <- rename_sheets(deaths)
 
   # pivot longer
   confirmed <- pivot(confirmed)
-  recovered <- pivot(recovered)
+  #recovered <- pivot(recovered)
   deaths <- pivot(deaths)
 
-  df <- dplyr::bind_rows(confirmed, recovered, deaths) %>% 
+  df <- dplyr::bind_rows(confirmed, deaths) %>% 
     dplyr::mutate(
       date = as.Date(date, format = "%m/%d/%y"),
       cases = trimws(cases),

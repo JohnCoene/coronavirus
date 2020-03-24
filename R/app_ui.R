@@ -55,9 +55,6 @@ app_ui <- function() {
               ),
               f7Col(
                 mod_count_ui("count_ui_2", "Deaths")
-              ),
-              f7Col(
-                mod_count_ui("count_ui_3", "Recovered")
               )
             ),
             h2("Weixin Data", class = "center"),
@@ -98,9 +95,6 @@ app_ui <- function() {
               f7Col(
                 mod_count_ui("count_ui_2_jhu", "Deaths")
               ),
-              f7Col(
-                mod_count_ui("count_ui_3_jhu", "Recovered")
-              )
             ),
             mod_new_cases_ui("new_cases"),
             f7Row(

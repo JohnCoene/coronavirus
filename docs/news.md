@@ -1,5 +1,9 @@
 # Changelog
 
+## coronavirus 0.1.4
+
+- Updated JHU data source, no longer provides recovered data
+
 ## coronavirus 0.1.3
 
 - Meet new country naming convention of John Hopkins data.
