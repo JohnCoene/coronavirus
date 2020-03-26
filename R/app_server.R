@@ -58,15 +58,6 @@ app_server <- function(input, output,session) {
     news <- data$news
   }
 
-  # correct
-  df <- df %>% 
-    dplyr::mutate(
-      country = dplyr::case_when(
-        country == "Czech Republic" ~ "Czech Rep",
-        TRUE ~ country
-      )
-    )
-
   # counts jhu
   callModule(mod_count_server, "count_ui_1", df = df, type_filter = "confirmed")
   callModule(mod_count_server, "count_ui_2", df = df, type_filter = "death")

@@ -61,6 +61,7 @@ mod_news_server <- function(input, output, session, df){
           ),
           footer = tags$a(
             class = "link external article-link",
+            target = "_blank",
             article$source,
             href = article$url
           )
