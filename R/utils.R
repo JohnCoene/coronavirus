@@ -153,13 +153,13 @@ rename_sheets <- function(df){
 #' 
 #' @keywords internal
 pivot <- function(df){
-  tidyr::pivot_longer(
-    df, 
-    tidyselect::contains("/"),
-    names_to = c("date"),
-    values_to = c("cases"),
-    values_ptypes = list(cases = "character")
-  )
+  df %>% 
+    dplyr::select(-lon, -lat) %>% 
+    tidyr::pivot_longer(
+      tidyselect::contains("/"),
+      names_to = c("date"),
+      values_to = c("cases")
+    )
 }
 
 #' Table
